@@ -1,0 +1,59 @@
+// @ts-check
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+import { defineConfig, devices } from '@playwright/test';
+
+export default defineConfig({
+
+  testDir: './tests',
+
+  fullyParallel: true,
+
+  retries: 1,
+
+  reporter: [
+    ['html'],
+    ['list']
+  ],
+
+  use: {
+
+    baseURL: 'http://localhost:5000',
+
+    headless: false,
+
+    screenshot: 'only-on-failure',
+
+    video: 'retain-on-failure',
+
+    trace: 'on-first-retry',
+
+    actionTimeout: 10000,
+
+    navigationTimeout: 15000,
+
+    launchOptions: {
+        slowMo: 300
+    }
+  },
+
+  projects: [
+
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
+
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
+
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
+    }
+  ]
+});

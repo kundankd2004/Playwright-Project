@@ -1,0 +1,11 @@
+{
+  "validProfile": {
+    "name": "KunDan Raj",
+    "email": "kundan@test.com"
+  },
+
+  "invalidProfile": {
+    "name": "",
+    "email": "wrongemail"
+  }
+}

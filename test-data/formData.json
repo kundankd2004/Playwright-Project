@@ -1,0 +1,9 @@
+{
+  "validForm": {
+    "input": "Playwright Automation"
+  },
+
+  "invalidForm": {
+    "input": ""
+  }
+}
