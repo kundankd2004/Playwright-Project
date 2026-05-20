@@ -1,3 +1,4 @@
+require('../utils/hooks');
 const { test, expect } = require('../fixtures/baseFixture');
 const dashboardData = require('../test-data/dashboardData.json');
 const Logger = require('../utils/logger');

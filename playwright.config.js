@@ -11,11 +11,16 @@ export default defineConfig({
 
   fullyParallel: true,
 
+  workers: 3,
+
+  timeout: 30000,
+
   retries: 1,
 
   reporter: [
     ['html'],
-    ['list']
+    ['list'],
+    ['allure-playwright']
   ],
 
   use: {

@@ -1,3 +1,4 @@
+require('../utils/hooks');
 const { test, expect } = require('../fixtures/baseFixture');
 const loginData = require('../test-data/loginData.json');
 const CommonUtils = require('../utils/commonUtils');
@@ -12,9 +13,9 @@ test('Valid Login Test @smoke @regression', async ({ page, loginPage }) => {
     console.log(CommonUtils.generateRandomEmail());
 
     await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
+    loginData.validUser.username,
+    loginData.validUser.password
+);
 
     await expect(page).toHaveURL(/dashboard/);
 });
