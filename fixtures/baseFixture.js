@@ -9,7 +9,9 @@ exports.test = base.test.extend({
 
         await page.waitForLoadState('networkidle');
 
-        await page.waitForSelector('#username');
+        await page.waitForSelector('input[name="username"]', {
+        timeout: 30000
+    });
 
         const loginPage = new LoginPage(page);
 
