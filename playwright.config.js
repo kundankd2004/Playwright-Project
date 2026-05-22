@@ -9,9 +9,9 @@ export default defineConfig({
 
   testDir: './tests',
 
-  fullyParallel: true,
+  fullyParallel: false,
 
-  workers: 3,
+  workers: 1,
 
   timeout: 30000,
 
