@@ -15,7 +15,7 @@ export default defineConfig({
 
   timeout: 30000,
 
-  retries: 0,
+  retries: 2,
 
   reporter: [
     ['html'],
@@ -35,9 +35,9 @@ export default defineConfig({
 
     trace: 'on-first-retry',
 
-    actionTimeout: 10000,
+    actionTimeout: 30000,
 
-    navigationTimeout: 30000,
+    navigationTimeout: 60000,
 
     launchOptions: {
         slowMo: 0

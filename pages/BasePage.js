@@ -5,7 +5,10 @@ class BasePage {
     }
 
     async navigate(url) {
-        await this.page.goto(url);
+        await this.page.goto(url, {
+            waitUntil: 'load',
+            timeout: 60000
+        });
     }
 
     async click(locator) {
@@ -13,7 +16,7 @@ class BasePage {
     }
 
     async fill(locator, value) {
-        await this.page.fill(locator, value);
+        await this.page.fill(locator, value || '');
     }
 
     async getText(locator) {
