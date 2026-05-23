@@ -13,7 +13,7 @@ test('Admin Search User Test @smoke', async ({ page, loginPage }) => {
     Logger.info('Starting Admin Search User Test');
 
     await page.goto('/', {
-        waitUntil: 'domcontentloaded',
+        waitUntil: 'load',
         timeout: 120000
     });
 
@@ -43,7 +43,7 @@ test('Admin Reset Search Test @sanity', async ({ page, loginPage }) => {
     Logger.info('Starting Admin Reset Search Test');
 
     await page.goto('/', {
-        waitUntil: 'domcontentloaded',
+        waitUntil: 'load',
         timeout: 120000
     });
 

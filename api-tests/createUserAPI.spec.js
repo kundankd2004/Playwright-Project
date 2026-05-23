@@ -7,6 +7,7 @@ test('Create User API Test', async ({ request }) => {
         name: 'KunDan',
         username: 'kundan123',
         email: 'kundan@test.com'
+
     };
 
     const response = await request.post(
@@ -16,13 +17,14 @@ test('Create User API Test', async ({ request }) => {
         }
     );
 
-    console.log(await response.json());
-
     expect(response.status()).toBe(201);
 
     const responseBody = await response.json();
 
+    console.log(responseBody);
+
     expect(responseBody.name).toBe('KunDan');
 
     expect(responseBody.email).toBe('kundan@test.com');
+
 });

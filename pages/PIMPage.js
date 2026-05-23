@@ -18,6 +18,22 @@ class PIMPage {
         await this.page.locator('//button[@type="submit"]').click();
     }
 
+    async clickAddEmployee() {
+        await this.page.locator('//a[text()="Add Employee"]').click();
+    }
+
+    async enterFirstName(firstName) {
+        await this.page.locator('input[name="firstName"]').fill(firstName);
+    }
+
+    async enterLastName(lastName) {
+        await this.page.locator('input[name="lastName"]').fill(lastName);
+    }
+
+    async clickSaveButton() {
+        await this.page.locator('//button[@type="submit"]').click();
+    }
+
 }
 
 module.exports = PIMPage;

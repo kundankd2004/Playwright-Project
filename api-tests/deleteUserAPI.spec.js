@@ -6,7 +6,8 @@ test('Delete User API Test', async ({ request }) => {
         'https://jsonplaceholder.typicode.com/users/1'
     );
 
-    console.log('Status Code:', response.status());
-
     expect(response.status()).toBe(200);
+
+    console.log('User deleted successfully');
+
 });
