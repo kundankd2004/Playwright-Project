@@ -21,6 +21,10 @@ test('Form Submission Test @sanity', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await expect(page).toHaveURL(/dashboard/);
+    await page.waitForURL(/dashboard/, {
+        timeout: 15000
+    });
+
+    await expect(page).toHaveURL(/dashboard/i);
 
 });

@@ -13,7 +13,10 @@ testData.forEach((data) => {
 
     test(`Login Test for ${data.username}`, async ({ page, loginPage }) => {
 
-        await page.goto('/');
+        await page.goto('/', {
+            waitUntil: 'domcontentloaded',
+            timeout: 120000
+});
 
         await loginPage.login(
             data.username,

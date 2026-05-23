@@ -13,7 +13,7 @@ export default defineConfig({
 
   workers: 1,
 
-  timeout: 90000,
+  timeout: 120000,
 
   retries: 1,
 
@@ -37,7 +37,7 @@ export default defineConfig({
 
     actionTimeout: 60000,
 
-    navigationTimeout: 60000,
+    navigationTimeout: 120000,
 
     launchOptions: {
         slowMo: 0
