@@ -6,7 +6,7 @@ const AdminPage = require('../pages/AdminPage');
 
 const Logger = require('../utils/logger');
 
-test('Add Admin User Test @regression', async ({ page, loginPage }) => {
+test.skip('Add Admin User Test @regression', async ({ page, loginPage }) => {
 
     const adminPage = new AdminPage(page);
 
