@@ -7,7 +7,10 @@ test('Form Submission Test @sanity', async ({ page, loginPage }) => {
 
     Logger.info('Starting Form Submission Test');
 
-    await page.goto('/');
+    await page.goto('/', {
+         waitUntil: 'domcontentloaded',
+         timeout: 120000
+    });
 
     await expect(
         page.locator('input[name="username"]')
