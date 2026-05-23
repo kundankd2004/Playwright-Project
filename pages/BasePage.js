@@ -12,19 +12,19 @@ class BasePage {
     }
 
     async click(locator) {
-        await this.page.click(locator);
+        await locator.click();
     }
 
     async fill(locator, value) {
-        await this.page.fill(locator, value || '');
+        await locator.fill(value || '');
     }
 
     async getText(locator) {
-        return await this.page.textContent(locator);
+        return await locator.textContent();
     }
 
     async isVisible(locator) {
-        return await this.page.locator(locator).isVisible();
+        return await locator.isVisible();
     }
 }
 

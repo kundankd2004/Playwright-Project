@@ -8,13 +8,13 @@ test('Valid Login Test @smoke @regression', async ({ page, loginPage }) => {
 
     Logger.info('Starting Valid Login Test');
 
-    //await page.goto('/');
+    await page.goto('/');
 
     console.log(CommonUtils.generateRandomEmail());
 
-    await loginPage.login(
-    loginData.validUser.username,
-    loginData.validUser.password
+   await loginPage.login(
+    process.env.APP_USERNAME,
+    process.env.APP_PASSWORD
 );
 
     await expect(page).toHaveURL(/dashboard/);
@@ -33,5 +33,5 @@ test('Invalid Login Test @sanity', async ({ page, loginPage }) => {
         loginData.invalidUser.password
     );
 
-    await expect(page.locator('#error')).toBeVisible();
+    await expect(loginPage.errorMessage).toBeVisible();
 });

@@ -26,7 +26,7 @@ testData.forEach((data) => {
 
         } else {
 
-            await expect(page.locator('#error')).toBeVisible();
+            await expect(loginPage.errorMessage).toBeVisible();
 
         }
     });

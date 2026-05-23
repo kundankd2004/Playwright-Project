@@ -7,14 +7,14 @@ test('Dashboard Visibility Test @smoke', async ({ page, loginPage }) => {
 
     Logger.info('Starting Dashboard Visibility Test');
 
-    //await page.goto('/');
+    await page.goto('/');
 
     await loginPage.login(
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
 
-    await expect(page.locator('h1')).toContainText(
-        dashboardData.dashboardTitle
-    );
+    await expect(page.locator('.oxd-topbar-header-breadcrumb h6'))
+    .toContainText(dashboardData.dashboardTitle);
+    
 });

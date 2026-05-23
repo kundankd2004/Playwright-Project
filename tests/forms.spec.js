@@ -7,16 +7,17 @@ test('Form Submission Test @sanity', async ({ page, loginPage }) => {
 
     Logger.info('Starting Form Submission Test');
 
-    //await page.goto('/');
+    await page.goto('/');
 
-    await page.waitForLoadState('networkidle');
-
-    await expect(page.locator('#username')).toBeVisible();
+    await expect(
+        page.locator('input[name="username"]')
+    ).toBeVisible();
 
     await loginPage.login(
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
 
-    expect(formData.validForm.input).toContain('Playwright');
+    await expect(page).toHaveURL(/dashboard/);
+
 });

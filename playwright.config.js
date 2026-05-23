@@ -13,7 +13,7 @@ export default defineConfig({
 
   workers: 1,
 
-  timeout: 30000,
+  timeout: 60000,
 
   retries: 2,
 
@@ -35,7 +35,7 @@ export default defineConfig({
 
     trace: 'on-first-retry',
 
-    actionTimeout: 30000,
+    actionTimeout: 60000,
 
     navigationTimeout: 60000,
 

@@ -6,10 +6,10 @@ class LoginPage extends BasePage {
 
         super(page);
 
-        this.username = '#username';
-        this.password = '#password';
-        this.loginButton = '#loginBtn';
-        this.errorMessage = '#error';
+        this.username = page.locator('input[name="username"]');
+        this.password = page.locator('input[name="password"]');
+        this.loginBtn = page.locator('button[type="submit"]');
+        this.errorMessage = page.locator('.oxd-alert-content-text');
     }
 
     async login(user, pass) {
@@ -18,7 +18,7 @@ class LoginPage extends BasePage {
 
         await this.fill(this.password, pass);
 
-        await this.click(this.loginButton);
+        await this.click(this.loginBtn);
     }
 }
 
