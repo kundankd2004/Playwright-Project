@@ -36,8 +36,8 @@ class AdminPage {
         await this.page.waitForTimeout(2000);
 
         await this.page.locator(
-            '//span[text()="Admin"]'
-        ).click();
+            '//div[@role="listbox"]//span[text()="Admin"]'
+            ).click();
     }
 
     async enterEmployeeName(employeeName) {
