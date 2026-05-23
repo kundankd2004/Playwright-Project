@@ -45,8 +45,18 @@ class AdminPage {
     }
 
     async selectStatus() {
-        await this.page.locator('(//div[@class="oxd-select-text"])[2]').click();
-        await this.page.locator('//span[text()="Enabled"]').click();
+
+        await this.page.waitForTimeout(5000);
+
+        await this.page.locator(
+            '.oxd-select-text'
+        ).nth(1).click();
+
+        await this.page.waitForTimeout(2000);
+
+        await this.page.locator(
+            '//div[@role="listbox"]//span[text()="Enabled"]'
+        ).click();
     }
 
     async enterUsername(username) {
