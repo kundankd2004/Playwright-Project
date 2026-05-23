@@ -22,12 +22,22 @@ class AdminPage {
     }
 
     async clickAddButton() {
-    await this.page.locator('//button[text()=" Add "]').click();
+        await this.page.locator('//button[text()=" Add "]').click();
     }
 
     async selectUserRole() {
-        await this.page.locator('(//div[@class="oxd-select-text"])[1]').click();
-        await this.page.locator('//span[text()="Admin"]').click();
+
+        await this.page.waitForTimeout(5000);
+
+        await this.page.locator(
+            '.oxd-select-text'
+        ).first().click();
+
+        await this.page.waitForTimeout(2000);
+
+        await this.page.locator(
+            '//span[text()="Admin"]'
+        ).click();
     }
 
     async enterEmployeeName(employeeName) {
