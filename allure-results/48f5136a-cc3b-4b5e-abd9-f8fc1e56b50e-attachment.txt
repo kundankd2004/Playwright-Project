@@ -1,4 +1,0 @@
-Starting Test Execution
-[INFO] Starting Valid Login Test
-user5467@test.com
-Test Execution Completed

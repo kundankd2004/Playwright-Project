@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Dashboard Visibility Test
-Test Execution Completed

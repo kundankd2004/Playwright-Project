@@ -1,2 +1,0 @@
-[INFO] Starting Valid Login Test
-user1647@test.com

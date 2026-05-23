@@ -1,7 +1,11 @@
 require('../utils/hooks');
+
 const { test, expect } = require('../fixtures/baseFixture');
+
 const loginData = require('../test-data/loginData.json');
+
 const CommonUtils = require('../utils/commonUtils');
+
 const Logger = require('../utils/logger');
 
 test('Valid Login Test @smoke @regression', async ({ page, loginPage }) => {
@@ -20,11 +24,10 @@ test('Valid Login Test @smoke @regression', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.waitForURL(/dashboard/, {
-        timeout: 15000
-    });
+    await page.waitForTimeout(3000);
 
     await expect(page).toHaveURL(/dashboard/i);
+
 });
 
 test('Invalid Login Test @sanity', async ({ page, loginPage }) => {
@@ -53,4 +56,5 @@ test('Invalid Login Test @sanity', async ({ page, loginPage }) => {
     ).toBeVisible({
         timeout: 15000
     });
+
 });

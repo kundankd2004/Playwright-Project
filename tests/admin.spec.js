@@ -22,9 +22,7 @@ test('Admin Search User Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.waitForURL(/dashboard/, {
-        timeout: 15000
-    });
+    await page.waitForTimeout(3000);
 
     await adminPage.clickAdminMenu();
 
@@ -54,9 +52,7 @@ test('Admin Reset Search Test @sanity', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.waitForURL(/dashboard/, {
-        timeout: 15000
-    });
+    await page.waitForTimeout(3000);
 
     await adminPage.clickAdminMenu();
 

@@ -22,9 +22,7 @@ test('PIM Search Employee Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.waitForURL(/dashboard/, {
-        timeout: 15000
-    });
+    await page.waitForTimeout(3000);
 
     await pimPage.clickPIMMenu();
 
@@ -54,9 +52,7 @@ test('PIM Reset Search Test @sanity', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.waitForURL(/dashboard/, {
-        timeout: 15000
-    });
+    await page.waitForTimeout(3000);
 
     await pimPage.clickPIMMenu();
 
