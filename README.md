@@ -1,5 +1,12 @@
 # Playwright Automation Framework
 
+![Playwright](https://img.shields.io/badge/Playwright-Automation-green)
+![JavaScript](https://img.shields.io/badge/Language-JavaScript-yellow)
+![NodeJS](https://img.shields.io/badge/NodeJS-Backend-brightgreen)
+![GitHub Actions](https://img.shields.io/badge/CI/CD-GitHub_Actions-blue)
+![Jenkins](https://img.shields.io/badge/CI/CD-Jenkins-red)
+![Allure Report](https://img.shields.io/badge/Reporting-Allure-purple)
+
 ## Project Overview
 
 This project is an end-to-end test automation framework built using Playwright with JavaScript.
