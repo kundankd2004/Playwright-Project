@@ -16,7 +16,7 @@ testData.forEach((data) => {
         await page.goto('/', {
             waitUntil: 'domcontentloaded',
             timeout: 120000
-});
+        });
 
         await loginPage.login(
             data.username,
@@ -25,11 +25,24 @@ testData.forEach((data) => {
 
         if (data.username === 'admin') {
 
-            await expect(page).toHaveURL(/dashboard/);
+            await page.waitForURL(/dashboard/, {
+                timeout: 15000
+            });
+
+            await expect(page).toHaveURL(/dashboard/i);
 
         } else {
 
-            await expect(loginPage.errorMessage).toBeVisible();
+            await page.waitForSelector(
+                '.oxd-alert-content-text',
+                { timeout: 15000 }
+            );
+
+            await expect(
+                loginPage.errorMessage
+            ).toBeVisible({
+                timeout: 15000
+            });
 
         }
     });

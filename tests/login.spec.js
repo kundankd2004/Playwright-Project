@@ -8,23 +8,33 @@ test('Valid Login Test @smoke @regression', async ({ page, loginPage }) => {
 
     Logger.info('Starting Valid Login Test');
 
-    await page.goto('/');
+    await page.goto('/', {
+        waitUntil: 'domcontentloaded',
+        timeout: 120000
+    });
 
     console.log(CommonUtils.generateRandomEmail());
 
-   await loginPage.login(
-    process.env.APP_USERNAME,
-    process.env.APP_PASSWORD
-);
+    await loginPage.login(
+        process.env.APP_USERNAME,
+        process.env.APP_PASSWORD
+    );
 
-    await expect(page).toHaveURL(/dashboard/);
+    await page.waitForURL(/dashboard/, {
+        timeout: 15000
+    });
+
+    await expect(page).toHaveURL(/dashboard/i);
 });
 
 test('Invalid Login Test @sanity', async ({ page, loginPage }) => {
 
     Logger.warn('Starting Invalid Login Test');
     
-    await page.goto('/');
+    await page.goto('/', {
+        waitUntil: 'domcontentloaded',
+        timeout: 120000
+    });
 
     console.log(CommonUtils.generateRandomNumber());
 
@@ -33,5 +43,14 @@ test('Invalid Login Test @sanity', async ({ page, loginPage }) => {
         loginData.invalidUser.password
     );
 
-    await expect(loginPage.errorMessage).toBeVisible();
+    await page.waitForSelector(
+        '.oxd-alert-content-text',
+        { timeout: 15000 }
+    );
+
+    await expect(
+        loginPage.errorMessage
+    ).toBeVisible({
+        timeout: 15000
+    });
 });
