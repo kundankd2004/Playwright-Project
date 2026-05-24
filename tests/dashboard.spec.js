@@ -10,16 +10,17 @@ test('Dashboard Visibility Test @smoke', async ({ page, loginPage }) => {
 
     Logger.info('Starting Dashboard Visibility Test');
 
-    await page.goto('/', {
-        waitUntil: 'domcontentloaded',
-        timeout: 120000
-    });
+    await page.goto(process.env.BASE_URL);
 
     await loginPage.login(
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
 
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
+
+    await expect(
+        page.locator('.oxd-topbar-header-breadcrumb')
+    ).toBeVisible();
 
 });

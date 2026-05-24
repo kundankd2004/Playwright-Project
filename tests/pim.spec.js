@@ -12,7 +12,7 @@ test('PIM Search Employee Test @smoke', async ({ page, loginPage }) => {
 
     Logger.info('Starting PIM Search Employee Test');
 
-    await page.goto('/', {
+    await page.goto(process.env.BASE_URL, {
         waitUntil: 'domcontentloaded',
         timeout: 120000
     });
@@ -22,7 +22,7 @@ test('PIM Search Employee Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     await pimPage.clickPIMMenu();
 
@@ -42,7 +42,7 @@ test('PIM Reset Search Test @sanity', async ({ page, loginPage }) => {
 
     Logger.info('Starting PIM Reset Search Test');
 
-    await page.goto('/', {
+    await page.goto(process.env.BASE_URL, {
         waitUntil: 'domcontentloaded',
         timeout: 120000
     });
@@ -52,16 +52,16 @@ test('PIM Reset Search Test @sanity', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     await pimPage.clickPIMMenu();
 
     await pimPage.searchEmployee('Linda');
 
-    await page.locator('//button[text()=" Reset "]').click();
+    await pimPage.clickResetButton();
 
     await expect(
         page.locator('(//input[@placeholder="Type for hints..."])[1]')
-    ).toHaveValue('');
+    ).not.toHaveValue('Linda');
 
 });

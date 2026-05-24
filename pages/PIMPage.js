@@ -15,7 +15,7 @@ class PIMPage {
     }
 
     async clickSearchButton() {
-        await this.page.locator('//button[@type="submit"]').click();
+        await this.page.getByRole('button', { name: 'Search' }).click();
     }
 
     async clickAddEmployee() {
@@ -31,7 +31,11 @@ class PIMPage {
     }
 
     async clickSaveButton() {
-        await this.page.locator('//button[@type="submit"]').click();
+        await this.page.getByRole('button', { name: 'Save' }).first().click();
+    }
+
+    async clickResetButton() {
+        await this.page.getByRole('button', { name: 'Reset' }).click();
     }
 
 }

@@ -13,7 +13,7 @@ testData.forEach((data) => {
 
     test(`Login Test for ${data.username}`, async ({ page, loginPage }) => {
 
-        await page.goto('/', {
+        await page.goto(process.env.BASE_URL, {
             waitUntil: 'domcontentloaded',
             timeout: 120000
         });

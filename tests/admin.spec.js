@@ -12,8 +12,8 @@ test('Admin Search User Test @smoke', async ({ page, loginPage }) => {
 
     Logger.info('Starting Admin Search User Test');
 
-    await page.goto('/', {
-        waitUntil: 'load',
+    await page.goto(process.env.BASE_URL, {
+        waitUntil: 'domcontentloaded',
         timeout: 120000
     });
 
@@ -22,7 +22,7 @@ test('Admin Search User Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     await adminPage.clickAdminMenu();
 
@@ -42,8 +42,8 @@ test('Admin Reset Search Test @sanity', async ({ page, loginPage }) => {
 
     Logger.info('Starting Admin Reset Search Test');
 
-    await page.goto('/', {
-        waitUntil: 'load',
+    await page.goto(process.env.BASE_URL, {
+        waitUntil: 'domcontentloaded',
         timeout: 120000
     });
 
@@ -52,7 +52,7 @@ test('Admin Reset Search Test @sanity', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     await adminPage.clickAdminMenu();
 

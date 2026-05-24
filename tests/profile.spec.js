@@ -6,7 +6,7 @@ test('Profile Update Test @regression', async ({ page, loginPage }) => {
 
     Logger.info('Starting Profile Update Test');
 
-    await page.goto('/');
+    await page.goto(process.env.BASE_URL);
 
     await loginPage.login(
         process.env.APP_USERNAME,

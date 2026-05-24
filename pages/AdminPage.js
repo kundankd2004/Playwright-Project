@@ -14,7 +14,7 @@ class AdminPage {
     }
 
     async clickSearchButton() {
-        await this.page.locator('//button[@type="submit"]').click();
+        await this.page.getByRole('button', { name: 'Search' }).click();
     }
 
     async clickResetButton() {
@@ -27,7 +27,7 @@ class AdminPage {
 
     async selectUserRole() {
 
-        await this.page.waitForTimeout(5000);
+        await this.page.waitForLoadState('networkidle');
 
         await this.page.locator(
             '.oxd-select-text'
@@ -35,10 +35,13 @@ class AdminPage {
 
         await this.page.waitForTimeout(2000);
 
-        await this.page.locator(
-            '//div[@role="listbox"]//span[text()="Admin"]'
-            ).click();
-    }
+        await this.page.waitForSelector(
+            '//div[@role="listbox"]',
+            { timeout: 10000 }
+        );
+
+        await this.page.getByRole('option', { name: 'Admin' }).click();
+            }
 
     async enterEmployeeName(employeeName) {
         await this.page.locator('//input[@placeholder="Type for hints..."]').fill(employeeName);
@@ -46,7 +49,7 @@ class AdminPage {
 
     async selectStatus() {
 
-        await this.page.waitForTimeout(5000);
+        await this.page.waitForLoadState('networkidle');
 
         await this.page.locator(
             '.oxd-select-text'
@@ -54,9 +57,7 @@ class AdminPage {
 
         await this.page.waitForTimeout(2000);
 
-        await this.page.locator(
-            '//div[@role="listbox"]//span[text()="Enabled"]'
-        ).click();
+        await this.page.getByText('Enabled').click();
     }
 
     async enterUsername(username) {

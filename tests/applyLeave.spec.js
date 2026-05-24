@@ -18,7 +18,7 @@ test('Leave Page Visibility Test @regression', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.waitForTimeout(5000);
+    await page.waitForLoadState('networkidle');
 
     await page.locator('//span[text()="Leave"]').click();
 

@@ -40,7 +40,7 @@ export default defineConfig({
     navigationTimeout: 120000,
 
     launchOptions: {
-        slowMo: 0
+        slowMo: 2000
     }
   },
 

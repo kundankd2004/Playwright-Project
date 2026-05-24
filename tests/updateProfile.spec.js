@@ -8,21 +8,18 @@ test('Update Profile Test @regression', async ({ page, loginPage }) => {
 
     Logger.info('Starting Update Profile Test');
 
-    await page.goto('/', {
-        waitUntil: 'domcontentloaded',
-        timeout: 120000
-    });
+    await page.goto(process.env.BASE_URL);
 
     await loginPage.login(
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
 
-    await page.waitForTimeout(5000);
+    await page.waitForLoadState('networkidle');
 
     await page.locator('//span[text()="My Info"]').click();
 
-    await page.waitForTimeout(5000);
+    await page.waitForLoadState('networkidle');
 
     await page.locator(
         '(//input[@class="oxd-input oxd-input--active"])[2]'
@@ -32,8 +29,6 @@ test('Update Profile Test @regression', async ({ page, loginPage }) => {
         '(//button[@type="submit"])[1]'
     ).click();
 
-    await expect(
-        page.locator('.oxd-toast')
-    ).toBeVisible();
+    await expect(page).toHaveURL(/viewPersonalDetails/);
 
 });

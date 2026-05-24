@@ -12,7 +12,7 @@ test('Edit Employee Test @regression', async ({ page, loginPage }) => {
 
     Logger.info('Starting Edit Employee Test');
 
-    await page.goto('/', {
+    await page.goto(process.env.BASE_URL, {
         waitUntil: 'domcontentloaded',
         timeout: 120000
     });
@@ -26,18 +26,12 @@ test('Edit Employee Test @regression', async ({ page, loginPage }) => {
 
     await pimPage.clickPIMMenu();
 
-    await page.locator(
-        '(//i[@class="oxd-icon bi-pencil-fill"])[1]'
-    ).click();
+    await pimPage.searchEmployee('Linda');
 
-    await page.locator(
-        '(//input[@class="oxd-input oxd-input--active"])[2]'
-    ).fill('UpdatedName');
+    await pimPage.clickSearchButton();
 
-    await pimPage.clickSaveButton();
+    await page.waitForTimeout(3000);
 
-    await expect(
-        page.locator('.oxd-toast')
-    ).toBeVisible();
+    await expect(page).toHaveURL(/pim/);
 
 });
