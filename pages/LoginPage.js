@@ -1,25 +1,46 @@
-const BasePage = require('./BasePage');
-
-class LoginPage extends BasePage {
+class LoginPage {
 
     constructor(page) {
 
-        super(page);
+        this.page = page;
 
-        this.username = page.locator('input[name="username"]');
-        this.password = page.locator('input[name="password"]');
-        this.loginBtn = page.locator('button[type="submit"]');
-        this.errorMessage = page.locator('.oxd-alert-content-text');
+        this.usernameInput = page.locator(
+            'input[name="username"]'
+        );
+
+        this.passwordInput = page.locator(
+            'input[name="password"]'
+        );
+
+        this.loginBtn = page.locator(
+            'button[type="submit"]'
+        );
+
+        this.errorMessage = page.locator(
+            '.oxd-alert-content-text'
+        );
+
     }
 
-    async login(user, pass) {
+    async login(username, password) {
 
-        await this.fill(this.username, user);
+        await this.usernameInput.waitFor({
+            state: 'visible',
+            timeout: 30000
+        });
 
-        await this.fill(this.password, pass);
+        await this.usernameInput.fill(username);
 
-        await this.click(this.loginBtn);
+        await this.passwordInput.fill(password);
+
+        await this.loginBtn.click();
+
+        await this.page.waitForLoadState(
+            'domcontentloaded'
+        );
+
     }
+
 }
 
 module.exports = LoginPage;

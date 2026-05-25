@@ -1,9 +1,10 @@
 // @ts-check
+
+import { defineConfig, devices } from '@playwright/test';
+
 import dotenv from 'dotenv';
 
 dotenv.config();
-
-import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
 
@@ -13,21 +14,30 @@ export default defineConfig({
 
   workers: 1,
 
-  timeout: 120000,
-
   retries: 1,
 
+  timeout: 120000,
+
+  expect: {
+
+    timeout: 15000
+
+  },
+
   reporter: [
+
     ['html'],
-    ['list'],
-    ['allure-playwright']
+
+    ['list']
+
   ],
 
   use: {
 
-    baseURL: process.env.BASE_URL,
+    baseURL:
+      'https://opensource-demo.orangehrmlive.com',
 
-    headless: true,
+    headless: false,
 
     screenshot: 'only-on-failure',
 
@@ -35,30 +45,27 @@ export default defineConfig({
 
     trace: 'on-first-retry',
 
-    actionTimeout: 60000,
+    actionTimeout: 30000,
 
-    navigationTimeout: 120000,
+    navigationTimeout: 60000,
 
-    launchOptions: {
-        slowMo: 2000
-    }
+    ignoreHTTPSErrors: true
+
   },
 
   projects: [
 
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+
+      use: {
+
+        ...devices['Desktop Chrome']
+
+      }
+
     }
 
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
-    // },
-
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    // }
   ]
+
 });
