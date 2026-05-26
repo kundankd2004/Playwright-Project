@@ -12,27 +12,50 @@ test('Delete Employee Test @regression', async ({ page, loginPage }) => {
 
     Logger.info('Starting Delete Employee Test');
 
-    await page.goto('/', {
-        waitUntil: 'domcontentloaded',
-        timeout: 120000
-    });
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await expect(
+        page.locator('input[name="username"]')
+    ).toBeVisible();
 
     await loginPage.login(
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
 
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     await pimPage.clickPIMMenu();
 
-    await page.locator(
-        '(//i[@class="oxd-icon bi-trash"])[1]'
-    ).click();
+    await pimPage.clickEmployeeList();
 
-    await page.locator(
-        '//button[text()=" Yes, Delete "]'
-    ).click();
+    await pimPage.searchEmployee('Updated');
+
+    await page.waitForLoadState('networkidle');
+
+    await pimPage.verifyEmployeeTableVisible();
+
+    await expect(
+        page.locator('.oxd-icon.bi-trash').first()
+    ).toBeVisible();
+
+    await page.locator('.oxd-icon.bi-trash')
+        .first()
+        .click();
+
+    const confirmDeleteButton = page.getByRole('button', {
+        name: 'Yes, Delete'
+    });
+
+    await expect(confirmDeleteButton).toBeVisible();
+
+    await confirmDeleteButton.click();
 
     await expect(
         page.locator('.oxd-toast')
@@ -40,81 +63,44 @@ test('Delete Employee Test @regression', async ({ page, loginPage }) => {
 
 });
 
-test('Delete Employee Page Visibility Test @smoke', async ({ page, loginPage }) => {
+test('Delete Employee Button Visibility Test @smoke', async ({ page, loginPage }) => {
 
     const pimPage = new PIMPage(page);
 
-    Logger.info('Starting Delete Employee Page Visibility Test');
+    Logger.info('Starting Delete Employee Button Visibility Test');
 
-    await page.goto('/', {
-        waitUntil: 'domcontentloaded',
-        timeout: 120000
-    });
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
     );
-
-    await page.waitForTimeout(3000);
-
-    await pimPage.clickPIMMenu();
 
     await expect(
-        page.locator('.oxd-topbar-header-breadcrumb h6')
-    ).toContainText('PIM');
-
-});
-
-test('Delete Employee Table Visibility Test @sanity', async ({ page, loginPage }) => {
-
-    const pimPage = new PIMPage(page);
-
-    Logger.info('Starting Delete Employee Table Visibility Test');
-
-    await page.goto('/', {
-        waitUntil: 'domcontentloaded',
-        timeout: 120000
-    });
+        page.locator('input[name="username"]')
+    ).toBeVisible();
 
     await loginPage.login(
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
 
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     await pimPage.clickPIMMenu();
 
-    const table = page.locator('.oxd-table');
+    await pimPage.clickEmployeeList();
 
-    await expect(table).toBeVisible();
+    await pimPage.searchEmployee('Updated');
 
-});
+    await page.waitForLoadState('networkidle');
 
-test('Delete Employee Delete Button Visibility Test @regression', async ({ page, loginPage }) => {
-
-    const pimPage = new PIMPage(page);
-
-    Logger.info('Starting Delete Button Visibility Test');
-
-    await page.goto('/', {
-        waitUntil: 'domcontentloaded',
-        timeout: 120000
-    });
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.waitForTimeout(3000);
-
-    await pimPage.clickPIMMenu();
+    await pimPage.verifyEmployeeTableVisible();
 
     const deleteButton = page.locator(
-        '(//i[@class="oxd-icon bi-trash"])[1]'
-    );
+        '.oxd-icon.bi-trash'
+    ).first();
 
     await expect(deleteButton).toBeVisible();
 
@@ -124,29 +110,99 @@ test('Delete Employee Confirmation Popup Test @sanity', async ({ page, loginPage
 
     const pimPage = new PIMPage(page);
 
-    Logger.info('Starting Delete Confirmation Popup Test');
+    Logger.info('Starting Delete Employee Confirmation Popup Test');
 
-    await page.goto('/', {
-        waitUntil: 'domcontentloaded',
-        timeout: 120000
-    });
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await expect(
+        page.locator('input[name="username"]')
+    ).toBeVisible();
 
     await loginPage.login(
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
 
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     await pimPage.clickPIMMenu();
 
-    await page.locator(
-        '(//i[@class="oxd-icon bi-trash"])[1]'
-    ).click();
+    await pimPage.clickEmployeeList();
 
-    const popup = page.locator('.orangehrm-modal-footer');
+    await pimPage.searchEmployee('Updated');
 
-    await expect(popup).toBeVisible();
+    await page.waitForLoadState('networkidle');
+
+    await pimPage.verifyEmployeeTableVisible();
+
+    await expect(
+        page.locator('.oxd-icon.bi-trash').first()
+    ).toBeVisible();
+
+    await page.locator('.oxd-icon.bi-trash')
+        .first()
+        .click();
+
+    await expect(
+        page.locator('.oxd-dialog-container-default')
+    ).toBeVisible();
+
+});
+
+test('Delete Employee Cancel Button Test @regression', async ({ page, loginPage }) => {
+
+    const pimPage = new PIMPage(page);
+
+    Logger.info('Starting Delete Employee Cancel Button Test');
+
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await expect(
+        page.locator('input[name="username"]')
+    ).toBeVisible();
+
+    await loginPage.login(
+        process.env.APP_USERNAME,
+        process.env.APP_PASSWORD
+    );
+
+    await page.waitForLoadState('networkidle');
+
+    await pimPage.clickPIMMenu();
+
+    await pimPage.clickEmployeeList();
+
+    await pimPage.searchEmployee('Updated');
+
+    await page.waitForLoadState('networkidle');
+
+    await pimPage.verifyEmployeeTableVisible();
+
+    await expect(
+        page.locator('.oxd-icon.bi-trash').first()
+    ).toBeVisible();
+
+    await page.locator('.oxd-icon.bi-trash')
+        .first()
+        .click();
+
+    const cancelButton = page.getByRole('button', {
+        name: 'No, Cancel'
+    });
+
+    await expect(cancelButton).toBeVisible();
 
 });
 
@@ -156,48 +212,29 @@ test('Delete Employee URL Validation Test @smoke', async ({ page, loginPage }) =
 
     Logger.info('Starting Delete Employee URL Validation Test');
 
-    await page.goto('/', {
-        waitUntil: 'domcontentloaded',
-        timeout: 120000
-    });
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
     );
-
-    await page.waitForTimeout(3000);
-
-    await pimPage.clickPIMMenu();
-
-    await expect(page).toHaveURL(/pim/);
-
-});
-
-test('Delete Employee Refresh Test @regression', async ({ page, loginPage }) => {
-
-    const pimPage = new PIMPage(page);
-
-    Logger.info('Starting Delete Employee Refresh Test');
-
-    await page.goto('/', {
-        waitUntil: 'domcontentloaded',
-        timeout: 120000
-    });
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.waitForTimeout(3000);
-
-    await pimPage.clickPIMMenu();
-
-    await page.reload();
 
     await expect(
-        page.locator('.oxd-table')
+        page.locator('input[name="username"]')
     ).toBeVisible();
+
+    await loginPage.login(
+        process.env.APP_USERNAME,
+        process.env.APP_PASSWORD
+    );
+
+    await page.waitForLoadState('networkidle');
+
+    await pimPage.clickPIMMenu();
+
+    await pimPage.clickEmployeeList();
+
+    await expect(page).toHaveURL(/viewEmployeeList/);
 
 });

@@ -1,0 +1,45 @@
+◇ injected env (3) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+
+Running 249 tests using 1 worker
+
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+Starting Test Execution
+[INFO] Starting Add Admin User Test
+Terminate batch job (Y/N)? Test Execution Completed
+  ✘    1 [chromium] › tests\addAdminUser.spec.js:9:1 › Add Admin User Test @regression (24.4s)
+
+
+  1) [chromium] › tests\addAdminUser.spec.js:9:1 › Add Admin User Test @regression ─────────────────
+
+    Test was interrupted.
+
+    Error: page.waitForTimeout: Test ended.
+
+      35 |     await adminPage.enterEmployeeName('Linda Anderson');
+      36 |
+    > 37 |     await page.waitForTimeout(3000);
+         |                ^
+      38 |
+      39 |     await page.keyboard.press('ArrowDown');
+      40 |
+        at C:\Users\KunDan\OneDrive\Desktop\Wipro Training\Wipro-SDET-Playwright-\Enterprise-Auto-Workshop-Management-Automation\tests\addAdminUser.spec.js:37:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\addAdminUser-Add-Admin-User-Test-regression-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\addAdminUser-Add-Admin-User-Test-regression-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\addAdminUser-Add-Admin-User-Test-regression-chromium\error-context.md
+
+  1 interrupted
+    [chromium] › tests\addAdminUser.spec.js:9:1 › Add Admin User Test @regression ──────────────────
+  248 did not run
+
+To open last HTML report run:
+[36m[39m
+[36m  npx playwright show-report[39m
+[36m[39m
+

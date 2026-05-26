@@ -4,9 +4,9 @@ const { test, expect } = require('../fixtures/baseFixture');
 
 const Logger = require('../utils/logger');
 
-test('Admin Page Visibility Test @smoke', async ({ page, loginPage }) => {
+test('Recruitment Page Visibility Test @smoke', async ({ page, loginPage }) => {
 
-    Logger.info('Starting Admin Page Visibility Test');
+    Logger.info('Starting Recruitment Page Visibility Test');
 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
@@ -25,17 +25,17 @@ test('Admin Page Visibility Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Admin"]').click();
+    await page.locator('//span[text()="Recruitment"]').click();
 
     await expect(
         page.locator('.oxd-topbar-header-breadcrumb h6')
-    ).toContainText('Admin');
+    ).toContainText('Recruitment');
 
 });
 
-test('Admin URL Validation Test @regression', async ({ page, loginPage }) => {
+test('Recruitment URL Validation Test @regression', async ({ page, loginPage }) => {
 
-    Logger.info('Starting Admin URL Validation Test');
+    Logger.info('Starting Recruitment URL Validation Test');
 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
@@ -50,15 +50,15 @@ test('Admin URL Validation Test @regression', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Admin"]').click();
+    await page.locator('//span[text()="Recruitment"]').click();
 
-    await expect(page).toHaveURL(/admin/);
+    await expect(page).toHaveURL(/recruitment/);
 
 });
 
-test('Search Username Field Visibility Test @sanity', async ({ page, loginPage }) => {
+test('Add Candidate Button Visibility Test @sanity', async ({ page, loginPage }) => {
 
-    Logger.info('Starting Search Username Field Visibility Test');
+    Logger.info('Starting Add Candidate Button Visibility Test');
 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
@@ -73,86 +73,7 @@ test('Search Username Field Visibility Test @sanity', async ({ page, loginPage }
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Admin"]').click();
-
-    const usernameField = page.locator('(//input[@class="oxd-input oxd-input--active"])[2]');
-
-    await expect(usernameField).toBeVisible();
-
-});
-
-test('Search Button Visibility Test @smoke', async ({ page, loginPage }) => {
-
-    Logger.info('Starting Search Button Visibility Test');
-
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.locator('//span[text()="Admin"]').click();
-
-    const searchButton = page.getByRole('button', {
-        name: 'Search'
-    });
-
-    await expect(searchButton).toBeVisible();
-
-});
-
-test('Reset Button Visibility Test @regression', async ({ page, loginPage }) => {
-
-    Logger.info('Starting Reset Button Visibility Test');
-
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.locator('//span[text()="Admin"]').click();
-
-    const resetButton = page.getByRole('button', {
-        name: 'Reset'
-    });
-
-    await expect(resetButton).toBeVisible();
-
-});
-
-test('Add User Button Visibility Test @sanity', async ({ page, loginPage }) => {
-
-    Logger.info('Starting Add User Button Visibility Test');
-
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.locator('//span[text()="Admin"]').click();
+    await page.locator('//span[text()="Recruitment"]').click();
 
     const addButton = page.getByRole('button', {
         name: 'Add'
@@ -162,9 +83,9 @@ test('Add User Button Visibility Test @sanity', async ({ page, loginPage }) => {
 
 });
 
-test('Admin Table Visibility Test @smoke', async ({ page, loginPage }) => {
+test('Vacancies Button Visibility Test @smoke', async ({ page, loginPage }) => {
 
-    Logger.info('Starting Admin Table Visibility Test');
+    Logger.info('Starting Vacancies Button Visibility Test');
 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
@@ -179,7 +100,109 @@ test('Admin Table Visibility Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Admin"]').click();
+    await page.locator('//a[text()="Vacancies"]').click();
+
+    await expect(page).toHaveURL(/viewJobVacancy/);
+
+});
+
+test('Candidates Button Visibility Test @regression', async ({ page, loginPage }) => {
+
+    Logger.info('Starting Candidates Button Visibility Test');
+
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await loginPage.login(
+        process.env.APP_USERNAME,
+        process.env.APP_PASSWORD
+    );
+
+    await page.locator('//span[text()="Recruitment"]').click();
+
+    const candidatesButton = page.locator('//a[text()="Candidates"]');
+
+    await expect(candidatesButton).toBeVisible();
+
+});
+
+test('Recruitment Search Button Visibility Test @sanity', async ({ page, loginPage }) => {
+
+    Logger.info('Starting Recruitment Search Button Visibility Test');
+
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await loginPage.login(
+        process.env.APP_USERNAME,
+        process.env.APP_PASSWORD
+    );
+
+    await page.locator('//span[text()="Recruitment"]').click();
+
+    const searchButton = page.getByRole('button', {
+        name: 'Search'
+    });
+
+    await expect(searchButton).toBeVisible();
+
+});
+
+test('Recruitment Reset Button Visibility Test @smoke', async ({ page, loginPage }) => {
+
+    Logger.info('Starting Recruitment Reset Button Visibility Test');
+
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await loginPage.login(
+        process.env.APP_USERNAME,
+        process.env.APP_PASSWORD
+    );
+
+    await page.locator('//span[text()="Recruitment"]').click();
+
+    const resetButton = page.getByRole('button', {
+        name: 'Reset'
+    });
+
+    await expect(resetButton).toBeVisible();
+
+});
+
+test('Recruitment Table Visibility Test @regression', async ({ page, loginPage }) => {
+
+    Logger.info('Starting Recruitment Table Visibility Test');
+
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await loginPage.login(
+        process.env.APP_USERNAME,
+        process.env.APP_PASSWORD
+    );
+
+    await page.locator('//span[text()="Recruitment"]').click();
 
     const table = page.locator('.oxd-table-body');
 
@@ -187,9 +210,9 @@ test('Admin Table Visibility Test @smoke', async ({ page, loginPage }) => {
 
 });
 
-test('Admin Refresh Test @regression', async ({ page, loginPage }) => {
+test('Recruitment Refresh Test @sanity', async ({ page, loginPage }) => {
 
-    Logger.info('Starting Admin Refresh Test');
+    Logger.info('Starting Recruitment Refresh Test');
 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
@@ -204,19 +227,19 @@ test('Admin Refresh Test @regression', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Admin"]').click();
+    await page.locator('//span[text()="Recruitment"]').click();
 
     await page.reload();
 
     await expect(
         page.locator('.oxd-topbar-header-breadcrumb h6')
-    ).toContainText('Admin');
+    ).toContainText('Recruitment');
 
 });
 
-test('Admin Sidebar Visibility Test @sanity', async ({ page, loginPage }) => {
+test('Recruitment Header Visibility Test @smoke', async ({ page, loginPage }) => {
 
-    Logger.info('Starting Admin Sidebar Visibility Test');
+    Logger.info('Starting Recruitment Header Visibility Test');
 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
@@ -231,30 +254,7 @@ test('Admin Sidebar Visibility Test @sanity', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    const sidebar = page.locator('.oxd-sidepanel');
-
-    await expect(sidebar).toBeVisible();
-
-});
-
-test('Admin Header Visibility Test @smoke', async ({ page, loginPage }) => {
-
-    Logger.info('Starting Admin Header Visibility Test');
-
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.locator('//span[text()="Admin"]').click();
+    await page.locator('//span[text()="Recruitment"]').click();
 
     const header = page.locator('.oxd-topbar-header');
 

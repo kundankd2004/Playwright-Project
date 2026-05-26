@@ -6,11 +6,11 @@ const PIMPage = require('../pages/PIMPage');
 
 const Logger = require('../utils/logger');
 
-test('Edit Employee Test @regression', async ({ page, loginPage }) => {
+test('Search Employee Test @regression', async ({ page, loginPage }) => {
 
     const pimPage = new PIMPage(page);
 
-    Logger.info('Starting Edit Employee Test');
+    Logger.info('Starting Search Employee Test');
 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
@@ -29,7 +29,9 @@ test('Edit Employee Test @regression', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.waitForLoadState('networkidle');
+    await expect(
+        page.locator('.oxd-topbar-header-breadcrumb h6')
+    ).toBeVisible();
 
     await pimPage.clickPIMMenu();
 
@@ -37,37 +39,52 @@ test('Edit Employee Test @regression', async ({ page, loginPage }) => {
 
     await pimPage.searchEmployee('KunDan');
 
-    await page.waitForLoadState('networkidle');
-
     await pimPage.verifyEmployeeTableVisible();
 
-    await page.locator('.oxd-table-card')
-        .first()
-        .locator('div')
-        .first()
-        .click();
+});
 
-    await expect(
-        page.locator('input[name="firstName"]')
-    ).toBeVisible();
+test('Employee Search Field Visibility Test @smoke', async ({ page, loginPage }) => {
 
-    await page.locator('input[name="firstName"]').fill(
-        `Updated${Date.now()}`
+    const pimPage = new PIMPage(page);
+
+    Logger.info('Starting Employee Search Field Visibility Test');
+
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
     );
 
-    await pimPage.clickSaveButton();
+    await expect(
+        page.locator('input[name="username"]')
+    ).toBeVisible();
+
+    await loginPage.login(
+        process.env.APP_USERNAME,
+        process.env.APP_PASSWORD
+    );
 
     await expect(
-        page.locator('.oxd-toast')
+        page.locator('.oxd-topbar-header-breadcrumb h6')
+    ).toBeVisible();
+
+    await pimPage.clickPIMMenu();
+
+    await pimPage.clickEmployeeList();
+
+    await expect(
+        pimPage.employeeSearchInput
     ).toBeVisible();
 
 });
 
-test('Edit Employee First Name Test @smoke', async ({ page, loginPage }) => {
+test('Search Button Visibility Test @sanity', async ({ page, loginPage }) => {
 
     const pimPage = new PIMPage(page);
 
-    Logger.info('Starting Edit Employee First Name Test');
+    Logger.info('Starting Search Button Visibility Test');
 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
@@ -86,82 +103,25 @@ test('Edit Employee First Name Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.waitForLoadState('networkidle');
-
-    await pimPage.clickPIMMenu();
-
-    await pimPage.clickEmployeeList();
-
-    await pimPage.searchEmployee('KunDan');
-
-    await page.waitForLoadState('networkidle');
-
-    await pimPage.verifyEmployeeTableVisible();
-
-    await page.locator('.oxd-table-card')
-        .first()
-        .locator('div')
-        .first()
-        .click();
-
-    const firstNameInput = page.locator('input[name="firstName"]');
-
-    await expect(firstNameInput).toBeVisible();
-
-});
-
-test('Edit Employee Save Button Test @sanity', async ({ page, loginPage }) => {
-
-    const pimPage = new PIMPage(page);
-
-    Logger.info('Starting Edit Employee Save Button Test');
-
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
     await expect(
-        page.locator('input[name="username"]')
+        page.locator('.oxd-topbar-header-breadcrumb h6')
     ).toBeVisible();
 
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.waitForLoadState('networkidle');
-
     await pimPage.clickPIMMenu();
 
     await pimPage.clickEmployeeList();
 
-    await pimPage.searchEmployee('KunDan');
-
-    await page.waitForLoadState('networkidle');
-
-    await pimPage.verifyEmployeeTableVisible();
-
-    await page.locator('.oxd-table-card')
-        .first()
-        .locator('div')
-        .first()
-        .click();
-
     await expect(
-        pimPage.saveButton
+        pimPage.searchButton
     ).toBeVisible();
 
 });
 
-test('Edit Employee URL Validation Test @regression', async ({ page, loginPage }) => {
+test('Employee List URL Validation Test @regression', async ({ page, loginPage }) => {
 
     const pimPage = new PIMPage(page);
 
-    Logger.info('Starting Edit Employee URL Validation Test');
+    Logger.info('Starting Employee List URL Validation Test');
 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
@@ -180,33 +140,23 @@ test('Edit Employee URL Validation Test @regression', async ({ page, loginPage }
         process.env.APP_PASSWORD
     );
 
-    await page.waitForLoadState('networkidle');
+    await expect(
+        page.locator('.oxd-topbar-header-breadcrumb h6')
+    ).toBeVisible();
 
     await pimPage.clickPIMMenu();
 
     await pimPage.clickEmployeeList();
 
-    await pimPage.searchEmployee('KunDan');
-
-    await page.waitForLoadState('networkidle');
-
-    await pimPage.verifyEmployeeTableVisible();
-
-    await page.locator('.oxd-table-card')
-        .first()
-        .locator('div')
-        .first()
-        .click();
-
-    await expect(page).toHaveURL(/viewPersonalDetails/);
+    await expect(page).toHaveURL(/viewEmployeeList/);
 
 });
 
-test('Edit Employee Refresh Test @smoke', async ({ page, loginPage }) => {
+test('Employee Table Visibility Test @smoke', async ({ page, loginPage }) => {
 
     const pimPage = new PIMPage(page);
 
-    Logger.info('Starting Edit Employee Refresh Test');
+    Logger.info('Starting Employee Table Visibility Test');
 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
@@ -225,30 +175,16 @@ test('Edit Employee Refresh Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.waitForLoadState('networkidle');
+    await expect(
+        page.locator('.oxd-topbar-header-breadcrumb h6')
+    ).toBeVisible();
 
     await pimPage.clickPIMMenu();
 
     await pimPage.clickEmployeeList();
 
-    await pimPage.searchEmployee('KunDan');
-
-    await page.waitForLoadState('networkidle');
-
-    await pimPage.verifyEmployeeTableVisible();
-
-    await page.locator('.oxd-table-card')
-        .first()
-        .locator('div')
-        .first()
-        .click();
-
-    await page.reload({
-        waitUntil: 'domcontentloaded'
-    });
-
     await expect(
-        page.locator('input[name="firstName"]')
+        pimPage.employeeTable
     ).toBeVisible();
 
 });

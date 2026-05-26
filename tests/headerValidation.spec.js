@@ -4,9 +4,9 @@ const { test, expect } = require('../fixtures/baseFixture');
 
 const Logger = require('../utils/logger');
 
-test('PIM Page Visibility Test @smoke', async ({ page, loginPage }) => {
+test('Top Header Visibility Test @smoke', async ({ page, loginPage }) => {
 
-    Logger.info('Starting PIM Page Visibility Test');
+    Logger.info('Starting Top Header Visibility Test');
 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
@@ -16,9 +16,30 @@ test('PIM Page Visibility Test @smoke', async ({ page, loginPage }) => {
         }
     );
 
-    await expect(
-        page.locator('input[name="username"]')
-    ).toBeVisible();
+    await loginPage.login(
+        process.env.APP_USERNAME,
+        process.env.APP_PASSWORD
+    );
+
+    await page.waitForLoadState('networkidle');
+
+    const topHeader = page.locator('.oxd-topbar-header');
+
+    await expect(topHeader).toBeVisible();
+
+});
+
+test('User Profile Icon Visibility Test @regression', async ({ page, loginPage }) => {
+
+    Logger.info('Starting User Profile Icon Visibility Test');
+
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
 
     await loginPage.login(
         process.env.APP_USERNAME,
@@ -27,21 +48,17 @@ test('PIM Page Visibility Test @smoke', async ({ page, loginPage }) => {
 
     await page.waitForLoadState('networkidle');
 
-    await page.getByRole('link', {
-        name: 'PIM'
-    }).click();
-
-    const pimHeader = page.locator(
-        '.oxd-topbar-header-breadcrumb-module'
+    const profileIcon = page.locator(
+        '.oxd-userdropdown-tab'
     ).first();
 
-    await expect(pimHeader).toContainText('PIM');
+    await expect(profileIcon).toBeVisible();
 
 });
 
-test('PIM URL Validation Test @regression', async ({ page, loginPage }) => {
+test('Search Box Visibility Test @sanity', async ({ page, loginPage }) => {
 
-    Logger.info('Starting PIM URL Validation Test');
+    Logger.info('Starting Search Box Visibility Test');
 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
@@ -57,144 +74,18 @@ test('PIM URL Validation Test @regression', async ({ page, loginPage }) => {
     );
 
     await page.waitForLoadState('networkidle');
-
-    await page.getByRole('link', {
-        name: 'PIM'
-    }).click();
-
-    await expect(page).toHaveURL(/pim/, {
-        timeout: 15000
-    });
-
-});
-
-test('Add Employee Button Visibility Test @sanity', async ({ page, loginPage }) => {
-
-    Logger.info('Starting Add Employee Button Visibility Test');
-
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.waitForLoadState('networkidle');
-
-    await page.getByRole('link', {
-        name: 'PIM'
-    }).click();
-
-    const addEmployeeButton = page.getByRole('link', {
-        name: 'Add Employee'
-    });
-
-    await expect(addEmployeeButton).toBeVisible();
-
-});
-
-test('Employee List Button Visibility Test @smoke', async ({ page, loginPage }) => {
-
-    Logger.info('Starting Employee List Button Visibility Test');
-
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.waitForLoadState('networkidle');
-
-    await page.getByRole('link', {
-        name: 'PIM'
-    }).click();
-
-    const employeeListButton = page.getByRole('link', {
-        name: 'Employee List'
-    });
-
-    await expect(employeeListButton).toBeVisible();
-
-});
-
-test('Reports Button Visibility Test @regression', async ({ page, loginPage }) => {
-
-    Logger.info('Starting Reports Button Visibility Test');
-
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.waitForLoadState('networkidle');
-
-    await page.getByRole('link', {
-        name: 'PIM'
-    }).click();
-
-    const reportsButton = page.getByRole('link', {
-        name: 'Reports'
-    });
-
-    await expect(reportsButton).toBeVisible();
-
-});
-
-test('PIM Search Box Visibility Test @smoke', async ({ page, loginPage }) => {
-
-    Logger.info('Starting PIM Search Box Visibility Test');
-
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.waitForLoadState('networkidle');
-
-    await page.getByRole('link', {
-        name: 'PIM'
-    }).click();
 
     const searchBox = page.locator(
-        'input[placeholder="Type for hints..."]'
-    ).first();
+        'input[placeholder="Search"]'
+    );
 
     await expect(searchBox).toBeVisible();
 
 });
 
-test('PIM Refresh Test @regression', async ({ page, loginPage }) => {
+test('Notification Bell Visibility Test @smoke', async ({ page, loginPage }) => {
 
-    Logger.info('Starting PIM Refresh Test');
+    Logger.info('Starting Notification Bell Visibility Test');
 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
@@ -211,25 +102,100 @@ test('PIM Refresh Test @regression', async ({ page, loginPage }) => {
 
     await page.waitForLoadState('networkidle');
 
-    await page.getByRole('link', {
-        name: 'PIM'
-    }).click();
+    const notificationBell = page.locator(
+        '.oxd-topbar-header-userarea .bi-bell-fill'
+    );
+
+    await expect(notificationBell).toBeVisible();
+
+});
+
+test('Message Icon Visibility Test @regression', async ({ page, loginPage }) => {
+
+    Logger.info('Starting Message Icon Visibility Test');
+
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await loginPage.login(
+        process.env.APP_USERNAME,
+        process.env.APP_PASSWORD
+    );
+
+    await page.waitForLoadState('networkidle');
+
+    const messageIcon = page.locator(
+        '.oxd-topbar-header-userarea .bi-chat-text-fill'
+    );
+
+    await expect(messageIcon).toBeVisible();
+
+});
+
+test('Help Icon Visibility Test @sanity', async ({ page, loginPage }) => {
+
+    Logger.info('Starting Help Icon Visibility Test');
+
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await loginPage.login(
+        process.env.APP_USERNAME,
+        process.env.APP_PASSWORD
+    );
+
+    await page.waitForLoadState('networkidle');
+
+    const helpIcon = page.locator(
+        '.oxd-icon.bi-question-lg'
+    ).first();
+
+    await expect(helpIcon).toBeVisible();
+
+});
+
+test('Header Refresh Test @smoke', async ({ page, loginPage }) => {
+
+    Logger.info('Starting Header Refresh Test');
+
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await loginPage.login(
+        process.env.APP_USERNAME,
+        process.env.APP_PASSWORD
+    );
+
+    await page.waitForLoadState('networkidle');
 
     await page.reload({
         waitUntil: 'domcontentloaded'
     });
 
-    const pimHeader = page.locator(
-        '.oxd-topbar-header-breadcrumb-module'
-    ).first();
+    const topHeader = page.locator('.oxd-topbar-header');
 
-    await expect(pimHeader).toContainText('PIM');
+    await expect(topHeader).toBeVisible();
 
 });
 
-test('PIM Header Visibility Test @sanity', async ({ page, loginPage }) => {
+test('Header Logo Visibility Test @regression', async ({ page, loginPage }) => {
 
-    Logger.info('Starting PIM Header Visibility Test');
+    Logger.info('Starting Header Logo Visibility Test');
 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
@@ -246,19 +212,17 @@ test('PIM Header Visibility Test @sanity', async ({ page, loginPage }) => {
 
     await page.waitForLoadState('networkidle');
 
-    await page.getByRole('link', {
-        name: 'PIM'
-    }).click();
+    const logo = page.locator(
+        '.oxd-brand-banner img'
+    );
 
-    const pimHeader = page.locator('.oxd-topbar-header');
-
-    await expect(pimHeader).toBeVisible();
+    await expect(logo).toBeVisible();
 
 });
 
-test('PIM Sidebar Visibility Test @smoke', async ({ page, loginPage }) => {
+test('Header Dropdown Visibility Test @sanity', async ({ page, loginPage }) => {
 
-    Logger.info('Starting PIM Sidebar Visibility Test');
+    Logger.info('Starting Header Dropdown Visibility Test');
 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
@@ -275,8 +239,37 @@ test('PIM Sidebar Visibility Test @smoke', async ({ page, loginPage }) => {
 
     await page.waitForLoadState('networkidle');
 
-    const sidebar = page.locator('.oxd-sidepanel');
+    await page.locator(
+        '.oxd-userdropdown-tab'
+    ).first().click();
 
-    await expect(sidebar).toBeVisible();
+    const logoutOption = page.getByRole('menuitem', {
+        name: 'Logout'
+    });
+
+    await expect(logoutOption).toBeVisible();
+
+});
+
+test('Header URL Validation Test @smoke', async ({ page, loginPage }) => {
+
+    Logger.info('Starting Header URL Validation Test');
+
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await loginPage.login(
+        process.env.APP_USERNAME,
+        process.env.APP_PASSWORD
+    );
+
+    await page.waitForLoadState('networkidle');
+
+    await expect(page).toHaveURL(/dashboard/);
 
 });

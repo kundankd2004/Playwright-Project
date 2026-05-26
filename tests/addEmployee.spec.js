@@ -12,27 +12,38 @@ test('Add Employee Test @regression', async ({ page, loginPage }) => {
 
     Logger.info('Starting Add Employee Test');
 
-    await page.goto('/', {
-        waitUntil: 'domcontentloaded',
-        timeout: 120000
-    });
+    const uniqueFirstName = `KunDan${Date.now()}`;
+
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await expect(
+        page.locator('input[name="username"]')
+    ).toBeVisible();
 
     await loginPage.login(
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
 
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     await pimPage.clickPIMMenu();
 
     await pimPage.clickAddEmployee();
 
-    await pimPage.enterFirstName('KunDan');
+    await page.waitForLoadState('networkidle');
 
-    await pimPage.enterLastName('Raj');
-
-    await pimPage.clickSaveButton();
+    await pimPage.addEmployee(
+        uniqueFirstName,
+        'K',
+        'Raj'
+    );
 
     await expect(
         page.locator('.oxd-toast')
@@ -46,24 +57,33 @@ test('Add Employee Page Visibility Test @smoke', async ({ page, loginPage }) => 
 
     Logger.info('Starting Add Employee Page Visibility Test');
 
-    await page.goto('/', {
-        waitUntil: 'domcontentloaded',
-        timeout: 120000
-    });
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await expect(
+        page.locator('input[name="username"]')
+    ).toBeVisible();
 
     await loginPage.login(
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
 
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     await pimPage.clickPIMMenu();
 
     await pimPage.clickAddEmployee();
 
+    await page.waitForLoadState('networkidle');
+
     await expect(
-        page.locator('.oxd-topbar-header-breadcrumb h6')
+        page.locator('.oxd-topbar-header-breadcrumb-module')
     ).toContainText('PIM');
 
 });
@@ -74,25 +94,34 @@ test('Add Employee First Name Field Test @sanity', async ({ page, loginPage }) =
 
     Logger.info('Starting First Name Field Test');
 
-    await page.goto('/', {
-        waitUntil: 'domcontentloaded',
-        timeout: 120000
-    });
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await expect(
+        page.locator('input[name="username"]')
+    ).toBeVisible();
 
     await loginPage.login(
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
 
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     await pimPage.clickPIMMenu();
 
     await pimPage.clickAddEmployee();
 
-    const firstName = page.locator('input[name="firstName"]');
+    await page.waitForLoadState('networkidle');
 
-    await expect(firstName).toBeVisible();
+    await expect(
+        pimPage.firstNameInput
+    ).toBeVisible();
 
 });
 
@@ -102,25 +131,34 @@ test('Add Employee Last Name Field Test @regression', async ({ page, loginPage }
 
     Logger.info('Starting Last Name Field Test');
 
-    await page.goto('/', {
-        waitUntil: 'domcontentloaded',
-        timeout: 120000
-    });
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await expect(
+        page.locator('input[name="username"]')
+    ).toBeVisible();
 
     await loginPage.login(
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
 
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     await pimPage.clickPIMMenu();
 
     await pimPage.clickAddEmployee();
 
-    const lastName = page.locator('input[name="lastName"]');
+    await page.waitForLoadState('networkidle');
 
-    await expect(lastName).toBeVisible();
+    await expect(
+        pimPage.lastNameInput
+    ).toBeVisible();
 
 });
 
@@ -130,25 +168,34 @@ test('Add Employee Save Button Visibility Test @sanity', async ({ page, loginPag
 
     Logger.info('Starting Save Button Visibility Test');
 
-    await page.goto('/', {
-        waitUntil: 'domcontentloaded',
-        timeout: 120000
-    });
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await expect(
+        page.locator('input[name="username"]')
+    ).toBeVisible();
 
     await loginPage.login(
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
 
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     await pimPage.clickPIMMenu();
 
     await pimPage.clickAddEmployee();
 
-    const saveButton = page.getByRole('button', { name: 'Save' });
+    await page.waitForLoadState('networkidle');
 
-    await expect(saveButton).toBeVisible();
+    await expect(
+        pimPage.saveButton
+    ).toBeVisible();
 
 });
 
@@ -158,21 +205,30 @@ test('Add Employee URL Validation Test @smoke', async ({ page, loginPage }) => {
 
     Logger.info('Starting Add Employee URL Validation Test');
 
-    await page.goto('/', {
-        waitUntil: 'domcontentloaded',
-        timeout: 120000
-    });
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await expect(
+        page.locator('input[name="username"]')
+    ).toBeVisible();
 
     await loginPage.login(
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
 
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     await pimPage.clickPIMMenu();
 
     await pimPage.clickAddEmployee();
+
+    await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveURL(/addEmployee/);
 
@@ -184,26 +240,37 @@ test('Add Employee Refresh Test @regression', async ({ page, loginPage }) => {
 
     Logger.info('Starting Add Employee Refresh Test');
 
-    await page.goto('/', {
-        waitUntil: 'domcontentloaded',
-        timeout: 120000
-    });
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await expect(
+        page.locator('input[name="username"]')
+    ).toBeVisible();
 
     await loginPage.login(
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
 
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     await pimPage.clickPIMMenu();
 
     await pimPage.clickAddEmployee();
 
-    await page.reload();
+    await page.waitForLoadState('networkidle');
+
+    await page.reload({
+        waitUntil: 'domcontentloaded'
+    });
 
     await expect(
-        page.locator('input[name="firstName"]')
+        pimPage.firstNameInput
     ).toBeVisible();
 
 });

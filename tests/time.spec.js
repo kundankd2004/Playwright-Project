@@ -4,9 +4,9 @@ const { test, expect } = require('../fixtures/baseFixture');
 
 const Logger = require('../utils/logger');
 
-test('Leave Page Visibility Test @smoke', async ({ page, loginPage }) => {
+test('Time Page Visibility Test @smoke', async ({ page, loginPage }) => {
 
-    Logger.info('Starting Leave Page Visibility Test');
+    Logger.info('Starting Time Page Visibility Test');
 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
@@ -28,20 +28,18 @@ test('Leave Page Visibility Test @smoke', async ({ page, loginPage }) => {
     await page.waitForLoadState('networkidle');
 
     await page.getByRole('link', {
-        name: 'Leave'
+        name: 'Time'
     }).click();
 
-    const leaveHeader = page.locator(
-        '.oxd-topbar-header-breadcrumb-module'
-    ).first();
-
-    await expect(leaveHeader).toContainText('Leave');
+    await expect(
+        page.locator('.oxd-topbar-header-breadcrumb-module').first()
+    ).toContainText('Time');
 
 });
 
-test('Leave URL Validation Test @regression', async ({ page, loginPage }) => {
+test('Time URL Validation Test @regression', async ({ page, loginPage }) => {
 
-    Logger.info('Starting Leave URL Validation Test');
+    Logger.info('Starting Time URL Validation Test');
 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
@@ -59,18 +57,171 @@ test('Leave URL Validation Test @regression', async ({ page, loginPage }) => {
     await page.waitForLoadState('networkidle');
 
     await page.getByRole('link', {
-        name: 'Leave'
+        name: 'Time'
     }).click();
 
-    await expect(page).toHaveURL(/leave/, {
-        timeout: 15000
+    await expect(page).toHaveURL(/time/);
+
+});
+
+test('Timesheets Button Visibility Test @sanity', async ({ page, loginPage }) => {
+
+    Logger.info('Starting Timesheets Button Visibility Test');
+
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await loginPage.login(
+        process.env.APP_USERNAME,
+        process.env.APP_PASSWORD
+    );
+
+    await page.waitForLoadState('networkidle');
+
+    await page.getByRole('link', {
+        name: 'Time'
+    }).click();
+
+    const timesheetsButton = page.locator(
+        '//span[text()="Timesheets "]'
+    );
+
+    await expect(timesheetsButton).toBeVisible();
+
+});
+
+test('Attendance Button Visibility Test @smoke', async ({ page, loginPage }) => {
+
+    Logger.info('Starting Attendance Button Visibility Test');
+
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await loginPage.login(
+        process.env.APP_USERNAME,
+        process.env.APP_PASSWORD
+    );
+
+    await page.waitForLoadState('networkidle');
+
+    await page.getByRole('link', {
+        name: 'Time'
+    }).click();
+
+    const attendanceButton = page.locator(
+        '//span[text()="Attendance "]'
+    );
+
+    await expect(attendanceButton).toBeVisible();
+
+});
+
+test('Reports Button Visibility Test @regression', async ({ page, loginPage }) => {
+
+    Logger.info('Starting Reports Button Visibility Test');
+
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await loginPage.login(
+        process.env.APP_USERNAME,
+        process.env.APP_PASSWORD
+    );
+
+    await page.waitForLoadState('networkidle');
+
+    await page.getByRole('link', {
+        name: 'Time'
+    }).click();
+
+    const reportsButton = page.locator(
+        '//span[text()="Reports "]'
+    );
+
+    await expect(reportsButton).toBeVisible();
+
+});
+
+test('Project Info Button Visibility Test @sanity', async ({ page, loginPage }) => {
+
+    Logger.info('Starting Project Info Button Visibility Test');
+
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await loginPage.login(
+        process.env.APP_USERNAME,
+        process.env.APP_PASSWORD
+    );
+
+    await page.waitForLoadState('networkidle');
+
+    await page.getByRole('link', {
+        name: 'Time'
+    }).click();
+
+    const projectInfoButton = page.locator(
+        '//span[text()="Project Info "]'
+    );
+
+    await expect(projectInfoButton).toBeVisible();
+
+});
+
+test('Time Search Button Visibility Test @smoke', async ({ page, loginPage }) => {
+
+    Logger.info('Starting Time Search Button Visibility Test');
+
+    await page.goto(
+        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+        {
+            waitUntil: 'load',
+            timeout: 60000
+        }
+    );
+
+    await loginPage.login(
+        process.env.APP_USERNAME,
+        process.env.APP_PASSWORD
+    );
+
+    await page.waitForLoadState('networkidle');
+
+    await page.getByRole('link', {
+        name: 'Time'
+    }).click();
+
+    const searchButton = page.getByRole('button', {
+        name: 'View'
     });
 
+    await expect(searchButton.first()).toBeVisible();
+
 });
 
-test('Assign Leave Button Visibility Test @sanity', async ({ page, loginPage }) => {
+test('Time Refresh Test @regression', async ({ page, loginPage }) => {
 
-    Logger.info('Starting Assign Leave Button Visibility Test');
+    Logger.info('Starting Time Refresh Test');
 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
@@ -88,117 +239,22 @@ test('Assign Leave Button Visibility Test @sanity', async ({ page, loginPage }) 
     await page.waitForLoadState('networkidle');
 
     await page.getByRole('link', {
-        name: 'Leave'
-    }).click();
-
-    const assignLeaveButton = page.getByRole('link', {
-        name: 'Assign Leave'
-    });
-
-    await expect(assignLeaveButton).toBeVisible();
-
-});
-
-test('Leave List Button Visibility Test @smoke', async ({ page, loginPage }) => {
-
-    Logger.info('Starting Leave List Button Visibility Test');
-
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.waitForLoadState('networkidle');
-
-    await page.getByRole('link', {
-        name: 'Leave'
-    }).click();
-
-    const leaveListButton = page.getByRole('link', {
-        name: 'Leave List'
-    });
-
-    await expect(leaveListButton).toBeVisible();
-
-});
-
-test('My Leave Button Visibility Test @regression', async ({ page, loginPage }) => {
-
-    Logger.info('Starting My Leave Button Visibility Test');
-
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.waitForLoadState('networkidle');
-
-    await page.getByRole('link', {
-        name: 'Leave'
-    }).click();
-
-    const myLeaveButton = page.getByRole('link', {
-        name: 'My Leave'
-    });
-
-    await expect(myLeaveButton).toBeVisible();
-
-});
-
-test('Leave Refresh Test @regression', async ({ page, loginPage }) => {
-
-    Logger.info('Starting Leave Refresh Test');
-
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.waitForLoadState('networkidle');
-
-    await page.getByRole('link', {
-        name: 'Leave'
+        name: 'Time'
     }).click();
 
     await page.reload({
         waitUntil: 'domcontentloaded'
     });
 
-    const leaveHeader = page.locator(
-        '.oxd-topbar-header-breadcrumb-module'
-    ).first();
-
-    await expect(leaveHeader).toContainText('Leave');
+    await expect(
+        page.locator('.oxd-topbar-header-breadcrumb-module').first()
+    ).toContainText('Time');
 
 });
 
-test('Leave Header Visibility Test @sanity', async ({ page, loginPage }) => {
+test('Time Header Visibility Test @sanity', async ({ page, loginPage }) => {
 
-    Logger.info('Starting Leave Header Visibility Test');
+    Logger.info('Starting Time Header Visibility Test');
 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
@@ -216,18 +272,18 @@ test('Leave Header Visibility Test @sanity', async ({ page, loginPage }) => {
     await page.waitForLoadState('networkidle');
 
     await page.getByRole('link', {
-        name: 'Leave'
+        name: 'Time'
     }).click();
 
-    const leaveHeader = page.locator('.oxd-topbar-header');
+    const header = page.locator('.oxd-topbar-header');
 
-    await expect(leaveHeader).toBeVisible();
+    await expect(header).toBeVisible();
 
 });
 
-test('Leave Sidebar Visibility Test @smoke', async ({ page, loginPage }) => {
+test('Time Sidebar Visibility Test @smoke', async ({ page, loginPage }) => {
 
-    Logger.info('Starting Leave Sidebar Visibility Test');
+    Logger.info('Starting Time Sidebar Visibility Test');
 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
