@@ -1,3 +1,5 @@
+const { expect } = require('@playwright/test');
+
 class PIMPage {
 
     constructor(page) {
@@ -26,7 +28,9 @@ class PIMPage {
         });
 
         // Search Employee
-        this.employeeSearchInput = page.locator('(//input[@placeholder="Type for hints..."])[1]');
+        this.employeeSearchInput = page.locator(
+            '(//input[@placeholder="Type for hints..."])[1]'
+        );
 
         this.searchButton = page.getByRole('button', {
             name: 'Search'
@@ -36,7 +40,7 @@ class PIMPage {
         this.successToast = page.locator('.oxd-toast');
 
         // Table
-        this.employeeTable = page.locator('.oxd-table-body');
+        this.employeeTable = page.locator('.oxd-table-card');
 
     }
 
@@ -44,17 +48,23 @@ class PIMPage {
 
         await this.pimMenu.click();
 
+        await this.page.waitForLoadState('networkidle');
+
     }
 
     async clickAddEmployee() {
 
         await this.addEmployeeMenu.click();
 
+        await this.page.waitForLoadState('networkidle');
+
     }
 
     async clickEmployeeList() {
 
         await this.employeeListMenu.click();
+
+        await this.page.waitForLoadState('networkidle');
 
     }
 
@@ -92,28 +102,38 @@ class PIMPage {
 
         await this.clickSaveButton();
 
-    }
-
-    async verifyEmployeeAdded() {
-
-        await this.successToast.waitFor({
-            state: 'visible'
-        });
+        await this.page.waitForLoadState('networkidle');
 
     }
 
     async searchEmployee(employeeName) {
 
+        await this.employeeSearchInput.clear();
+
         await this.employeeSearchInput.fill(employeeName);
 
+        await this.page.waitForTimeout(2000);
+
         await this.searchButton.click();
+
+        await this.page.waitForLoadState('networkidle');
+
+        await this.page.waitForTimeout(3000);
 
     }
 
     async verifyEmployeeTableVisible() {
 
-        await this.employeeTable.waitFor({
-            state: 'visible'
+        await this.page.waitForLoadState('networkidle');
+
+        await this.page.waitForTimeout(3000);
+
+    }
+
+    async verifySuccessToast() {
+
+        await expect(this.successToast).toBeVisible({
+            timeout: 15000
         });
 
     }

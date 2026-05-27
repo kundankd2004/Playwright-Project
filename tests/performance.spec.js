@@ -54,7 +54,11 @@ test('Dashboard Load Performance Test @performance', async ({ page, loginPage })
 
     const startTime = Date.now();
 
-    await page.reload();
+    await page.waitForLoadState('networkidle');
+
+    await page.reload({
+        waitUntil: 'domcontentloaded'
+    });
 
     await expect(
         page.locator('.oxd-topbar-header-breadcrumb h6')

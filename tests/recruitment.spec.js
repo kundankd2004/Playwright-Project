@@ -11,7 +11,7 @@ test('Recruitment Page Visibility Test @smoke', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -25,11 +25,13 @@ test('Recruitment Page Visibility Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Recruitment"]').click();
+    await page.getByText('Recruitment').click();
 
     await expect(
-        page.locator('.oxd-topbar-header-breadcrumb h6')
-    ).toContainText('Recruitment');
+        page.getByRole('heading', {
+            name: 'Recruitment'
+        })
+    ).toBeVisible();
 
 });
 
@@ -40,7 +42,7 @@ test('Recruitment URL Validation Test @regression', async ({ page, loginPage }) 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -50,7 +52,7 @@ test('Recruitment URL Validation Test @regression', async ({ page, loginPage }) 
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Recruitment"]').click();
+    await page.getByText('Recruitment').click();
 
     await expect(page).toHaveURL(/recruitment/);
 
@@ -63,7 +65,7 @@ test('Add Candidate Button Visibility Test @sanity', async ({ page, loginPage })
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -73,7 +75,7 @@ test('Add Candidate Button Visibility Test @sanity', async ({ page, loginPage })
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Recruitment"]').click();
+    await page.getByText('Recruitment').click();
 
     const addButton = page.getByRole('button', {
         name: 'Add'
@@ -90,7 +92,7 @@ test('Vacancies Button Visibility Test @smoke', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -100,7 +102,11 @@ test('Vacancies Button Visibility Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//a[text()="Vacancies"]').click();
+    await page.getByText('Recruitment').click();
+
+    await page.getByRole('link', {
+        name: 'Vacancies'
+    }).click();
 
     await expect(page).toHaveURL(/viewJobVacancy/);
 
@@ -113,7 +119,7 @@ test('Candidates Button Visibility Test @regression', async ({ page, loginPage }
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -123,9 +129,11 @@ test('Candidates Button Visibility Test @regression', async ({ page, loginPage }
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Recruitment"]').click();
+    await page.getByText('Recruitment').click();
 
-    const candidatesButton = page.locator('//a[text()="Candidates"]');
+    const candidatesButton = page.getByRole('link', {
+        name: 'Candidates'
+    });
 
     await expect(candidatesButton).toBeVisible();
 
@@ -138,7 +146,7 @@ test('Recruitment Search Button Visibility Test @sanity', async ({ page, loginPa
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -148,7 +156,7 @@ test('Recruitment Search Button Visibility Test @sanity', async ({ page, loginPa
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Recruitment"]').click();
+    await page.getByText('Recruitment').click();
 
     const searchButton = page.getByRole('button', {
         name: 'Search'
@@ -165,7 +173,7 @@ test('Recruitment Reset Button Visibility Test @smoke', async ({ page, loginPage
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -175,7 +183,7 @@ test('Recruitment Reset Button Visibility Test @smoke', async ({ page, loginPage
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Recruitment"]').click();
+    await page.getByText('Recruitment').click();
 
     const resetButton = page.getByRole('button', {
         name: 'Reset'
@@ -192,7 +200,7 @@ test('Recruitment Table Visibility Test @regression', async ({ page, loginPage }
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -202,11 +210,13 @@ test('Recruitment Table Visibility Test @regression', async ({ page, loginPage }
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Recruitment"]').click();
+    await page.getByText('Recruitment').click();
+
+    await page.waitForLoadState('networkidle');
 
     const table = page.locator('.oxd-table-body');
 
-    await expect(table).toBeVisible();
+    await expect(table.first()).toBeVisible();
 
 });
 
@@ -217,7 +227,7 @@ test('Recruitment Refresh Test @sanity', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -227,13 +237,19 @@ test('Recruitment Refresh Test @sanity', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Recruitment"]').click();
+    await page.getByText('Recruitment').click();
 
-    await page.reload();
+    await page.waitForLoadState('networkidle');
+
+    await page.reload({
+        waitUntil: 'domcontentloaded'
+    });
 
     await expect(
-        page.locator('.oxd-topbar-header-breadcrumb h6')
-    ).toContainText('Recruitment');
+        page.getByRole('heading', {
+            name: 'Recruitment'
+        })
+    ).toBeVisible();
 
 });
 
@@ -244,7 +260,7 @@ test('Recruitment Header Visibility Test @smoke', async ({ page, loginPage }) =>
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -254,7 +270,7 @@ test('Recruitment Header Visibility Test @smoke', async ({ page, loginPage }) =>
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Recruitment"]').click();
+    await page.getByText('Recruitment').click();
 
     const header = page.locator('.oxd-topbar-header');
 

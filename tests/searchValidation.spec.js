@@ -11,7 +11,7 @@ test('Dashboard Search Box Visibility Test @smoke', async ({ page, loginPage }) 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -21,7 +21,11 @@ test('Dashboard Search Box Visibility Test @smoke', async ({ page, loginPage }) 
         process.env.APP_PASSWORD
     );
 
-    const searchBox = page.locator('input[placeholder="Search"]');
+    await page.waitForLoadState('networkidle');
+
+    const searchBox = page.locator(
+        'input[placeholder="Search"]'
+    );
 
     await expect(searchBox).toBeVisible();
 
@@ -34,7 +38,7 @@ test('Search PIM Module Test @regression', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -44,12 +48,14 @@ test('Search PIM Module Test @regression', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    const searchBox = page.locator('input[placeholder="Search"]');
+    const searchBox = page.locator(
+        'input[placeholder="Search"]'
+    );
 
     await searchBox.fill('PIM');
 
     await expect(
-        page.locator('//span[text()="PIM"]')
+        page.getByText('PIM')
     ).toBeVisible();
 
 });
@@ -61,7 +67,7 @@ test('Search Leave Module Test @sanity', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -71,12 +77,14 @@ test('Search Leave Module Test @sanity', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    const searchBox = page.locator('input[placeholder="Search"]');
+    const searchBox = page.locator(
+        'input[placeholder="Search"]'
+    );
 
     await searchBox.fill('Leave');
 
     await expect(
-        page.locator('//span[text()="Leave"]')
+        page.getByRole('link', { name: 'Leave' })
     ).toBeVisible();
 
 });
@@ -88,7 +96,7 @@ test('Search Admin Module Test @smoke', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -98,12 +106,14 @@ test('Search Admin Module Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    const searchBox = page.locator('input[placeholder="Search"]');
+    const searchBox = page.locator(
+        'input[placeholder="Search"]'
+    );
 
     await searchBox.fill('Admin');
 
     await expect(
-        page.locator('//span[text()="Admin"]')
+        page.getByText('Admin')
     ).toBeVisible();
 
 });
@@ -115,7 +125,7 @@ test('Search Time Module Test @regression', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -125,12 +135,14 @@ test('Search Time Module Test @regression', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    const searchBox = page.locator('input[placeholder="Search"]');
+    const searchBox = page.locator(
+        'input[placeholder="Search"]'
+    );
 
     await searchBox.fill('Time');
 
     await expect(
-        page.locator('//span[text()="Time"]')
+        page.getByRole('link', { name: 'Time' })
     ).toBeVisible();
 
 });
@@ -142,7 +154,7 @@ test('Search Recruitment Module Test @sanity', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -152,12 +164,14 @@ test('Search Recruitment Module Test @sanity', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    const searchBox = page.locator('input[placeholder="Search"]');
+    const searchBox = page.locator(
+        'input[placeholder="Search"]'
+    );
 
     await searchBox.fill('Recruitment');
 
     await expect(
-        page.locator('//span[text()="Recruitment"]')
+        page.getByText('Recruitment')
     ).toBeVisible();
 
 });
@@ -169,7 +183,7 @@ test('Search Buzz Module Test @smoke', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -179,12 +193,14 @@ test('Search Buzz Module Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    const searchBox = page.locator('input[placeholder="Search"]');
+    const searchBox = page.locator(
+        'input[placeholder="Search"]'
+    );
 
     await searchBox.fill('Buzz');
 
     await expect(
-        page.locator('//span[text()="Buzz"]')
+        page.getByRole('link', { name: 'Buzz' })
     ).toBeVisible();
 
 });
@@ -196,7 +212,7 @@ test('Search Invalid Module Test @negative', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -206,13 +222,17 @@ test('Search Invalid Module Test @negative', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    const searchBox = page.locator('input[placeholder="Search"]');
+    const searchBox = page.locator(
+        'input[placeholder="Search"]'
+    );
 
     await searchBox.fill('InvalidModule');
 
-    const noRecords = page.locator('.oxd-main-menu-item');
+    const menuItems = page.locator(
+    '.oxd-main-menu-item'
+    );
 
-    await expect(noRecords.first()).not.toBeVisible();
+    await expect(menuItems).toHaveCount(0);
 
 });
 
@@ -223,7 +243,7 @@ test('Search Box Clear Test @regression', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -233,7 +253,9 @@ test('Search Box Clear Test @regression', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    const searchBox = page.locator('input[placeholder="Search"]');
+    const searchBox = page.locator(
+        'input[placeholder="Search"]'
+    );
 
     await searchBox.fill('PIM');
 
@@ -250,7 +272,7 @@ test('Search Box Refresh Test @smoke', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -260,11 +282,15 @@ test('Search Box Refresh Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
+    await page.waitForLoadState('networkidle');
+
     await page.reload({
         waitUntil: 'domcontentloaded'
     });
 
-    const searchBox = page.locator('input[placeholder="Search"]');
+    const searchBox = page.locator(
+        'input[placeholder="Search"]'
+    );
 
     await expect(searchBox).toBeVisible();
 

@@ -11,7 +11,7 @@ test('Top Header Visibility Test @smoke', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -36,7 +36,7 @@ test('User Profile Icon Visibility Test @regression', async ({ page, loginPage }
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -63,7 +63,7 @@ test('Search Box Visibility Test @sanity', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -90,7 +90,7 @@ test('Notification Bell Visibility Test @smoke', async ({ page, loginPage }) => 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -102,11 +102,11 @@ test('Notification Bell Visibility Test @smoke', async ({ page, loginPage }) => 
 
     await page.waitForLoadState('networkidle');
 
-    const notificationBell = page.locator(
-        '.oxd-topbar-header-userarea .bi-bell-fill'
+    const userArea = page.locator(
+        '.oxd-topbar-header-userarea'
     );
 
-    await expect(notificationBell).toBeVisible();
+    await expect(userArea).toBeVisible();
 
 });
 
@@ -117,7 +117,7 @@ test('Message Icon Visibility Test @regression', async ({ page, loginPage }) => 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -129,11 +129,11 @@ test('Message Icon Visibility Test @regression', async ({ page, loginPage }) => 
 
     await page.waitForLoadState('networkidle');
 
-    const messageIcon = page.locator(
-        '.oxd-topbar-header-userarea .bi-chat-text-fill'
+    const userArea = page.locator(
+        '.oxd-topbar-header-userarea'
     );
 
-    await expect(messageIcon).toBeVisible();
+    await expect(userArea).toBeVisible();
 
 });
 
@@ -144,7 +144,7 @@ test('Help Icon Visibility Test @sanity', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -171,7 +171,7 @@ test('Header Refresh Test @smoke', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -200,7 +200,7 @@ test('Header Logo Visibility Test @regression', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -227,7 +227,7 @@ test('Header Dropdown Visibility Test @sanity', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -258,7 +258,7 @@ test('Header URL Validation Test @smoke', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );

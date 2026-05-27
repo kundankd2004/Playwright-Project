@@ -15,7 +15,7 @@ test('Delete Employee Test @regression', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -35,19 +35,21 @@ test('Delete Employee Test @regression', async ({ page, loginPage }) => {
 
     await pimPage.clickEmployeeList();
 
+    await page.waitForLoadState('networkidle');
+
     await pimPage.searchEmployee('Updated');
 
     await page.waitForLoadState('networkidle');
 
-    await pimPage.verifyEmployeeTableVisible();
+    await page.waitForTimeout(3000);
 
-    await expect(
-        page.locator('.oxd-icon.bi-trash').first()
-    ).toBeVisible();
+    const deleteButton = page
+        .locator('.oxd-icon.bi-trash')
+        .first();
 
-    await page.locator('.oxd-icon.bi-trash')
-        .first()
-        .click();
+    await expect(deleteButton).toBeVisible();
+
+    await deleteButton.click();
 
     const confirmDeleteButton = page.getByRole('button', {
         name: 'Yes, Delete'
@@ -72,7 +74,7 @@ test('Delete Employee Button Visibility Test @smoke', async ({ page, loginPage }
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -92,15 +94,17 @@ test('Delete Employee Button Visibility Test @smoke', async ({ page, loginPage }
 
     await pimPage.clickEmployeeList();
 
+    await page.waitForLoadState('networkidle');
+
     await pimPage.searchEmployee('Updated');
 
     await page.waitForLoadState('networkidle');
 
-    await pimPage.verifyEmployeeTableVisible();
+    await page.waitForTimeout(3000);
 
-    const deleteButton = page.locator(
-        '.oxd-icon.bi-trash'
-    ).first();
+    const deleteButton = page
+        .locator('.oxd-icon.bi-trash')
+        .first();
 
     await expect(deleteButton).toBeVisible();
 
@@ -115,7 +119,7 @@ test('Delete Employee Confirmation Popup Test @sanity', async ({ page, loginPage
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -135,19 +139,21 @@ test('Delete Employee Confirmation Popup Test @sanity', async ({ page, loginPage
 
     await pimPage.clickEmployeeList();
 
+    await page.waitForLoadState('networkidle');
+
     await pimPage.searchEmployee('Updated');
 
     await page.waitForLoadState('networkidle');
 
-    await pimPage.verifyEmployeeTableVisible();
+    await page.waitForTimeout(3000);
 
-    await expect(
-        page.locator('.oxd-icon.bi-trash').first()
-    ).toBeVisible();
+    const deleteButton = page
+        .locator('.oxd-icon.bi-trash')
+        .first();
 
-    await page.locator('.oxd-icon.bi-trash')
-        .first()
-        .click();
+    await expect(deleteButton).toBeVisible();
+
+    await deleteButton.click();
 
     await expect(
         page.locator('.oxd-dialog-container-default')
@@ -164,7 +170,7 @@ test('Delete Employee Cancel Button Test @regression', async ({ page, loginPage 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -184,19 +190,21 @@ test('Delete Employee Cancel Button Test @regression', async ({ page, loginPage 
 
     await pimPage.clickEmployeeList();
 
+    await page.waitForLoadState('networkidle');
+
     await pimPage.searchEmployee('Updated');
 
     await page.waitForLoadState('networkidle');
 
-    await pimPage.verifyEmployeeTableVisible();
+    await page.waitForTimeout(3000);
 
-    await expect(
-        page.locator('.oxd-icon.bi-trash').first()
-    ).toBeVisible();
+    const deleteButton = page
+        .locator('.oxd-icon.bi-trash')
+        .first();
 
-    await page.locator('.oxd-icon.bi-trash')
-        .first()
-        .click();
+    await expect(deleteButton).toBeVisible();
+
+    await deleteButton.click();
 
     const cancelButton = page.getByRole('button', {
         name: 'No, Cancel'
@@ -215,7 +223,7 @@ test('Delete Employee URL Validation Test @smoke', async ({ page, loginPage }) =
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );

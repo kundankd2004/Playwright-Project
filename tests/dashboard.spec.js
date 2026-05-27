@@ -270,9 +270,9 @@ test('Dashboard Buzz Widget Test @smoke', async ({ page, loginPage }) => {
 
     await page.waitForLoadState('networkidle');
 
-    const buzzWidget = page.locator(
-        '.orangehrm-buzz-newsfeed'
-    );
+    const buzzWidget = page.locator('.orangehrm-dashboard-widget')
+    .filter({ hasText: 'Buzz' })
+    .first();
 
     await expect(buzzWidget).toBeVisible();
 

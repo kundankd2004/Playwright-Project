@@ -11,7 +11,7 @@ test('My Info Page Visibility Test @smoke', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -25,11 +25,11 @@ test('My Info Page Visibility Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="My Info"]').click();
+    await page.getByText('My Info').click();
 
     await expect(
-        page.locator('.oxd-topbar-header-breadcrumb h6')
-    ).toContainText('PIM');
+        page.getByRole('heading', { name: 'PIM' })
+    ).toBeVisible();
 
 });
 
@@ -40,7 +40,7 @@ test('My Info URL Validation Test @regression', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -50,7 +50,7 @@ test('My Info URL Validation Test @regression', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="My Info"]').click();
+    await page.getByText('My Info').click();
 
     await expect(page).toHaveURL(/viewPersonalDetails/);
 
@@ -63,7 +63,7 @@ test('First Name Field Visibility Test @sanity', async ({ page, loginPage }) => 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -73,7 +73,7 @@ test('First Name Field Visibility Test @sanity', async ({ page, loginPage }) => 
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="My Info"]').click();
+    await page.getByText('My Info').click();
 
     const firstNameField = page.locator('input[name="firstName"]');
 
@@ -88,7 +88,7 @@ test('Last Name Field Visibility Test @smoke', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -98,7 +98,7 @@ test('Last Name Field Visibility Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="My Info"]').click();
+    await page.getByText('My Info').click();
 
     const lastNameField = page.locator('input[name="lastName"]');
 
@@ -113,7 +113,7 @@ test('Employee ID Field Visibility Test @regression', async ({ page, loginPage }
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -123,9 +123,11 @@ test('Employee ID Field Visibility Test @regression', async ({ page, loginPage }
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="My Info"]').click();
+    await page.getByText('My Info').click();
 
-    const employeeIdField = page.locator('(//input[@class="oxd-input oxd-input--active"])[2]');
+    const employeeIdField = page.locator(
+        '(//input[@class="oxd-input oxd-input--active"])[2]'
+    );
 
     await expect(employeeIdField).toBeVisible();
 
@@ -138,7 +140,7 @@ test('Save Button Visibility Test @sanity', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -148,7 +150,7 @@ test('Save Button Visibility Test @sanity', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="My Info"]').click();
+    await page.getByText('My Info').click();
 
     const saveButton = page.getByRole('button', {
         name: 'Save'
@@ -165,7 +167,7 @@ test('My Info Refresh Test @smoke', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -175,9 +177,13 @@ test('My Info Refresh Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="My Info"]').click();
+    await page.getByText('My Info').click();
 
-    await page.reload();
+    await page.waitForLoadState('networkidle');
+
+    await page.reload({
+        waitUntil: 'domcontentloaded'
+    });
 
     await expect(
         page.locator('input[name="firstName"]')
@@ -192,7 +198,7 @@ test('Profile Image Visibility Test @regression', async ({ page, loginPage }) =>
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -202,7 +208,7 @@ test('Profile Image Visibility Test @regression', async ({ page, loginPage }) =>
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="My Info"]').click();
+    await page.getByText('My Info').click();
 
     const profileImage = page.locator('.employee-image');
 
@@ -217,7 +223,7 @@ test('Personal Details Header Visibility Test @sanity', async ({ page, loginPage
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -227,9 +233,11 @@ test('Personal Details Header Visibility Test @sanity', async ({ page, loginPage
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="My Info"]').click();
+    await page.getByText('My Info').click();
 
-    const header = page.locator('.orangehrm-main-title');
+    const header = page.getByRole('heading', {
+        name: 'Personal Details'
+    });
 
     await expect(header).toBeVisible();
 
@@ -242,7 +250,7 @@ test('My Info Header Visibility Test @smoke', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -252,7 +260,7 @@ test('My Info Header Visibility Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="My Info"]').click();
+    await page.getByText('My Info').click();
 
     const topHeader = page.locator('.oxd-topbar-header');
 

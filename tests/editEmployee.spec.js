@@ -15,7 +15,7 @@ test('Edit Employee Test @regression', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -35,23 +35,23 @@ test('Edit Employee Test @regression', async ({ page, loginPage }) => {
 
     await pimPage.clickEmployeeList();
 
-    await pimPage.searchEmployee('KunDan');
+    await pimPage.searchEmployee('a');
 
     await page.waitForLoadState('networkidle');
 
     await pimPage.verifyEmployeeTableVisible();
 
-    await page.locator('.oxd-table-card')
-        .first()
-        .locator('div')
-        .first()
-        .click();
+    await page.locator(
+        '.oxd-icon.bi-pencil-fill'
+    ).first().click();
 
     await expect(
         page.locator('input[name="firstName"]')
     ).toBeVisible();
 
-    await page.locator('input[name="firstName"]').fill(
+    await page.locator(
+        'input[name="firstName"]'
+    ).fill(
         `Updated${Date.now()}`
     );
 
@@ -72,7 +72,7 @@ test('Edit Employee First Name Test @smoke', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -92,19 +92,19 @@ test('Edit Employee First Name Test @smoke', async ({ page, loginPage }) => {
 
     await pimPage.clickEmployeeList();
 
-    await pimPage.searchEmployee('KunDan');
+    await pimPage.searchEmployee('a');
 
     await page.waitForLoadState('networkidle');
 
     await pimPage.verifyEmployeeTableVisible();
 
-    await page.locator('.oxd-table-card')
-        .first()
-        .locator('div')
-        .first()
-        .click();
+    await page.locator(
+        '.oxd-icon.bi-pencil-fill'
+    ).first().click();
 
-    const firstNameInput = page.locator('input[name="firstName"]');
+    const firstNameInput = page.locator(
+        'input[name="firstName"]'
+    );
 
     await expect(firstNameInput).toBeVisible();
 
@@ -119,7 +119,7 @@ test('Edit Employee Save Button Test @sanity', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -139,17 +139,15 @@ test('Edit Employee Save Button Test @sanity', async ({ page, loginPage }) => {
 
     await pimPage.clickEmployeeList();
 
-    await pimPage.searchEmployee('KunDan');
+    await pimPage.searchEmployee('a');
 
     await page.waitForLoadState('networkidle');
 
     await pimPage.verifyEmployeeTableVisible();
 
-    await page.locator('.oxd-table-card')
-        .first()
-        .locator('div')
-        .first()
-        .click();
+    await page.locator(
+        '.oxd-icon.bi-pencil-fill'
+    ).first().click();
 
     await expect(
         pimPage.saveButton
@@ -166,7 +164,7 @@ test('Edit Employee URL Validation Test @regression', async ({ page, loginPage }
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -186,19 +184,19 @@ test('Edit Employee URL Validation Test @regression', async ({ page, loginPage }
 
     await pimPage.clickEmployeeList();
 
-    await pimPage.searchEmployee('KunDan');
+    await pimPage.searchEmployee('a');
 
     await page.waitForLoadState('networkidle');
 
     await pimPage.verifyEmployeeTableVisible();
 
-    await page.locator('.oxd-table-card')
-        .first()
-        .locator('div')
-        .first()
-        .click();
+    await page.locator(
+        '.oxd-icon.bi-pencil-fill'
+    ).first().click();
 
-    await expect(page).toHaveURL(/viewPersonalDetails/);
+    await expect(page).toHaveURL(
+        /viewPersonalDetails/
+    );
 
 });
 
@@ -211,14 +209,10 @@ test('Edit Employee Refresh Test @smoke', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
-
-    await expect(
-        page.locator('input[name="username"]')
-    ).toBeVisible();
 
     await loginPage.login(
         process.env.APP_USERNAME,
@@ -231,17 +225,15 @@ test('Edit Employee Refresh Test @smoke', async ({ page, loginPage }) => {
 
     await pimPage.clickEmployeeList();
 
-    await pimPage.searchEmployee('KunDan');
+    await pimPage.searchEmployee('a');
 
     await page.waitForLoadState('networkidle');
 
     await pimPage.verifyEmployeeTableVisible();
 
-    await page.locator('.oxd-table-card')
-        .first()
-        .locator('div')
-        .first()
-        .click();
+    await page.locator(
+        '.oxd-icon.bi-pencil-fill'
+    ).first().click();
 
     await page.reload({
         waitUntil: 'domcontentloaded'

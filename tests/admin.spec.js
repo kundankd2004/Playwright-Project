@@ -11,7 +11,7 @@ test('Admin Page Visibility Test @smoke', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -25,11 +25,15 @@ test('Admin Page Visibility Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Admin"]').click();
+    await page.getByRole('link', {
+        name: 'Admin'
+    }).click();
 
     await expect(
-        page.locator('.oxd-topbar-header-breadcrumb h6')
-    ).toContainText('Admin');
+        page.getByRole('heading', {
+            name: 'Admin'
+        }).first()
+    ).toBeVisible();
 
 });
 
@@ -40,7 +44,7 @@ test('Admin URL Validation Test @regression', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -50,7 +54,9 @@ test('Admin URL Validation Test @regression', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Admin"]').click();
+    await page.getByRole('link', {
+        name: 'Admin'
+    }).click();
 
     await expect(page).toHaveURL(/admin/);
 
@@ -63,7 +69,7 @@ test('Search Username Field Visibility Test @sanity', async ({ page, loginPage }
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -73,9 +79,13 @@ test('Search Username Field Visibility Test @sanity', async ({ page, loginPage }
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Admin"]').click();
+    await page.getByRole('link', {
+        name: 'Admin'
+    }).click();
 
-    const usernameField = page.locator('(//input[@class="oxd-input oxd-input--active"])[2]');
+    const usernameField = page.locator(
+        '(//input[@class="oxd-input oxd-input--active"])[2]'
+    );
 
     await expect(usernameField).toBeVisible();
 
@@ -88,7 +98,7 @@ test('Search Button Visibility Test @smoke', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -98,7 +108,9 @@ test('Search Button Visibility Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Admin"]').click();
+    await page.getByRole('link', {
+        name: 'Admin'
+    }).click();
 
     const searchButton = page.getByRole('button', {
         name: 'Search'
@@ -115,7 +127,7 @@ test('Reset Button Visibility Test @regression', async ({ page, loginPage }) => 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -125,7 +137,9 @@ test('Reset Button Visibility Test @regression', async ({ page, loginPage }) => 
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Admin"]').click();
+    await page.getByRole('link', {
+        name: 'Admin'
+    }).click();
 
     const resetButton = page.getByRole('button', {
         name: 'Reset'
@@ -142,7 +156,7 @@ test('Add User Button Visibility Test @sanity', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -152,7 +166,9 @@ test('Add User Button Visibility Test @sanity', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Admin"]').click();
+    await page.getByRole('link', {
+        name: 'Admin'
+    }).click();
 
     const addButton = page.getByRole('button', {
         name: 'Add'
@@ -169,7 +185,7 @@ test('Admin Table Visibility Test @smoke', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -179,11 +195,15 @@ test('Admin Table Visibility Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Admin"]').click();
+    await page.getByRole('link', {
+        name: 'Admin'
+    }).click();
+
+    await page.waitForLoadState('networkidle');
 
     const table = page.locator('.oxd-table-body');
 
-    await expect(table).toBeVisible();
+    await expect(table.first()).toBeVisible();
 
 });
 
@@ -194,7 +214,7 @@ test('Admin Refresh Test @regression', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -204,13 +224,21 @@ test('Admin Refresh Test @regression', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Admin"]').click();
+    await page.getByRole('link', {
+        name: 'Admin'
+    }).click();
 
-    await page.reload();
+    await page.waitForLoadState('networkidle');
+
+    await page.reload({
+        waitUntil: 'domcontentloaded'
+    });
 
     await expect(
-        page.locator('.oxd-topbar-header-breadcrumb h6')
-    ).toContainText('Admin');
+        page.getByRole('heading', {
+            name: 'Admin'
+        }).first()
+    ).toBeVisible();
 
 });
 
@@ -221,7 +249,7 @@ test('Admin Sidebar Visibility Test @sanity', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -244,7 +272,7 @@ test('Admin Header Visibility Test @smoke', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
+            waitUntil: 'domcontentloaded',
             timeout: 60000
         }
     );
@@ -254,7 +282,9 @@ test('Admin Header Visibility Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
-    await page.locator('//span[text()="Admin"]').click();
+    await page.getByRole('link', {
+        name: 'Admin'
+    }).click();
 
     const header = page.locator('.oxd-topbar-header');
 
