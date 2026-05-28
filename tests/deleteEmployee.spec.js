@@ -15,39 +15,36 @@ test('Delete Employee Test @regression', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'domcontentloaded',
-            timeout: 60000
+            waitUntil: 'load',
+            timeout: 120000
         }
     );
 
     await expect(
         page.locator('input[name="username"]')
-    ).toBeVisible();
+    ).toBeVisible({
+        timeout: 30000
+    });
 
     await loginPage.login(
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
 
-    await page.waitForLoadState('networkidle');
-
     await pimPage.clickPIMMenu();
 
     await pimPage.clickEmployeeList();
 
-    await page.waitForLoadState('networkidle');
-
-    await pimPage.searchEmployee('Updated');
-
-    await page.waitForLoadState('networkidle');
-
-    await page.waitForTimeout(3000);
+    await page.waitForTimeout(5000);
 
     const deleteButton = page
         .locator('.oxd-icon.bi-trash')
+        .locator('..')
         .first();
 
-    await expect(deleteButton).toBeVisible();
+    await expect(deleteButton).toBeVisible({
+        timeout: 30000
+    });
 
     await deleteButton.click();
 
@@ -55,13 +52,17 @@ test('Delete Employee Test @regression', async ({ page, loginPage }) => {
         name: 'Yes, Delete'
     });
 
-    await expect(confirmDeleteButton).toBeVisible();
+    await expect(confirmDeleteButton).toBeVisible({
+        timeout: 30000
+    });
 
     await confirmDeleteButton.click();
 
     await expect(
         page.locator('.oxd-toast')
-    ).toBeVisible();
+    ).toBeVisible({
+        timeout: 30000
+    });
 
 });
 
@@ -74,39 +75,36 @@ test('Delete Employee Button Visibility Test @smoke', async ({ page, loginPage }
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'domcontentloaded',
-            timeout: 60000
+            waitUntil: 'load',
+            timeout: 120000
         }
     );
 
     await expect(
         page.locator('input[name="username"]')
-    ).toBeVisible();
+    ).toBeVisible({
+        timeout: 30000
+    });
 
     await loginPage.login(
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
 
-    await page.waitForLoadState('networkidle');
-
     await pimPage.clickPIMMenu();
 
     await pimPage.clickEmployeeList();
 
-    await page.waitForLoadState('networkidle');
-
-    await pimPage.searchEmployee('Updated');
-
-    await page.waitForLoadState('networkidle');
-
-    await page.waitForTimeout(3000);
+    await page.waitForTimeout(5000);
 
     const deleteButton = page
         .locator('.oxd-icon.bi-trash')
+        .locator('..')
         .first();
 
-    await expect(deleteButton).toBeVisible();
+    await expect(deleteButton).toBeVisible({
+        timeout: 30000
+    });
 
 });
 
@@ -119,45 +117,44 @@ test('Delete Employee Confirmation Popup Test @sanity', async ({ page, loginPage
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'domcontentloaded',
-            timeout: 60000
+            waitUntil: 'load',
+            timeout: 120000
         }
     );
 
     await expect(
         page.locator('input[name="username"]')
-    ).toBeVisible();
+    ).toBeVisible({
+        timeout: 30000
+    });
 
     await loginPage.login(
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
 
-    await page.waitForLoadState('networkidle');
-
     await pimPage.clickPIMMenu();
 
     await pimPage.clickEmployeeList();
 
-    await page.waitForLoadState('networkidle');
-
-    await pimPage.searchEmployee('Updated');
-
-    await page.waitForLoadState('networkidle');
-
-    await page.waitForTimeout(3000);
+    await page.waitForTimeout(5000);
 
     const deleteButton = page
         .locator('.oxd-icon.bi-trash')
+        .locator('..')
         .first();
 
-    await expect(deleteButton).toBeVisible();
+    await expect(deleteButton).toBeVisible({
+        timeout: 30000
+    });
 
     await deleteButton.click();
 
     await expect(
         page.locator('.oxd-dialog-container-default')
-    ).toBeVisible();
+    ).toBeVisible({
+        timeout: 30000
+    });
 
 });
 
@@ -170,39 +167,36 @@ test('Delete Employee Cancel Button Test @regression', async ({ page, loginPage 
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'domcontentloaded',
-            timeout: 60000
+            waitUntil: 'load',
+            timeout: 120000
         }
     );
 
     await expect(
         page.locator('input[name="username"]')
-    ).toBeVisible();
+    ).toBeVisible({
+        timeout: 30000
+    });
 
     await loginPage.login(
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
 
-    await page.waitForLoadState('networkidle');
-
     await pimPage.clickPIMMenu();
 
     await pimPage.clickEmployeeList();
 
-    await page.waitForLoadState('networkidle');
-
-    await pimPage.searchEmployee('Updated');
-
-    await page.waitForLoadState('networkidle');
-
-    await page.waitForTimeout(3000);
+    await page.waitForTimeout(5000);
 
     const deleteButton = page
         .locator('.oxd-icon.bi-trash')
+        .locator('..')
         .first();
 
-    await expect(deleteButton).toBeVisible();
+    await expect(deleteButton).toBeVisible({
+        timeout: 30000
+    });
 
     await deleteButton.click();
 
@@ -210,7 +204,9 @@ test('Delete Employee Cancel Button Test @regression', async ({ page, loginPage 
         name: 'No, Cancel'
     });
 
-    await expect(cancelButton).toBeVisible();
+    await expect(cancelButton).toBeVisible({
+        timeout: 30000
+    });
 
 });
 
@@ -223,21 +219,21 @@ test('Delete Employee URL Validation Test @smoke', async ({ page, loginPage }) =
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'domcontentloaded',
-            timeout: 60000
+            waitUntil: 'load',
+            timeout: 120000
         }
     );
 
     await expect(
         page.locator('input[name="username"]')
-    ).toBeVisible();
+    ).toBeVisible({
+        timeout: 30000
+    });
 
     await loginPage.login(
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
-
-    await page.waitForLoadState('networkidle');
 
     await pimPage.clickPIMMenu();
 

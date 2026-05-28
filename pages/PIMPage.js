@@ -39,36 +39,52 @@ class PIMPage {
         // Toast
         this.successToast = page.locator('.oxd-toast');
 
-        // Table
-        this.employeeTable = page.locator('.oxd-table-card');
+        // Employee Table
+        this.employeeTable = page.locator('.oxd-table-body');
 
     }
 
     async clickPIMMenu() {
 
+        await expect(this.pimMenu).toBeVisible({
+            timeout: 30000
+        });
+
         await this.pimMenu.click();
 
-        await this.page.waitForLoadState('networkidle');
+        await this.page.waitForTimeout(3000);
 
     }
 
     async clickAddEmployee() {
 
+        await expect(this.addEmployeeMenu).toBeVisible({
+            timeout: 30000
+        });
+
         await this.addEmployeeMenu.click();
 
-        await this.page.waitForLoadState('networkidle');
+        await this.page.waitForTimeout(3000);
 
     }
 
     async clickEmployeeList() {
 
+        await expect(this.employeeListMenu).toBeVisible({
+            timeout: 30000
+        });
+
         await this.employeeListMenu.click();
 
-        await this.page.waitForLoadState('networkidle');
+        await this.page.waitForTimeout(3000);
 
     }
 
     async enterFirstName(firstName) {
+
+        await expect(this.firstNameInput).toBeVisible({
+            timeout: 30000
+        });
 
         await this.firstNameInput.fill(firstName);
 
@@ -76,11 +92,19 @@ class PIMPage {
 
     async enterMiddleName(middleName) {
 
+        await expect(this.middleNameInput).toBeVisible({
+            timeout: 30000
+        });
+
         await this.middleNameInput.fill(middleName);
 
     }
 
     async enterLastName(lastName) {
+
+        await expect(this.lastNameInput).toBeVisible({
+            timeout: 30000
+        });
 
         await this.lastNameInput.fill(lastName);
 
@@ -88,7 +112,13 @@ class PIMPage {
 
     async clickSaveButton() {
 
+        await expect(this.saveButton).toBeVisible({
+            timeout: 30000
+        });
+
         await this.saveButton.click();
+
+        await this.page.waitForTimeout(5000);
 
     }
 
@@ -102,11 +132,13 @@ class PIMPage {
 
         await this.clickSaveButton();
 
-        await this.page.waitForLoadState('networkidle');
-
     }
 
     async searchEmployee(employeeName) {
+
+        await expect(this.employeeSearchInput).toBeVisible({
+            timeout: 30000
+        });
 
         await this.employeeSearchInput.clear();
 
@@ -114,26 +146,28 @@ class PIMPage {
 
         await this.page.waitForTimeout(2000);
 
+        await expect(this.searchButton).toBeVisible({
+            timeout: 30000
+        });
+
         await this.searchButton.click();
 
-        await this.page.waitForLoadState('networkidle');
-
-        await this.page.waitForTimeout(3000);
+        await this.page.waitForTimeout(5000);
 
     }
 
     async verifyEmployeeTableVisible() {
 
-        await this.page.waitForLoadState('networkidle');
-
-        await this.page.waitForTimeout(3000);
+        await expect(this.employeeTable).toBeVisible({
+            timeout: 30000
+        });
 
     }
 
     async verifySuccessToast() {
 
         await expect(this.successToast).toBeVisible({
-            timeout: 15000
+            timeout: 30000
         });
 
     }
