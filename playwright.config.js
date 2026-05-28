@@ -28,7 +28,9 @@ export default defineConfig({
 
     ['html'],
 
-    ['list']
+    ['list'],
+
+    ['allure-playwright']
 
   ],
 
@@ -43,7 +45,7 @@ export default defineConfig({
 
     video: 'retain-on-failure',
 
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
 
     actionTimeout: 30000,
 
