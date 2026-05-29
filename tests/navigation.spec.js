@@ -21,6 +21,9 @@ test('PIM Navigation Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
+    await page.waitForURL(/dashboard/);
+    await page.waitForLoadState('networkidle');
+
     await page.locator('//span[text()="PIM"]').click();
 
     await expect(page).toHaveURL(/pim/);
@@ -43,6 +46,9 @@ test('Leave Navigation Test @regression', async ({ page, loginPage }) => {
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
+
+    await page.waitForURL(/dashboard/);
+    await page.waitForLoadState('networkidle');
 
     await page.locator('//span[text()="Leave"]').click();
 
@@ -67,6 +73,9 @@ test('Time Navigation Test @sanity', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
+    await page.waitForURL(/dashboard/);
+    await page.waitForLoadState('networkidle');
+
     await page.locator('//span[text()="Time"]').click();
 
     await expect(page).toHaveURL(/time/);
@@ -89,6 +98,9 @@ test('Recruitment Navigation Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
+
+    await page.waitForURL(/dashboard/);
+    await page.waitForLoadState('networkidle');
 
     await page.locator('//span[text()="Recruitment"]').click();
 
@@ -113,6 +125,9 @@ test('My Info Navigation Test @regression', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
+    await page.waitForURL(/dashboard/);
+    await page.waitForLoadState('networkidle');
+
     await page.locator('//span[text()="My Info"]').click();
 
     await expect(page).toHaveURL(/viewPersonalDetails/);
@@ -135,6 +150,9 @@ test('Buzz Navigation Test @sanity', async ({ page, loginPage }) => {
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
+
+    await page.waitForURL(/dashboard/);
+    await page.waitForLoadState('networkidle');
 
     await page.locator('//span[text()="Buzz"]').click();
 
@@ -159,6 +177,9 @@ test('Admin Navigation Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
+    await page.waitForURL(/dashboard/);
+    await page.waitForLoadState('networkidle');
+
     await page.locator('//span[text()="Admin"]').click();
 
     await expect(page).toHaveURL(/admin/);
@@ -181,6 +202,9 @@ test('Dashboard Navigation Test @regression', async ({ page, loginPage }) => {
         process.env.APP_USERNAME,
         process.env.APP_PASSWORD
     );
+
+    await page.waitForURL(/dashboard/);
+    await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveURL(/dashboard/);
 
