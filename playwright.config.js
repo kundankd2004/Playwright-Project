@@ -1,7 +1,6 @@
 // @ts-check
 
 import { defineConfig, devices } from '@playwright/test';
-
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -19,27 +18,20 @@ export default defineConfig({
   timeout: 120000,
 
   expect: {
-
     timeout: 15000
-
   },
 
   reporter: [
-
     ['html'],
-
     ['list'],
-
     ['allure-playwright']
-
   ],
 
   use: {
 
-    baseURL:
-      'https://opensource-demo.orangehrmlive.com',
+    baseURL: process.env.BASE_URL,
 
-    headless: false,
+    headless: true,
 
     screenshot: 'only-on-failure',
 
@@ -56,18 +48,12 @@ export default defineConfig({
   },
 
   projects: [
-
     {
       name: 'chromium',
-
       use: {
-
         ...devices['Desktop Chrome']
-
       }
-
     }
-
   ]
 
 });
