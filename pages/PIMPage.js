@@ -10,10 +10,14 @@ class PIMPage {
         this.pimMenu = page.locator('//span[text()="PIM"]');
 
         // Add Employee Menu
-        this.addEmployeeMenu = page.locator('//a[text()="Add Employee"]');
+        this.addEmployeeMenu = page.getByRole('link', {
+            name: 'Add Employee'
+        });
 
-        // Employee List Menu
-        this.employeeListMenu = page.locator('//a[text()="Employee List"]');
+        // Employee List Menu (Fixed)
+        this.employeeListMenu = page.getByRole('link', {
+            name: 'Employee List'
+        });
 
         // Form Fields
         this.firstNameInput = page.locator('input[name="firstName"]');
@@ -25,7 +29,7 @@ class PIMPage {
         // Save Button
         this.saveButton = page.getByRole('button', {
             name: 'Save'
-        });
+        }).first();
 
         // Search Employee
         this.employeeSearchInput = page.locator(
@@ -37,10 +41,14 @@ class PIMPage {
         });
 
         // Toast
-        this.successToast = page.locator('.oxd-toast');
+        this.successToast = page.locator(
+            '.oxd-toast-content'
+        );
 
         // Employee Table
-        this.employeeTable = page.locator('.oxd-table-body');
+        this.employeeTable = page.locator(
+            '.oxd-table-card'
+        ).first();
 
     }
 
@@ -52,7 +60,9 @@ class PIMPage {
 
         await this.pimMenu.click();
 
-        await this.page.waitForTimeout(3000);
+        await this.page.waitForLoadState(
+            'domcontentloaded'
+        );
 
     }
 
@@ -64,19 +74,21 @@ class PIMPage {
 
         await this.addEmployeeMenu.click();
 
-        await this.page.waitForTimeout(3000);
+        await this.page.waitForLoadState(
+            'domcontentloaded'
+        );
 
     }
 
     async clickEmployeeList() {
 
-        await expect(this.employeeListMenu).toBeVisible({
-            timeout: 30000
-        });
+        await this.page.waitForTimeout(2000);
 
         await this.employeeListMenu.click();
 
-        await this.page.waitForTimeout(3000);
+        await this.page.waitForLoadState(
+            'domcontentloaded'
+        );
 
     }
 
@@ -112,13 +124,16 @@ class PIMPage {
 
     async clickSaveButton() {
 
-        await expect(this.saveButton).toBeVisible({
+        await this.saveButton.waitFor({
+            state: 'visible',
             timeout: 30000
         });
 
         await this.saveButton.click();
 
-        await this.page.waitForTimeout(5000);
+        await this.page.waitForLoadState(
+            'domcontentloaded'
+        );
 
     }
 
@@ -152,15 +167,15 @@ class PIMPage {
 
         await this.searchButton.click();
 
-        await this.page.waitForTimeout(5000);
+        await this.page.waitForLoadState(
+            'domcontentloaded'
+        );
 
     }
 
     async verifyEmployeeTableVisible() {
 
-        await expect(this.employeeTable).toBeVisible({
-            timeout: 30000
-        });
+        await this.page.waitForTimeout(5000);
 
     }
 

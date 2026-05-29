@@ -15,8 +15,8 @@ test('Search Employee Test @regression', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
-            timeout: 60000
+            waitUntil: 'domcontentloaded',
+            timeout: 120000
         }
     );
 
@@ -29,9 +29,20 @@ test('Search Employee Test @regression', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
+    await page.waitForURL(
+        '**/dashboard/**',
+        {
+            timeout: 60000
+        }
+    );
+
     await expect(
-        page.locator('.oxd-topbar-header-breadcrumb h6')
-    ).toBeVisible();
+        page.getByRole('heading', {
+            name: 'Dashboard'
+        })
+    ).toBeVisible({
+        timeout: 30000
+    });
 
     await pimPage.clickPIMMenu();
 
@@ -52,8 +63,8 @@ test('Employee Search Field Visibility Test @smoke', async ({ page, loginPage })
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
-            timeout: 60000
+            waitUntil: 'domcontentloaded',
+            timeout: 120000
         }
     );
 
@@ -66,9 +77,20 @@ test('Employee Search Field Visibility Test @smoke', async ({ page, loginPage })
         process.env.APP_PASSWORD
     );
 
+    await page.waitForURL(
+        '**/dashboard/**',
+        {
+            timeout: 60000
+        }
+    );
+
     await expect(
-        page.locator('.oxd-topbar-header-breadcrumb h6')
-    ).toBeVisible();
+        page.getByRole('heading', {
+            name: 'Dashboard'
+        })
+    ).toBeVisible({
+        timeout: 30000
+    });
 
     await pimPage.clickPIMMenu();
 
@@ -89,8 +111,8 @@ test('Search Button Visibility Test @sanity', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
-            timeout: 60000
+            waitUntil: 'domcontentloaded',
+            timeout: 120000
         }
     );
 
@@ -103,9 +125,20 @@ test('Search Button Visibility Test @sanity', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
+    await page.waitForURL(
+        '**/dashboard/**',
+        {
+            timeout: 60000
+        }
+    );
+
     await expect(
-        page.locator('.oxd-topbar-header-breadcrumb h6')
-    ).toBeVisible();
+        page.getByRole('heading', {
+            name: 'Dashboard'
+        })
+    ).toBeVisible({
+        timeout: 30000
+    });
 
     await pimPage.clickPIMMenu();
 
@@ -126,8 +159,8 @@ test('Employee List URL Validation Test @regression', async ({ page, loginPage }
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
-            timeout: 60000
+            waitUntil: 'domcontentloaded',
+            timeout: 120000
         }
     );
 
@@ -140,9 +173,20 @@ test('Employee List URL Validation Test @regression', async ({ page, loginPage }
         process.env.APP_PASSWORD
     );
 
+    await page.waitForURL(
+        '**/dashboard/**',
+        {
+            timeout: 60000
+        }
+    );
+
     await expect(
-        page.locator('.oxd-topbar-header-breadcrumb h6')
-    ).toBeVisible();
+        page.getByRole('heading', {
+            name: 'Dashboard'
+        })
+    ).toBeVisible({
+        timeout: 30000
+    });
 
     await pimPage.clickPIMMenu();
 
@@ -161,8 +205,8 @@ test('Employee Table Visibility Test @smoke', async ({ page, loginPage }) => {
     await page.goto(
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
-            waitUntil: 'load',
-            timeout: 60000
+            waitUntil: 'domcontentloaded',
+            timeout: 120000
         }
     );
 
@@ -175,9 +219,20 @@ test('Employee Table Visibility Test @smoke', async ({ page, loginPage }) => {
         process.env.APP_PASSWORD
     );
 
+    await page.waitForURL(
+        '**/dashboard/**',
+        {
+            timeout: 60000
+        }
+    );
+
     await expect(
-        page.locator('.oxd-topbar-header-breadcrumb h6')
-    ).toBeVisible();
+        page.getByRole('heading', {
+            name: 'Dashboard'
+        })
+    ).toBeVisible({
+        timeout: 30000
+    });
 
     await pimPage.clickPIMMenu();
 

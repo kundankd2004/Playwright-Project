@@ -50,15 +50,24 @@ test('Edit Employee Test @regression', async ({ page, loginPage }) => {
     ).toBeVisible();
 
     await page.locator(
-        'input[name="firstName"]'
+    'input[name="firstName"]'
     ).fill(
         `Updated${Date.now()}`
     );
 
     await pimPage.clickSaveButton();
 
+    const successMessage = page.locator(
+        '.oxd-toast-content'
+    );
+
+    await successMessage.waitFor({
+        state: 'visible',
+        timeout: 30000
+    });
+
     await expect(
-        page.locator('.oxd-toast')
+        successMessage
     ).toBeVisible();
 
 });

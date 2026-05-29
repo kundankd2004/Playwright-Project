@@ -45,7 +45,7 @@ test('Time URL Validation Test @regression', async ({ page, loginPage }) => {
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
             waitUntil: 'load',
-            timeout: 60000
+            timeout: 12000
         }
     );
 

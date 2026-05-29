@@ -228,7 +228,7 @@ test('Recruitment Refresh Test @sanity', async ({ page, loginPage }) => {
         'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
         {
             waitUntil: 'domcontentloaded',
-            timeout: 60000
+            timeout: 120000
         }
     );
 
@@ -242,7 +242,8 @@ test('Recruitment Refresh Test @sanity', async ({ page, loginPage }) => {
     await page.waitForLoadState('networkidle');
 
     await page.reload({
-        waitUntil: 'domcontentloaded'
+        waitUntil: 'networkidle',
+        timeout: 120000
     });
 
     await expect(

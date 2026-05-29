@@ -113,7 +113,9 @@ test('Search Admin Module Test @smoke', async ({ page, loginPage }) => {
     await searchBox.fill('Admin');
 
     await expect(
-        page.getByText('Admin')
+     page.getByRole('link', {
+            name: 'Admin'
+        })
     ).toBeVisible();
 
 });
