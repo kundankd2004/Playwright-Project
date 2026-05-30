@@ -1,0 +1,1 @@
+[INFO] Starting PIM Page Visibility Test

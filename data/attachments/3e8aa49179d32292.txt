@@ -1,0 +1,2 @@
+[INFO] Starting Dashboard Load Performance Test
+Dashboard Reload Time: 3720 ms

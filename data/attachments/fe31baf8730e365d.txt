@@ -1,0 +1,1 @@
+[INFO] Starting Login Button Visibility Test

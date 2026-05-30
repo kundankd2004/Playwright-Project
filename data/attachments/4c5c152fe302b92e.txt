@@ -1,0 +1,1 @@
+[INFO] Starting Header Dropdown Visibility Test
