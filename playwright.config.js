@@ -5,6 +5,10 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+process.env.BASE_URL = process.env.BASE_URL || 'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login';
+process.env.APP_USERNAME = process.env.APP_USERNAME || 'Admin';
+process.env.APP_PASSWORD = process.env.APP_PASSWORD || 'admin123';
+
 export default defineConfig({
 
   testDir: './tests',
@@ -13,7 +17,7 @@ export default defineConfig({
 
   workers: 1,
 
-  retries: 1,
+  retries: process.env.CI ? 2 : 1,
 
   timeout: 120000,
 
@@ -43,7 +47,11 @@ export default defineConfig({
 
     navigationTimeout: 60000,
 
-    ignoreHTTPSErrors: true
+    ignoreHTTPSErrors: true,
+
+    launchOptions: {
+      slowMo: 1000
+    }
 
   },
 
