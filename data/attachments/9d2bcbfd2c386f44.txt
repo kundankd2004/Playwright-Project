@@ -1,1 +1,0 @@
-[INFO] Starting Recruitment Menu Visibility Test

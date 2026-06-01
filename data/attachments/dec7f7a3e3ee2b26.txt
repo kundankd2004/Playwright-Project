@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Recruitment Page Visibility Test
-Test Execution Completed

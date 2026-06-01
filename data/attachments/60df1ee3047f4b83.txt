@@ -1,2 +1,0 @@
-[INFO] Starting Login Performance Test
-Login Time: 4211 ms

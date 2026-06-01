@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Invalid Password Test
-Test Execution Completed

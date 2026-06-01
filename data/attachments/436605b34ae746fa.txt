@@ -1,1 +1,0 @@
-[INFO] Starting Topbar Visibility Test

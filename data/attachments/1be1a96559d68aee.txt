@@ -1,1 +1,0 @@
-[INFO] Starting Dashboard Time Widget Test

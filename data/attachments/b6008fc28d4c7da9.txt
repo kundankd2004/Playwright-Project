@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Recruitment Header Visibility Test
-Test Execution Completed

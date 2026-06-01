@@ -1,1 +1,0 @@
-[INFO] Starting Notification Bell Visibility Test

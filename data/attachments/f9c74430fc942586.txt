@@ -1,1 +1,0 @@
-[INFO] Starting PIM Search Box Visibility Test

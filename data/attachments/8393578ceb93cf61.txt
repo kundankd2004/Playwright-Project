@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Recruitment Table Visibility Test
-Test Execution Completed

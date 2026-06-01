@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Forgot Password Link Visibility Test
-Test Execution Completed

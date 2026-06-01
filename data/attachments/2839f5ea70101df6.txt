@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Recruitment URL Validation Test
-Test Execution Completed

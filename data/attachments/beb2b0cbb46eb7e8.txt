@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Edit Employee Save Button Test
-Test Execution Completed
