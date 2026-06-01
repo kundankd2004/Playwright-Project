@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Delete Employee Confirmation Popup Test
-Test Execution Completed

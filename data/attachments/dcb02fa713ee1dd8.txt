@@ -1,1 +1,0 @@
-[INFO] Starting Search Username Field Visibility Test

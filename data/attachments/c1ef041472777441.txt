@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Message Icon Visibility Test
-Test Execution Completed

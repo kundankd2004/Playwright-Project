@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Header Logo Visibility Test
-Test Execution Completed

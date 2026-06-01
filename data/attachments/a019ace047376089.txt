@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Delete Employee Test
-Test Execution Completed

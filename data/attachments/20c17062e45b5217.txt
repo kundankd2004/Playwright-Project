@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Delete Employee Cancel Button Test
-Test Execution Completed

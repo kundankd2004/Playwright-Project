@@ -1,1 +1,0 @@
-[INFO] Starting Forgot Password Empty Username Validation Test

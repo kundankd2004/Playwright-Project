@@ -1,1 +1,0 @@
-[INFO] Starting User Dropdown Visibility Test
