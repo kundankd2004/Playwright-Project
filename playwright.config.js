@@ -2,16 +2,20 @@
 
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
-import { use } from 'react';
 
 dotenv.config();
 
-process.env.BASE_URL = process.env.BASE_URL || 'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login';
-process.env.APP_USERNAME = process.env.APP_USERNAME || 'Admin';
-process.env.APP_PASSWORD = process.env.APP_PASSWORD || 'admin123';
+process.env.BASE_URL =
+  process.env.BASE_URL ||
+  'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login';
+
+process.env.APP_USERNAME =
+  process.env.APP_USERNAME || 'Admin';
+
+process.env.APP_PASSWORD =
+  process.env.APP_PASSWORD || 'admin123';
 
 export default defineConfig({
-
   testDir: './tests',
 
   fullyParallel: true,
@@ -23,7 +27,7 @@ export default defineConfig({
   timeout: 120000,
 
   expect: {
-    timeout: 15000
+    timeout: 15000,
   },
 
   reporter: [
@@ -33,7 +37,6 @@ export default defineConfig({
   ],
 
   use: {
-
     baseURL: process.env.BASE_URL,
 
     headless: true,
@@ -53,7 +56,6 @@ export default defineConfig({
     launchOptions: {
       slowMo: process.env.CI ? 0 : 1000
     }
-
   },
 
   projects: [
@@ -70,12 +72,12 @@ export default defineConfig({
         ...devices['Desktop Firefox']
       }
     },
-      {
+
+    {
       name: 'webkit',
       use: {
         ...devices['Desktop Safari']
       }
     }
   ]
-
 });
