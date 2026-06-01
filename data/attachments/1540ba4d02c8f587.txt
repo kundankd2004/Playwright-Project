@@ -1,0 +1,1 @@
+[INFO] Starting Search Time Module Test

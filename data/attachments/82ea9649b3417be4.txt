@@ -1,0 +1,1 @@
+[INFO] Starting User Profile Icon Visibility Test
