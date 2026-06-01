@@ -50,7 +50,7 @@ export default defineConfig({
     ignoreHTTPSErrors: true,
 
     launchOptions: {
-      slowMo: 1000
+      slowMo: process.env.CI ? 0 : 1000
     }
 
   },
