@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Dashboard Buzz Widget Test
-Test Execution Completed

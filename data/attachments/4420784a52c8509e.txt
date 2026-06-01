@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Login Page URL Validation Test
-Test Execution Completed

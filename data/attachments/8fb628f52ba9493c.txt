@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Edit Employee URL Validation Test
-Test Execution Completed

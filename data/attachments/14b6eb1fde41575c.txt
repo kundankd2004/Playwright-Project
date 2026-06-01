@@ -1,0 +1,1 @@
+[INFO] Starting Candidates Button Visibility Test
