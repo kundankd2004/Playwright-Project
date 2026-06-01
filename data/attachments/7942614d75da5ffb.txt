@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting My Info Header Visibility Test
-Test Execution Completed

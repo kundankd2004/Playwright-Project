@@ -1,0 +1,3 @@
+Starting Test Execution
+[INFO] Starting Recruitment Reset Button Visibility Test
+Test Execution Completed

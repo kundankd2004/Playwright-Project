@@ -1,0 +1,3 @@
+Starting Test Execution
+[INFO] Starting Recruitment Refresh Test
+Test Execution Completed
