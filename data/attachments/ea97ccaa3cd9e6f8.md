@@ -1,0 +1,78 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: leave.spec.js >> Leave Refresh Test @regression
+- Location: tests/leave.spec.js:164:1
+
+# Error details
+
+```
+TimeoutError: locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator('input[name="username"]') to be visible
+
+```
+
+# Test source
+
+```ts
+  1  | class LoginPage {
+  2  | 
+  3  |     constructor(page) {
+  4  | 
+  5  |         this.page = page;
+  6  | 
+  7  |         this.usernameInput = page.locator(
+  8  |             'input[name="username"]'
+  9  |         );
+  10 | 
+  11 |         this.passwordInput = page.locator(
+  12 |             'input[name="password"]'
+  13 |         );
+  14 | 
+  15 |         this.loginBtn = page.locator(
+  16 |             'button[type="submit"]'
+  17 |         );
+  18 | 
+  19 |         this.errorMessage = page.locator(
+  20 |             '.oxd-alert-content-text'
+  21 |         );
+  22 | 
+  23 |     }
+  24 | 
+  25 |     async login(username, password) {
+  26 | 
+> 27 |         await this.usernameInput.waitFor({
+     |                                  ^ TimeoutError: locator.waitFor: Timeout 30000ms exceeded.
+  28 |             state: 'visible',
+  29 |             timeout: 30000
+  30 |         });
+  31 | 
+  32 |         await this.usernameInput.fill(username);
+  33 | 
+  34 |         await this.passwordInput.fill(password);
+  35 | 
+  36 |         await this.loginBtn.click();
+  37 | 
+  38 |         await this.page.waitForURL(
+  39 |             '**/dashboard/**',
+  40 |             {
+  41 |                 timeout: 60000
+  42 |             }
+  43 |         );
+  44 | 
+  45 |         await this.page.waitForLoadState(
+  46 |             'domcontentloaded'
+  47 |         );
+  48 | 
+  49 |     }
+  50 | 
+  51 | }
+  52 | 
+  53 | module.exports = LoginPage;
+```

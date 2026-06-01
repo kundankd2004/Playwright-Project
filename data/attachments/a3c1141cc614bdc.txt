@@ -1,0 +1,3 @@
+Starting Test Execution
+[INFO] Starting Personal Details Header Visibility Test
+Test Execution Completed

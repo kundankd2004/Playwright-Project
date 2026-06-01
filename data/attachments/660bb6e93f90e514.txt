@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Special Character Username Test
-Test Execution Completed
