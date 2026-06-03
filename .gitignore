@@ -16,3 +16,6 @@ screenshots/
 
 # Local Logs
 logs/
+
+# Environment configurations
+.env
