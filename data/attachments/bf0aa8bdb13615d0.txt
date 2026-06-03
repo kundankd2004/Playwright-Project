@@ -1,3 +1,0 @@
-Starting Test Execution
-[2026-06-03T04:59:52.766Z] [INFO] Starting First Name Field Test
-Test Execution Completed

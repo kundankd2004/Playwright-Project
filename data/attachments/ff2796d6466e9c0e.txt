@@ -1,0 +1,1 @@
+[2026-06-03T05:09:43.594Z] [INFO] Starting Header Dropdown Visibility Test

@@ -1,0 +1,1 @@
+[2026-06-03T05:13:03.111Z] [INFO] Starting Sidebar Collapse Button Visibility Test

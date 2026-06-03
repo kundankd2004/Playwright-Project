@@ -1,0 +1,670 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: addEmployee.spec.js >> Add Employee Tests >> Add Employee Refresh Test @regression
+- Location: tests/addEmployee.spec.js:71:5
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: locator('input[name="firstName"]')
+Expected: visible
+Timeout: 15000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 15000ms
+  - waiting for locator('input[name="firstName"]')
+
+```
+
+```yaml
+- complementary:
+  - navigation "Sidepanel":
+    - link "client brand banner":
+      - /url: https://www.orangehrm.com/
+      - img "client brand banner"
+    - textbox "Search"
+    - button ""
+    - separator
+    - list:
+      - listitem:
+        - link "Admin":
+          - /url: /web/index.php/admin/viewAdminModule
+      - listitem:
+        - link "PIM":
+          - /url: /web/index.php/pim/viewPimModule
+      - listitem:
+        - link "Leave":
+          - /url: /web/index.php/leave/viewLeaveModule
+      - listitem:
+        - link "Time":
+          - /url: /web/index.php/time/viewTimeModule
+      - listitem:
+        - link "Recruitment":
+          - /url: /web/index.php/recruitment/viewRecruitmentModule
+      - listitem:
+        - link "My Info":
+          - /url: /web/index.php/pim/viewMyDetails
+      - listitem:
+        - link "Performance":
+          - /url: /web/index.php/performance/viewPerformanceModule
+      - listitem:
+        - link "Dashboard":
+          - /url: /web/index.php/dashboard/index
+      - listitem:
+        - link "Directory":
+          - /url: /web/index.php/directory/viewDirectory
+      - listitem:
+        - link "Maintenance":
+          - /url: /web/index.php/maintenance/viewMaintenanceModule
+      - listitem:
+        - link "Claim":
+          - /url: /web/index.php/claim/viewClaimModule
+          - img
+          - text: Claim
+      - listitem:
+        - link "Buzz":
+          - /url: /web/index.php/buzz/viewBuzz
+- banner:
+  - heading "PIM" [level=6]
+  - link "Upgrade":
+    - /url: https://orangehrm.com/open-source/upgrade-to-advanced
+    - button "Upgrade"
+  - list:
+    - listitem:
+      - img "profile picture"
+      - paragraph: KunDan Updated
+      - text: 
+  - navigation "Topbar Menu":
+    - list:
+      - listitem: Configuration 
+      - listitem:
+        - link "Employee List":
+          - /url: "#"
+      - listitem:
+        - link "Add Employee":
+          - /url: "#"
+      - listitem:
+        - link "Reports":
+          - /url: "#"
+      - button ""
+- heading "Employee Information" [level=5]
+- button ""
+- separator
+- text: Employee Name
+- textbox "Type for hints..."
+- text: Employee Id
+- textbox
+- text: Employment Status -- Select --  Include Current Employees Only  Supervisor Name
+- textbox "Type for hints..."
+- text: Job Title -- Select --  Sub Unit -- Select -- 
+- separator
+- button "Reset"
+- button "Search"
+- button " Add"
+- separator
+- text: (32) Records Found
+- table:
+  - rowgroup:
+    - row " Id  First (& Middle) Name  Last Name  Job Title  Employment Status  Sub Unit  Supervisor  Actions":
+      - columnheader "":
+        - checkbox ""
+        - text: 
+      - columnheader "Id "
+      - columnheader "First (& Middle) Name "
+      - columnheader "Last Name "
+      - columnheader "Job Title "
+      - columnheader "Employment Status "
+      - columnheader "Sub Unit "
+      - columnheader "Supervisor "
+      - columnheader "Actions"
+  - rowgroup:
+    - row " 0423 Amelia Mia swanan  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0423"
+      - cell "Amelia Mia"
+      - cell "swanan"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 781 aniket Ashok patil  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "781"
+      - cell "aniket Ashok"
+      - cell "patil"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " API495744 ApiFirst495744 ApiMiddle495744 ApiLast495744  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "API495744"
+      - cell "ApiFirst495744 ApiMiddle495744"
+      - cell "ApiLast495744"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " API499655 ApiFirst499655 ApiMiddle499655 ApiLast499655  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "API499655"
+      - cell "ApiFirst499655 ApiMiddle499655"
+      - cell "ApiLast499655"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " API504638 ApiFirst504638 ApiMiddle504638 ApiLast504638  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "API504638"
+      - cell "ApiFirst504638 ApiMiddle504638"
+      - cell "ApiLast504638"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " QA279715 CustomID Employee  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "QA279715"
+      - cell "CustomID"
+      - cell "Employee"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0440 Duplicate Test  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0440"
+      - cell "Duplicate"
+      - cell "Test"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0414 EditFirst349908 After349908 EditLast349908  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0414"
+      - cell "EditFirst349908 After349908"
+      - cell "EditLast349908"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0415 EditFirst364760 Before364760 EditLast364760  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0415"
+      - cell "EditFirst364760 Before364760"
+      - cell "EditLast364760"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0416 EditFirst377239 Before377239 EditLast377239  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0416"
+      - cell "EditFirst377239 Before377239"
+      - cell "EditLast377239"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0431 ff ll  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0431"
+      - cell "ff"
+      - cell "ll"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0436 ff ll  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0436"
+      - cell "ff"
+      - cell "ll"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0441 ff ll  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0441"
+      - cell "ff"
+      - cell "ll"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0424 ff ll  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0424"
+      - cell "ff"
+      - cell "ll"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0419 ff ll  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0419"
+      - cell "ff"
+      - cell "ll"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0412 First1967 Middle1967 Last1967  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0412"
+      - cell "First1967 Middle1967"
+      - cell "Last1967"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0439 John Michael Doe  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0439"
+      - cell "John Michael"
+      - cell "Doe"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 043328007 John Tester  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "043328007"
+      - cell "John"
+      - cell "Tester"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0417 John1780462449601 K Doe  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0417"
+      - cell "John1780462449601 K"
+      - cell "Doe"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0418 John1780462477374 K Doe  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0418"
+      - cell "John1780462477374 K"
+      - cell "Doe"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0425 John1780462651856 K Doe  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0425"
+      - cell "John1780462651856 K"
+      - cell "Doe"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0434 John1780463139240 K Doe  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0434"
+      - cell "John1780463139240 K"
+      - cell "Doe"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " muser KunDan akhill Updated HR Manager Full-Time Permanent Human Resources ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "muser"
+      - cell "KunDan akhill"
+      - cell "Updated"
+      - cell "HR Manager"
+      - cell "Full-Time Permanent"
+      - cell "Human Resources"
+      - cell
+      - cell "":
+        - button ""
+    - row " 0428 KunDan1780462792680 K Raj  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0428"
+      - cell "KunDan1780462792680 K"
+      - cell "Raj"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0438 KunDan1780463242003 K Raj  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0438"
+      - cell "KunDan1780463242003 K"
+      - cell "Raj"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0442 KunDan1780463617048 K Raj  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0442"
+      - cell "KunDan1780463617048 K"
+      - cell "Raj"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " A47088 Lan Hương Đào  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "A47088"
+      - cell "Lan Hương"
+      - cell "Đào"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0426 Playwright Agent  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0426"
+      - cell "Playwright"
+      - cell "Agent"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0405 Sherri Owen Walker-Gerlach  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0405"
+      - cell "Sherri Owen"
+      - cell "Walker-Gerlach"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0432 TestFirst TestMiddle TestLast  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0432"
+      - cell "TestFirst TestMiddle"
+      - cell "TestLast"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0435 TestFirst TestMiddle TestLast  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0435"
+      - cell "TestFirst TestMiddle"
+      - cell "TestLast"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+    - row " 0411 TestFirst2713 TestLast2713  ":
+      - cell "":
+        - checkbox ""
+        - text: 
+      - cell "0411"
+      - cell "TestFirst2713"
+      - cell "TestLast2713"
+      - cell
+      - cell
+      - cell
+      - cell
+      - cell " ":
+        - button ""
+        - button ""
+- paragraph: OrangeHRM OS 5.8
+- paragraph:
+  - text: © 2005 - 2026
+  - link "OrangeHRM, Inc":
+    - /url: http://www.orangehrm.com
+  - text: . All rights reserved.
+```
+
+# Test source
+
+```ts
+  1  | require('../utils/hooks');
+  2  | 
+  3  | const { test, expect } = require('../fixtures/baseFixture');
+  4  | 
+  5  | const Logger = require('../utils/logger');
+  6  | 
+  7  | test.describe('Add Employee Tests', () => {
+  8  | 
+  9  |     test.beforeEach(async ({ loggedInPage, pimPage }) => {
+  10 | 
+  11 |         await pimPage.clickPIMMenu();
+  12 | 
+  13 |         await pimPage.clickAddEmployee();
+  14 | 
+  15 |     });
+  16 | 
+  17 |     test('Add Employee Test @regression', async ({ page, pimPage }) => {
+  18 | 
+  19 |         Logger.info('Starting Add Employee Test');
+  20 | 
+  21 |         const uniqueFirstName = `KunDan${Date.now()}`;
+  22 | 
+  23 |         await pimPage.addEmployee(uniqueFirstName, 'K', 'Raj');
+  24 | 
+  25 |         await expect(page.locator('.oxd-toast')).toBeVisible();
+  26 | 
+  27 |     });
+  28 | 
+  29 |     test('Add Employee Page Visibility Test @smoke', async ({ page }) => {
+  30 | 
+  31 |         Logger.info('Starting Add Employee Page Visibility Test');
+  32 | 
+  33 |         await expect(
+  34 |             page.locator('.oxd-topbar-header-breadcrumb-module')
+  35 |         ).toContainText('PIM');
+  36 | 
+  37 |     });
+  38 | 
+  39 |     test('Add Employee First Name Field Test @sanity', async ({ pimPage }) => {
+  40 | 
+  41 |         Logger.info('Starting First Name Field Test');
+  42 | 
+  43 |         await expect(pimPage.firstNameInput).toBeVisible();
+  44 | 
+  45 |     });
+  46 | 
+  47 |     test('Add Employee Last Name Field Test @regression', async ({ pimPage }) => {
+  48 | 
+  49 |         Logger.info('Starting Last Name Field Test');
+  50 | 
+  51 |         await expect(pimPage.lastNameInput).toBeVisible();
+  52 | 
+  53 |     });
+  54 | 
+  55 |     test('Add Employee Save Button Visibility Test @sanity', async ({ pimPage }) => {
+  56 | 
+  57 |         Logger.info('Starting Save Button Visibility Test');
+  58 | 
+  59 |         await expect(pimPage.saveButton).toBeVisible();
+  60 | 
+  61 |     });
+  62 | 
+  63 |     test('Add Employee URL Validation Test @smoke', async ({ page }) => {
+  64 | 
+  65 |         Logger.info('Starting Add Employee URL Validation Test');
+  66 | 
+  67 |         await expect(page).toHaveURL(/addEmployee/);
+  68 | 
+  69 |     });
+  70 | 
+  71 |     test('Add Employee Refresh Test @regression', async ({ page, pimPage }) => {
+  72 | 
+  73 |         Logger.info('Starting Add Employee Refresh Test');
+  74 | 
+  75 |         await page.reload({ waitUntil: 'domcontentloaded' });
+  76 | 
+> 77 |         await expect(pimPage.firstNameInput).toBeVisible();
+     |                                              ^ Error: expect(locator).toBeVisible() failed
+  78 | 
+  79 |     });
+  80 | 
+  81 | });
+```

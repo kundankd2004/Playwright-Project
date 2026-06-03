@@ -1,3 +1,0 @@
-Starting Test Execution
-[2026-06-03T05:03:42.489Z] [INFO] Starting Sidebar Visibility After Login Test
-Test Execution Completed

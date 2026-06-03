@@ -1,0 +1,1 @@
+[2026-06-03T05:09:38.439Z] [INFO] Starting Header Logo Visibility Test

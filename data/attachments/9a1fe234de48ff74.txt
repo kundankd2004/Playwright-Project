@@ -1,3 +1,0 @@
-Starting Test Execution
-[2026-06-03T05:04:06.795Z] [INFO] Starting Leave Navigation Test
-Test Execution Completed

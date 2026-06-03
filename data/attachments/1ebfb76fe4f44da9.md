@@ -1,0 +1,552 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: addAdminUser.spec.js >> Add Admin User Tests >> Add Admin User Test @regression
+- Location: tests/addAdminUser.spec.js:9:5
+
+# Error details
+
+```
+Error: locator.waitFor: Error: strict mode violation: locator('.oxd-topbar-header-breadcrumb h6') resolved to 2 elements:
+    1) <h6 data-v-7b563373="" data-v-c286b6e5="" class="oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-module">Admin</h6> aka getByRole('heading', { name: 'Admin' })
+    2) <h6 data-v-7b563373="" data-v-c286b6e5="" class="oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-level">User Management</h6> aka getByRole('heading', { name: '/ User Management' })
+
+Call log:
+  - waiting for locator('.oxd-topbar-header-breadcrumb h6') to be visible
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic:
+    - complementary [ref=e4]:
+      - navigation "Sidepanel" [ref=e5]:
+        - generic [ref=e6]:
+          - link "client brand banner" [ref=e7] [cursor=pointer]:
+            - /url: https://www.orangehrm.com/
+            - img "client brand banner" [ref=e9]
+          - text: 
+        - generic [ref=e10]:
+          - generic [ref=e11]:
+            - generic [ref=e12]:
+              - textbox "Search" [ref=e15]
+              - button "" [ref=e16] [cursor=pointer]:
+                - generic [ref=e17]: 
+            - separator [ref=e18]
+          - list [ref=e19]:
+            - listitem [ref=e20]:
+              - link "Admin" [ref=e21] [cursor=pointer]:
+                - /url: /web/index.php/admin/viewAdminModule
+                - generic [ref=e24]: Admin
+            - listitem [ref=e25]:
+              - link "PIM" [ref=e26] [cursor=pointer]:
+                - /url: /web/index.php/pim/viewPimModule
+                - generic [ref=e40]: PIM
+            - listitem [ref=e41]:
+              - link "Leave" [ref=e42] [cursor=pointer]:
+                - /url: /web/index.php/leave/viewLeaveModule
+                - generic [ref=e45]: Leave
+            - listitem [ref=e46]:
+              - link "Time" [ref=e47] [cursor=pointer]:
+                - /url: /web/index.php/time/viewTimeModule
+                - generic [ref=e53]: Time
+            - listitem [ref=e54]:
+              - link "Recruitment" [ref=e55] [cursor=pointer]:
+                - /url: /web/index.php/recruitment/viewRecruitmentModule
+                - generic [ref=e61]: Recruitment
+            - listitem [ref=e62]:
+              - link "My Info" [ref=e63] [cursor=pointer]:
+                - /url: /web/index.php/pim/viewMyDetails
+                - generic [ref=e69]: My Info
+            - listitem [ref=e70]:
+              - link "Performance" [ref=e71] [cursor=pointer]:
+                - /url: /web/index.php/performance/viewPerformanceModule
+                - generic [ref=e79]: Performance
+            - listitem [ref=e80]:
+              - link "Dashboard" [ref=e81] [cursor=pointer]:
+                - /url: /web/index.php/dashboard/index
+                - generic [ref=e84]: Dashboard
+            - listitem [ref=e85]:
+              - link "Directory" [ref=e86] [cursor=pointer]:
+                - /url: /web/index.php/directory/viewDirectory
+                - generic [ref=e89]: Directory
+            - listitem [ref=e90]:
+              - link "Maintenance" [ref=e91] [cursor=pointer]:
+                - /url: /web/index.php/maintenance/viewMaintenanceModule
+                - generic [ref=e95]: Maintenance
+            - listitem [ref=e96]:
+              - link "Claim" [ref=e97] [cursor=pointer]:
+                - /url: /web/index.php/claim/viewClaimModule
+                - img [ref=e100]
+                - generic [ref=e104]: Claim
+            - listitem [ref=e105]:
+              - link "Buzz" [ref=e106] [cursor=pointer]:
+                - /url: /web/index.php/buzz/viewBuzz
+                - generic [ref=e109]: Buzz
+    - banner [ref=e110]:
+      - generic [ref=e111]:
+        - generic [ref=e112]:
+          - text: 
+          - generic [ref=e113]:
+            - heading "Admin" [level=6] [ref=e114]
+            - heading "/ User Management" [level=6] [ref=e115]
+        - link "Upgrade" [ref=e117]:
+          - /url: https://orangehrm.com/open-source/upgrade-to-advanced
+          - button "Upgrade" [ref=e118] [cursor=pointer]: Upgrade
+        - list [ref=e124]:
+          - listitem [ref=e125]:
+            - generic [ref=e126] [cursor=pointer]:
+              - img "profile picture" [ref=e127]
+              - paragraph [ref=e128]: UpdatedKunDan Updated
+              - generic [ref=e129]: 
+      - navigation "Topbar Menu" [ref=e131]:
+        - list [ref=e132]:
+          - listitem [ref=e133] [cursor=pointer]:
+            - generic [ref=e134]:
+              - text: User Management
+              - generic [ref=e135]: 
+          - listitem [ref=e136] [cursor=pointer]:
+            - generic [ref=e137]:
+              - text: Job
+              - generic [ref=e138]: 
+          - listitem [ref=e139] [cursor=pointer]:
+            - generic [ref=e140]:
+              - text: Organization
+              - generic [ref=e141]: 
+          - listitem [ref=e142] [cursor=pointer]:
+            - generic [ref=e143]:
+              - text: Qualifications
+              - generic [ref=e144]: 
+          - listitem [ref=e145] [cursor=pointer]:
+            - link "Nationalities" [ref=e146]:
+              - /url: "#"
+          - listitem [ref=e147] [cursor=pointer]:
+            - link "Corporate Branding" [ref=e148]:
+              - /url: "#"
+          - listitem [ref=e149] [cursor=pointer]:
+            - generic [ref=e150]:
+              - text: Configuration
+              - generic [ref=e151]: 
+          - button "" [ref=e153] [cursor=pointer]:
+            - generic [ref=e154]: 
+  - generic [ref=e155]:
+    - generic [ref=e157]:
+      - generic [ref=e158]:
+        - generic [ref=e159]:
+          - heading "System Users" [level=5] [ref=e161]
+          - button "" [ref=e164] [cursor=pointer]:
+            - generic [ref=e165]: 
+        - separator [ref=e166]
+        - generic [ref=e168]:
+          - generic [ref=e170]:
+            - generic [ref=e172]:
+              - generic [ref=e174]: Username
+              - textbox [ref=e176]
+            - generic [ref=e178]:
+              - generic [ref=e180]: User Role
+              - generic [ref=e183] [cursor=pointer]:
+                - generic [ref=e184]: "-- Select --"
+                - generic [ref=e186]: 
+            - generic [ref=e188]:
+              - generic [ref=e190]: Employee Name
+              - textbox "Type for hints..." [ref=e194]
+            - generic [ref=e196]:
+              - generic [ref=e198]: Status
+              - generic [ref=e201] [cursor=pointer]:
+                - generic [ref=e202]: "-- Select --"
+                - generic [ref=e204]: 
+          - separator [ref=e205]
+          - generic [ref=e206]:
+            - button "Reset" [ref=e207] [cursor=pointer]
+            - button "Search" [ref=e208] [cursor=pointer]
+      - generic [ref=e209]:
+        - button " Add" [ref=e211] [cursor=pointer]:
+          - generic [ref=e212]: 
+          - text: Add
+        - generic [ref=e213]:
+          - separator [ref=e214]
+          - generic [ref=e216]: (7) Records Found
+        - table [ref=e218]:
+          - rowgroup [ref=e219]:
+            - row " Username  User Role  Employee Name  Status  Actions" [ref=e220]:
+              - columnheader "" [ref=e221]:
+                - generic [ref=e223] [cursor=pointer]:
+                  - checkbox "" [ref=e224]
+                  - generic [ref=e226]: 
+              - columnheader "Username " [ref=e227]:
+                - text: Username
+                - generic [ref=e228]:
+                  - generic [ref=e229] [cursor=pointer]: 
+                  - text:  
+              - columnheader "User Role " [ref=e230]:
+                - text: User Role
+                - generic [ref=e231]:
+                  - generic [ref=e232] [cursor=pointer]: 
+                  - text:  
+              - columnheader "Employee Name " [ref=e233]:
+                - text: Employee Name
+                - generic [ref=e234]:
+                  - generic [ref=e235] [cursor=pointer]: 
+                  - text:  
+              - columnheader "Status " [ref=e236]:
+                - text: Status
+                - generic [ref=e237]:
+                  - generic [ref=e238] [cursor=pointer]: 
+                  - text:  
+              - columnheader "Actions" [ref=e239]
+          - rowgroup [ref=e240]:
+            - row " Admin Admin UpdatedKunDan Updated Enabled  " [ref=e242]:
+              - cell "" [ref=e243]:
+                - generic [ref=e247]:
+                  - checkbox "" [ref=e248]
+                  - generic [ref=e250]: 
+              - cell "Admin" [ref=e251]:
+                - generic [ref=e252]: Admin
+              - cell "Admin" [ref=e253]:
+                - generic [ref=e254]: Admin
+              - cell "UpdatedKunDan Updated" [ref=e255]:
+                - generic [ref=e256]: UpdatedKunDan Updated
+              - cell "Enabled" [ref=e257]:
+                - generic [ref=e258]: Enabled
+              - cell " " [ref=e259]:
+                - generic [ref=e260]:
+                  - button "" [ref=e261] [cursor=pointer]:
+                    - generic [ref=e262]: 
+                  - button "" [ref=e263] [cursor=pointer]:
+                    - generic [ref=e264]: 
+            - row " akuyad ESS Akash Yadav Enabled  " [ref=e266]:
+              - cell "" [ref=e267]:
+                - generic [ref=e270] [cursor=pointer]:
+                  - checkbox "" [ref=e271]
+                  - generic [ref=e273]: 
+              - cell "akuyad" [ref=e274]:
+                - generic [ref=e275]: akuyad
+              - cell "ESS" [ref=e276]:
+                - generic [ref=e277]: ESS
+              - cell "Akash Yadav" [ref=e278]:
+                - generic [ref=e279]: Akash Yadav
+              - cell "Enabled" [ref=e280]:
+                - generic [ref=e281]: Enabled
+              - cell " " [ref=e282]:
+                - generic [ref=e283]:
+                  - button "" [ref=e284] [cursor=pointer]:
+                    - generic [ref=e285]: 
+                  - button "" [ref=e286] [cursor=pointer]:
+                    - generic [ref=e287]: 
+            - row " John1780462449601 ESS John1780462449601 Doe Enabled  " [ref=e289]:
+              - cell "" [ref=e290]:
+                - generic [ref=e293] [cursor=pointer]:
+                  - checkbox "" [ref=e294]
+                  - generic [ref=e296]: 
+              - cell "John1780462449601" [ref=e297]:
+                - generic [ref=e298]: John1780462449601
+              - cell "ESS" [ref=e299]:
+                - generic [ref=e300]: ESS
+              - cell "John1780462449601 Doe" [ref=e301]:
+                - generic [ref=e302]: John1780462449601 Doe
+              - cell "Enabled" [ref=e303]:
+                - generic [ref=e304]: Enabled
+              - cell " " [ref=e305]:
+                - generic [ref=e306]:
+                  - button "" [ref=e307] [cursor=pointer]:
+                    - generic [ref=e308]: 
+                  - button "" [ref=e309] [cursor=pointer]:
+                    - generic [ref=e310]: 
+            - row " John1780462477374 ESS John1780462477374 Doe Enabled  " [ref=e312]:
+              - cell "" [ref=e313]:
+                - generic [ref=e316] [cursor=pointer]:
+                  - checkbox "" [ref=e317]
+                  - generic [ref=e319]: 
+              - cell "John1780462477374" [ref=e320]:
+                - generic [ref=e321]: John1780462477374
+              - cell "ESS" [ref=e322]:
+                - generic [ref=e323]: ESS
+              - cell "John1780462477374 Doe" [ref=e324]:
+                - generic [ref=e325]: John1780462477374 Doe
+              - cell "Enabled" [ref=e326]:
+                - generic [ref=e327]: Enabled
+              - cell " " [ref=e328]:
+                - generic [ref=e329]:
+                  - button "" [ref=e330] [cursor=pointer]:
+                    - generic [ref=e331]: 
+                  - button "" [ref=e332] [cursor=pointer]:
+                    - generic [ref=e333]: 
+            - row " John1780462651856 ESS John1780462651856 Doe Enabled  " [ref=e335]:
+              - cell "" [ref=e336]:
+                - generic [ref=e339] [cursor=pointer]:
+                  - checkbox "" [ref=e340]
+                  - generic [ref=e342]: 
+              - cell "John1780462651856" [ref=e343]:
+                - generic [ref=e344]: John1780462651856
+              - cell "ESS" [ref=e345]:
+                - generic [ref=e346]: ESS
+              - cell "John1780462651856 Doe" [ref=e347]:
+                - generic [ref=e348]: John1780462651856 Doe
+              - cell "Enabled" [ref=e349]:
+                - generic [ref=e350]: Enabled
+              - cell " " [ref=e351]:
+                - generic [ref=e352]:
+                  - button "" [ref=e353] [cursor=pointer]:
+                    - generic [ref=e354]: 
+                  - button "" [ref=e355] [cursor=pointer]:
+                    - generic [ref=e356]: 
+            - row " John1780463139240 ESS John1780463139240 Doe Enabled  " [ref=e358]:
+              - cell "" [ref=e359]:
+                - generic [ref=e362] [cursor=pointer]:
+                  - checkbox "" [ref=e363]
+                  - generic [ref=e365]: 
+              - cell "John1780463139240" [ref=e366]:
+                - generic [ref=e367]: John1780463139240
+              - cell "ESS" [ref=e368]:
+                - generic [ref=e369]: ESS
+              - cell "John1780463139240 Doe" [ref=e370]:
+                - generic [ref=e371]: John1780463139240 Doe
+              - cell "Enabled" [ref=e372]:
+                - generic [ref=e373]: Enabled
+              - cell " " [ref=e374]:
+                - generic [ref=e375]:
+                  - button "" [ref=e376] [cursor=pointer]:
+                    - generic [ref=e377]: 
+                  - button "" [ref=e378] [cursor=pointer]:
+                    - generic [ref=e379]: 
+            - row " Mason Admin ApiFirst495744 ApiLast495744 Enabled  " [ref=e381]:
+              - cell "" [ref=e382]:
+                - generic [ref=e385] [cursor=pointer]:
+                  - checkbox "" [ref=e386]
+                  - generic [ref=e388]: 
+              - cell "Mason" [ref=e389]:
+                - generic [ref=e390]: Mason
+              - cell "Admin" [ref=e391]:
+                - generic [ref=e392]: Admin
+              - cell "ApiFirst495744 ApiLast495744" [ref=e393]:
+                - generic [ref=e394]: ApiFirst495744 ApiLast495744
+              - cell "Enabled" [ref=e395]:
+                - generic [ref=e396]: Enabled
+              - cell " " [ref=e397]:
+                - generic [ref=e398]:
+                  - button "" [ref=e399] [cursor=pointer]:
+                    - generic [ref=e400]: 
+                  - button "" [ref=e401] [cursor=pointer]:
+                    - generic [ref=e402]: 
+    - generic [ref=e404]:
+      - paragraph [ref=e405]: OrangeHRM OS 5.8
+      - paragraph [ref=e406]:
+        - text: © 2005 - 2026
+        - link "OrangeHRM, Inc" [ref=e407] [cursor=pointer]:
+          - /url: http://www.orangehrm.com
+        - text: . All rights reserved.
+```
+
+# Test source
+
+```ts
+  25  |         this.jobMenu = page.getByRole('link', {
+  26  |             name: 'Job '
+  27  |         });
+  28  | 
+  29  |         this.organizationMenu = page.getByRole('link', {
+  30  |             name: 'Organization'
+  31  |         });
+  32  | 
+  33  |         this.qualificationsMenu = page.getByRole('link', {
+  34  |             name: 'Qualifications'
+  35  |         });
+  36  | 
+  37  |         // Search Fields
+  38  |         this.usernameSearchInput = page.locator(
+  39  |             '(//input[@class="oxd-input oxd-input--active"])[2]'
+  40  |         );
+  41  | 
+  42  |         this.userRoleDropdown = page.locator(
+  43  |             '.oxd-select-text'
+  44  |         ).first();
+  45  | 
+  46  |         this.statusDropdown = page.locator(
+  47  |             '.oxd-select-text'
+  48  |         ).nth(1);
+  49  | 
+  50  |         this.employeeNameInput = page.locator(
+  51  |             '//input[@placeholder="Type for hints..."]'
+  52  |         );
+  53  | 
+  54  |         // Buttons
+  55  |         this.searchButton = page.getByRole('button', {
+  56  |             name: 'Search'
+  57  |         });
+  58  | 
+  59  |         this.resetButton = page.getByRole('button', {
+  60  |             name: 'Reset'
+  61  |         });
+  62  | 
+  63  |         this.addButton = page.getByRole('button', {
+  64  |             name: ' Add '
+  65  |         });
+  66  | 
+  67  |         // Add User Form Fields
+  68  |         this.addUserRoleDropdown = page.locator(
+  69  |             '.oxd-select-text'
+  70  |         ).first();
+  71  | 
+  72  |         this.addUsernameInput = page.locator(
+  73  |             '(//input[@class="oxd-input oxd-input--active"])[2]'
+  74  |         );
+  75  | 
+  76  |         this.addStatusDropdown = page.locator(
+  77  |             '.oxd-select-text'
+  78  |         ).nth(1);
+  79  | 
+  80  |         this.addPasswordInput = page.locator(
+  81  |             '(//input[@type="password"])[1]'
+  82  |         );
+  83  | 
+  84  |         this.confirmPasswordInput = page.locator(
+  85  |             '(//input[@type="password"])[2]'
+  86  |         );
+  87  | 
+  88  |         this.saveButton = page.getByRole('button', {
+  89  |             name: 'Save'
+  90  |         });
+  91  | 
+  92  |         // Table
+  93  |         this.userTable = page.locator(
+  94  |             '.oxd-table-card'
+  95  |         ).first();
+  96  | 
+  97  |         this.tableRows = page.locator(
+  98  |             '.oxd-table-card'
+  99  |         );
+  100 | 
+  101 |         // Toast
+  102 |         this.successToast = page.locator(
+  103 |             '.oxd-toast-content'
+  104 |         );
+  105 | 
+  106 |         // Delete Confirmation
+  107 |         this.deleteButton = page.locator(
+  108 |             '.oxd-table-cell-actions .oxd-icon-button--danger'
+  109 |         ).first();
+  110 | 
+  111 |         this.confirmDeleteButton = page.getByRole('button', {
+  112 |             name: 'Yes, Delete'
+  113 |         });
+  114 | 
+  115 |     }
+  116 | 
+  117 |     async clickAdminMenu() {
+  118 | 
+  119 |         await expect(this.adminMenu).toBeVisible({
+  120 |             timeout: 30000
+  121 |         });
+  122 | 
+  123 |         await this.adminMenu.click();
+  124 | 
+> 125 |         await this.adminHeader.waitFor({
+      |                                ^ Error: locator.waitFor: Error: strict mode violation: locator('.oxd-topbar-header-breadcrumb h6') resolved to 2 elements:
+  126 |             state: 'visible',
+  127 |             timeout: 30000
+  128 |         });
+  129 | 
+  130 |     }
+  131 | 
+  132 |     async searchUsername(username) {
+  133 | 
+  134 |         await expect(this.usernameSearchInput).toBeVisible({
+  135 |             timeout: 30000
+  136 |         });
+  137 | 
+  138 |         await this.usernameSearchInput.fill(username);
+  139 | 
+  140 |     }
+  141 | 
+  142 |     async clickSearchButton() {
+  143 | 
+  144 |         await expect(this.searchButton).toBeVisible({
+  145 |             timeout: 30000
+  146 |         });
+  147 | 
+  148 |         await this.searchButton.click();
+  149 | 
+  150 |         await this.page.waitForLoadState('domcontentloaded');
+  151 | 
+  152 |     }
+  153 | 
+  154 |     async clickResetButton() {
+  155 | 
+  156 |         await expect(this.resetButton).toBeVisible({
+  157 |             timeout: 30000
+  158 |         });
+  159 | 
+  160 |         await this.resetButton.click();
+  161 | 
+  162 |         await this.page.waitForLoadState('domcontentloaded');
+  163 | 
+  164 |     }
+  165 | 
+  166 |     async clickAddButton() {
+  167 | 
+  168 |         await expect(this.addButton).toBeVisible({
+  169 |             timeout: 30000
+  170 |         });
+  171 | 
+  172 |         await this.addButton.click();
+  173 | 
+  174 |         await this.page.waitForLoadState('domcontentloaded');
+  175 | 
+  176 |     }
+  177 | 
+  178 |     async selectUserRole(role) {
+  179 | 
+  180 |         await this.addUserRoleDropdown.click();
+  181 | 
+  182 |         const option = this.page.getByRole('option', {
+  183 |             name: role || 'Admin'
+  184 |         });
+  185 | 
+  186 |         await expect(option).toBeVisible({
+  187 |             timeout: 10000
+  188 |         });
+  189 | 
+  190 |         await option.click();
+  191 | 
+  192 |     }
+  193 | 
+  194 |     async enterEmployeeName(employeeName) {
+  195 | 
+  196 |         await expect(this.employeeNameInput).toBeVisible({
+  197 |             timeout: 30000
+  198 |         });
+  199 | 
+  200 |         await this.employeeNameInput.fill(employeeName);
+  201 | 
+  202 |         // Wait for autocomplete suggestions to appear
+  203 |         const suggestion = this.page.locator(
+  204 |             '.oxd-autocomplete-option'
+  205 |         ).first();
+  206 | 
+  207 |         await expect(suggestion).toBeVisible({
+  208 |             timeout: 10000
+  209 |         });
+  210 | 
+  211 |     }
+  212 | 
+  213 |     async selectFirstSuggestion() {
+  214 | 
+  215 |         const suggestion = this.page.locator(
+  216 |             '.oxd-autocomplete-option'
+  217 |         ).first();
+  218 | 
+  219 |         await expect(suggestion).toBeVisible({
+  220 |             timeout: 10000
+  221 |         });
+  222 | 
+  223 |         await suggestion.click();
+  224 | 
+  225 |     }
+```

@@ -1,3 +1,0 @@
-Starting Test Execution
-[2026-06-03T04:59:47.004Z] [INFO] Starting Add Admin User Test
-Test Execution Completed

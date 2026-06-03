@@ -1,0 +1,1 @@
+[2026-06-03T05:28:20.258Z] [INFO] Starting Recruitment Header Visibility Test

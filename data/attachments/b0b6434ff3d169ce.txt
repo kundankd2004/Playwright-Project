@@ -1,1 +1,0 @@
-[2026-06-03T05:00:22.267Z] [INFO] Starting Reset Button Visibility Test

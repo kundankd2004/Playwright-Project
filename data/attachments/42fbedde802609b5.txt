@@ -1,1 +1,0 @@
-[2026-06-03T05:05:14.747Z] [INFO] Starting Recruitment Refresh Test

@@ -1,3 +1,0 @@
-Starting Test Execution
-[2026-06-03T05:04:20.281Z] [INFO] Starting Topbar Visibility Test
-Test Execution Completed
