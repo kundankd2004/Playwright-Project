@@ -6,6 +6,12 @@
 ![Jenkins](https://img.shields.io/badge/CI/CD-Jenkins-red)
 ![Allure Report](https://img.shields.io/badge/Reporting-Allure-purple)
 
+## Allure Test Execution Report
+
+Here is the Allure execution report showing a **98.21% pass rate** (551/561 passed tests) across Chromium, Firefox, and Webkit:
+
+![Allure Test Execution Report](./reports/allure_report_screenshot.png)
+
 ## Project Overview
 
 This project is a robust, production-ready end-to-end test automation framework built using **Playwright** with **JavaScript**. The framework is designed to automate the OrangeHRM demo application, leveraging the **Page Object Model (POM)** design pattern. It supports UI testing, API testing, and Data-Driven Testing.
