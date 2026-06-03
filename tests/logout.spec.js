@@ -4,315 +4,134 @@ const { test, expect } = require('../fixtures/baseFixture');
 
 const Logger = require('../utils/logger');
 
-test('Valid Logout Test @smoke @regression', async ({ page, loginPage }) => {
+test.describe('Logout Tests', () => {
 
-    Logger.info('Starting Valid Logout Test');
-
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await expect(
-        page.locator('input[name="username"]')
-    ).toBeVisible();
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.waitForLoadState('networkidle');
-
-    await expect(
-        page.locator('.oxd-userdropdown-tab').first()
-    ).toBeVisible();
-
-    await page.locator('.oxd-userdropdown-tab')
-        .first()
-        .click();
-
-    const logoutButton = page.getByRole('menuitem', {
-        name: 'Logout'
+    test.beforeEach(async ({ loggedInPage }) => {
+        // loggedInPage fixture auto-navigates and logs in
     });
 
-    await expect(logoutButton).toBeVisible();
+    test('Valid Logout Test @smoke @regression', async ({ page }) => {
 
-    await logoutButton.click();
+        Logger.info('Starting Valid Logout Test');
 
-    await expect(page).toHaveURL(/login/, {
-        timeout: 15000
+        const userDropdown = page.locator('.oxd-userdropdown-tab').first();
+
+        await expect(userDropdown).toBeVisible();
+
+        await userDropdown.click();
+
+        const logoutButton = page.getByRole('menuitem', {
+            name: 'Logout'
+        });
+
+        await expect(logoutButton).toBeVisible();
+
+        await logoutButton.click();
+
+        await expect(page).toHaveURL(/login/, {
+            timeout: 15000
+        });
+
     });
 
-});
+    test('User Dropdown Visibility Test @sanity', async ({ page }) => {
 
-test('User Dropdown Visibility Test @sanity', async ({ page, loginPage }) => {
+        Logger.info('Starting User Dropdown Visibility Test');
 
-    Logger.info('Starting User Dropdown Visibility Test');
+        await expect(
+            page.locator('.oxd-userdropdown-tab').first()
+        ).toBeVisible();
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.waitForLoadState('networkidle');
-
-    const userDropdown = page.locator(
-        '.oxd-userdropdown-tab'
-    ).first();
-
-    await expect(userDropdown).toBeVisible();
-
-});
-
-test('Logout Option Visibility Test @smoke', async ({ page, loginPage }) => {
-
-    Logger.info('Starting Logout Option Visibility Test');
-
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.waitForLoadState('networkidle');
-
-    await expect(
-        page.locator('.oxd-userdropdown-tab').first()
-    ).toBeVisible();
-
-    await page.locator('.oxd-userdropdown-tab')
-        .first()
-        .click();
-
-    const logoutOption = page.getByRole('menuitem', {
-        name: 'Logout'
     });
 
-    await expect(logoutOption).toBeVisible();
+    test('Logout Option Visibility Test @smoke', async ({ page }) => {
 
-});
+        Logger.info('Starting Logout Option Visibility Test');
 
-test('Profile Option Visibility Test @regression', async ({ page, loginPage }) => {
+        await page.locator('.oxd-userdropdown-tab').first().click();
 
-    Logger.info('Starting Profile Option Visibility Test');
+        await expect(
+            page.getByRole('menuitem', { name: 'Logout' })
+        ).toBeVisible();
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.waitForLoadState('networkidle');
-
-    await expect(
-        page.locator('.oxd-userdropdown-tab').first()
-    ).toBeVisible();
-
-    await page.locator('.oxd-userdropdown-tab')
-        .first()
-        .click();
-
-    const aboutOption = page.getByRole('menuitem', {
-        name: 'About'
     });
 
-    await expect(aboutOption).toBeVisible();
+    test('Profile Option Visibility Test @regression', async ({ page }) => {
 
-});
+        Logger.info('Starting Profile Option Visibility Test');
 
-test('Support Option Visibility Test @sanity', async ({ page, loginPage }) => {
+        await page.locator('.oxd-userdropdown-tab').first().click();
 
-    Logger.info('Starting Support Option Visibility Test');
+        await expect(
+            page.getByRole('menuitem', { name: 'About' })
+        ).toBeVisible();
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.waitForLoadState('networkidle');
-
-    await expect(
-        page.locator('.oxd-userdropdown-tab').first()
-    ).toBeVisible();
-
-    await page.locator('.oxd-userdropdown-tab')
-        .first()
-        .click();
-
-    const supportOption = page.getByRole('menuitem', {
-        name: 'Support'
     });
 
-    await expect(supportOption).toBeVisible();
+    test('Support Option Visibility Test @sanity', async ({ page }) => {
 
-});
+        Logger.info('Starting Support Option Visibility Test');
 
-test('Change Password Option Visibility Test @smoke', async ({ page, loginPage }) => {
+        await page.locator('.oxd-userdropdown-tab').first().click();
 
-    Logger.info('Starting Change Password Option Visibility Test');
+        await expect(
+            page.getByRole('menuitem', { name: 'Support' })
+        ).toBeVisible();
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.waitForLoadState('networkidle');
-
-    await expect(
-        page.locator('.oxd-userdropdown-tab').first()
-    ).toBeVisible();
-
-    await page.locator('.oxd-userdropdown-tab')
-        .first()
-        .click();
-
-    const changePasswordOption = page.getByRole('menuitem', {
-        name: 'Change Password'
     });
 
-    await expect(changePasswordOption).toBeVisible();
+    test('Change Password Option Visibility Test @smoke', async ({ page }) => {
 
-});
+        Logger.info('Starting Change Password Option Visibility Test');
 
-test('Logout Refresh Test @regression', async ({ page, loginPage }) => {
+        await page.locator('.oxd-userdropdown-tab').first().click();
 
-    Logger.info('Starting Logout Refresh Test');
+        await expect(
+            page.getByRole('menuitem', { name: 'Change Password' })
+        ).toBeVisible();
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.waitForLoadState('networkidle');
-
-    await page.reload({
-        waitUntil: 'domcontentloaded'
     });
 
-    const dashboardHeader = page.locator(
-        '.oxd-topbar-header-breadcrumb h6'
-    );
+    test('Logout Refresh Test @regression', async ({ page }) => {
 
-    await expect(dashboardHeader).toContainText('Dashboard');
+        Logger.info('Starting Logout Refresh Test');
 
-});
+        await page.reload({ waitUntil: 'domcontentloaded' });
 
-test('Logout URL Validation Test @sanity', async ({ page, loginPage }) => {
+        await expect(
+            page.locator('.oxd-topbar-header-breadcrumb h6')
+        ).toContainText('Dashboard');
 
-    Logger.info('Starting Logout URL Validation Test');
-
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await expect(page).toHaveURL(/login/, {
-        timeout: 15000
     });
 
-});
+    test('Logout URL Validation Test @sanity', async ({ page }) => {
 
-test('Dashboard After Login Visibility Test @smoke', async ({ page, loginPage }) => {
+        Logger.info('Starting Logout URL Validation Test');
 
-    Logger.info('Starting Dashboard After Login Visibility Test');
+        await expect(page).toHaveURL(/dashboard/, {
+            timeout: 15000
+        });
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
+    });
 
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
+    test('Dashboard After Login Visibility Test @smoke', async ({ page }) => {
 
-    await page.waitForLoadState('networkidle');
+        Logger.info('Starting Dashboard After Login Visibility Test');
 
-    const dashboardHeader = page.locator(
-        '.oxd-topbar-header-breadcrumb h6'
-    );
+        await expect(
+            page.locator('.oxd-topbar-header-breadcrumb h6')
+        ).toContainText('Dashboard');
 
-    await expect(dashboardHeader).toContainText('Dashboard');
+    });
 
-});
+    test('Sidebar Visibility After Login Test @regression', async ({ page }) => {
 
-test('Sidebar Visibility After Login Test @regression', async ({ page, loginPage }) => {
+        Logger.info('Starting Sidebar Visibility After Login Test');
 
-    Logger.info('Starting Sidebar Visibility After Login Test');
+        await expect(
+            page.locator('.oxd-sidepanel')
+        ).toBeVisible();
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
-
-    await page.waitForLoadState('networkidle');
-
-    const sidebar = page.locator('.oxd-sidepanel');
-
-    await expect(sidebar).toBeVisible();
+    });
 
 });

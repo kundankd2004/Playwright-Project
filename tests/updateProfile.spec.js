@@ -2,33 +2,36 @@ require('../utils/hooks');
 
 const { test, expect } = require('../fixtures/baseFixture');
 
+const profileData = require('../test-data/profileData.json');
+
 const Logger = require('../utils/logger');
 
-test('Update Profile Test @regression', async ({ page, loginPage }) => {
+test.describe('Update Profile Tests', () => {
 
-    Logger.info('Starting Update Profile Test');
+    test('Update Profile Test @regression', async ({ loggedInPage, page }) => {
 
-    await page.goto(process.env.BASE_URL);
+        Logger.info('Starting Update Profile Test');
 
-    await loginPage.login(
-        process.env.APP_USERNAME,
-        process.env.APP_PASSWORD
-    );
+        await page.locator('//span[text()="My Info"]').click();
 
-    await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
-    await page.locator('//span[text()="My Info"]').click();
+        await expect(
+            page.locator('input[name="firstName"]')
+        ).toBeVisible({ timeout: 30000 });
 
-    await page.waitForLoadState('networkidle');
+        await page.locator('input[name="firstName"]').clear();
 
-    await page.locator(
-        '(//input[@class="oxd-input oxd-input--active"])[2]'
-    ).fill('KunDan');
+        await page.locator('input[name="firstName"]').fill(
+            profileData.validProfile.name.split(' ')[0]
+        );
 
-    await page.locator(
-        '(//button[@type="submit"])[1]'
-    ).click();
+        await page.locator(
+            '(//button[@type="submit"])[1]'
+        ).click();
 
-    await expect(page).toHaveURL(/viewPersonalDetails/);
+        await expect(page).toHaveURL(/viewPersonalDetails/);
+
+    });
 
 });

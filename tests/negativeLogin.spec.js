@@ -2,262 +2,179 @@ require('../utils/hooks');
 
 const { test, expect } = require('../fixtures/baseFixture');
 
+const loginData = require('../test-data/loginData.json');
+
 const Logger = require('../utils/logger');
 
-test('Invalid Username Test @negative', async ({ page, loginPage }) => {
+test.describe('Negative Login Tests', () => {
 
-    Logger.info('Starting Invalid Username Test');
+    test.beforeEach(async ({ page }) => {
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
+        await page.goto('/', {
             waitUntil: 'domcontentloaded',
-            timeout: 60000
-        }
-    );
+            timeout: 120000
+        });
 
-    await loginPage.login(
-        'WrongUser',
-        'admin123'
-    );
+        await expect(
+            page.locator('input[name="username"]')
+        ).toBeVisible({ timeout: 30000 });
 
-    const errorMessage = page.locator(
-        '.oxd-alert-content-text'
-    );
+    });
 
-    await expect(errorMessage).toBeVisible();
+    test('Invalid Username Test @negative', async ({ page, loginPage }) => {
 
-    await expect(errorMessage).toContainText(
-        'Invalid credentials'
-    );
+        Logger.info('Starting Invalid Username Test');
 
-});
+        await loginPage.login('WrongUser', 'admin123', false);
 
-test('Invalid Password Test @negative', async ({ page, loginPage }) => {
+        const errorMessage = page.locator('.oxd-alert-content-text');
 
-    Logger.info('Starting Invalid Password Test');
+        await expect(errorMessage).toBeVisible();
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'domcontentloaded',
-            timeout: 60000
-        }
-    );
+        await expect(errorMessage).toContainText('Invalid credentials');
 
-    await loginPage.login(
-        'Admin',
-        'WrongPassword'
-    );
+    });
 
-    const errorMessage = page.locator(
-        '.oxd-alert-content-text'
-    );
+    test('Invalid Password Test @negative', async ({ page, loginPage }) => {
 
-    await expect(errorMessage).toBeVisible();
+        Logger.info('Starting Invalid Password Test');
 
-    await expect(errorMessage).toContainText(
-        'Invalid credentials'
-    );
+        await loginPage.login('Admin', 'WrongPassword', false);
 
-});
+        const errorMessage = page.locator('.oxd-alert-content-text');
 
-test('Empty Username Test @negative', async ({ page }) => {
+        await expect(errorMessage).toBeVisible();
 
-    Logger.info('Starting Empty Username Test');
+        await expect(errorMessage).toContainText('Invalid credentials');
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'domcontentloaded',
-            timeout: 60000
-        }
-    );
+    });
 
-    await page.locator(
-        'input[name="password"]'
-    ).fill('admin123');
+    test('Empty Username Test @negative', async ({ page }) => {
 
-    await page.getByRole('button', {
-        name: 'Login'
-    }).click();
+        Logger.info('Starting Empty Username Test');
 
-    const requiredMessage = page.getByText(
-        'Required'
-    ).first();
+        await page.locator('input[name="password"]').fill('admin123');
 
-    await expect(requiredMessage).toBeVisible();
+        await page.getByRole('button', { name: 'Login' }).click();
 
-});
+        await expect(
+            page.getByText('Required').first()
+        ).toBeVisible();
 
-test('Empty Password Test @negative', async ({ page }) => {
+    });
 
-    Logger.info('Starting Empty Password Test');
+    test('Empty Password Test @negative', async ({ page }) => {
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'domcontentloaded',
-            timeout: 60000
-        }
-    );
+        Logger.info('Starting Empty Password Test');
 
-    await page.locator(
-        'input[name="username"]'
-    ).fill('Admin');
+        await page.locator('input[name="username"]').fill('Admin');
 
-    await page.getByRole('button', {
-        name: 'Login'
-    }).click();
+        await page.getByRole('button', { name: 'Login' }).click();
 
-    const requiredMessage = page.getByText(
-        'Required'
-    ).first();
+        await expect(
+            page.getByText('Required').first()
+        ).toBeVisible();
 
-    await expect(requiredMessage).toBeVisible();
+    });
 
-});
+    test('Empty Credentials Test @negative', async ({ page }) => {
 
-test('Empty Credentials Test @negative', async ({ page }) => {
+        Logger.info('Starting Empty Credentials Test');
 
-    Logger.info('Starting Empty Credentials Test');
+        await page.getByRole('button', { name: 'Login' }).click();
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'domcontentloaded',
-            timeout: 60000
-        }
-    );
+        await expect(
+            page.getByText('Required').first()
+        ).toBeVisible();
 
-    await page.getByRole('button', {
-        name: 'Login'
-    }).click();
+    });
 
-    const requiredMessage = page.getByText(
-        'Required'
-    ).first();
+    test('Login With Spaces Test @negative', async ({ page, loginPage }) => {
 
-    await expect(requiredMessage).toBeVisible();
+        Logger.info('Starting Login With Spaces Test');
 
-});
+        await loginPage.login('   ', '   ', false);
 
-test('Login With Spaces Test @negative', async ({ page, loginPage }) => {
+        await expect(
+            page.getByText('Required').first()
+        ).toBeVisible();
 
-    Logger.info('Starting Login With Spaces Test');
+    });
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'domcontentloaded',
-            timeout: 60000
-        }
-    );
+    test('Case Sensitive Username Test @negative', async ({ page, loginPage }) => {
 
-    await loginPage.login(
-        '   ',
-        '   '
-    );
+        Logger.info('Starting Case Sensitive Username Test');
 
-    const requiredMessage = page.getByText(
-        'Required'
-    ).first();
+        await loginPage.login('ADMIN', 'admin123');
 
-    await expect(requiredMessage).toBeVisible();
+        await expect(page).toHaveURL(/dashboard|viewPersonalDetails/);
 
-});
+    });
 
-test('Case Sensitive Username Test @negative', async ({ page, loginPage }) => {
+    test('Long Username Test @negative', async ({ page, loginPage }) => {
 
-    Logger.info('Starting Case Sensitive Username Test');
+        Logger.info('Starting Long Username Test');
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'domcontentloaded',
-            timeout: 60000
-        }
-    );
+        await loginPage.login(
+            'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+            'admin123',
+            false
+        );
 
-    await loginPage.login(
-        'ADMIN',
-        'admin123'
-    );
+        const errorMessage = page.locator('.oxd-alert-content-text');
 
-    await expect(page).toHaveURL(/dashboard|viewPersonalDetails/);
+        await expect(errorMessage).toBeVisible();
 
-});
+        await expect(errorMessage).toContainText('Invalid credentials');
 
-test('Long Username Test @negative', async ({ page, loginPage }) => {
+    });
 
-    Logger.info('Starting Long Username Test');
+    test('Special Character Username Test @negative', async ({ page, loginPage }) => {
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'domcontentloaded',
-            timeout: 60000
-        }
-    );
+        Logger.info('Starting Special Character Username Test');
 
-    await loginPage.login(
-        'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-        'admin123'
-    );
+        await loginPage.login('@@@###', 'admin123', false);
 
-    const errorMessage = page.locator(
-        '.oxd-alert-content-text'
-    );
+        const errorMessage = page.locator('.oxd-alert-content-text');
 
-    await expect(errorMessage).toBeVisible();
+        await expect(errorMessage).toBeVisible();
 
-    await expect(errorMessage).toContainText(
-        'Invalid credentials'
-    );
+        await expect(errorMessage).toContainText('Invalid credentials');
 
-});
+    });
 
-test('Special Character Username Test @negative', async ({ page, loginPage }) => {
+    test('Direct Dashboard Access Without Login Test @negative', async ({ page }) => {
 
-    Logger.info('Starting Special Character Username Test');
+        Logger.info('Starting Direct Dashboard Access Without Login Test');
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'domcontentloaded',
-            timeout: 60000
-        }
-    );
+        await page.goto(
+            '/web/index.php/dashboard/index',
+            {
+                waitUntil: 'domcontentloaded',
+                timeout: 60000
+            }
+        );
 
-    await loginPage.login(
-        '@@@###',
-        'admin123'
-    );
+        await expect(page).toHaveURL(/login/);
 
-    const errorMessage = page.locator(
-        '.oxd-alert-content-text'
-    );
+    });
 
-    await expect(errorMessage).toBeVisible();
+    test('Invalid Data From JSON Test @negative', async ({ page, loginPage }) => {
 
-    await expect(errorMessage).toContainText(
-        'Invalid credentials'
-    );
+        Logger.info('Starting Invalid Data From JSON Test');
 
-});
+        await loginPage.login(
+            loginData.invalidUser.username,
+            loginData.invalidUser.password,
+            false
+        );
 
-test('Direct Dashboard Access Without Login Test @negative', async ({ page }) => {
+        const errorMessage = page.locator('.oxd-alert-content-text');
 
-    Logger.info('Starting Direct Dashboard Access Without Login Test');
+        await expect(errorMessage).toBeVisible();
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index',
-        {
-            waitUntil: 'domcontentloaded',
-            timeout: 60000
-        }
-    );
+        await expect(errorMessage).toContainText('Invalid credentials');
 
-    await expect(page).toHaveURL(/login/);
+    });
 
 });

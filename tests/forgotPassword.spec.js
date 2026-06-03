@@ -4,218 +4,135 @@ const { test, expect } = require('../fixtures/baseFixture');
 
 const Logger = require('../utils/logger');
 
-test('Forgot Password Page Visibility Test @smoke', async ({ page }) => {
+test.describe('Forgot Password Tests', () => {
 
-    Logger.info('Starting Forgot Password Page Visibility Test');
+    test.beforeEach(async ({ page }) => {
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
+        await page.goto('/', {
+            waitUntil: 'domcontentloaded',
+            timeout: 120000
+        });
 
-    await page.locator('.orangehrm-login-forgot-header').click();
+        await expect(
+            page.locator('input[name="username"]')
+        ).toBeVisible({ timeout: 30000 });
 
-    await expect(
-        page.locator('.orangehrm-forgot-password-title')
-    ).toContainText('Reset Password');
+        await page.locator('.orangehrm-login-forgot-header').click();
 
-});
+        await page.waitForLoadState('domcontentloaded');
 
-test('Forgot Password URL Validation Test @regression', async ({ page }) => {
-
-    Logger.info('Starting Forgot Password URL Validation Test');
-
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await page.locator('.orangehrm-login-forgot-header').click();
-
-    await expect(page).toHaveURL(/requestPasswordResetCode/);
-
-});
-
-test('Forgot Password Username Field Visibility Test @sanity', async ({ page }) => {
-
-    Logger.info('Starting Forgot Password Username Field Visibility Test');
-
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await page.locator('.orangehrm-login-forgot-header').click();
-
-    const usernameField = page.locator('input[name="username"]');
-
-    await expect(usernameField).toBeVisible();
-
-});
-
-test('Forgot Password Reset Button Visibility Test @smoke', async ({ page }) => {
-
-    Logger.info('Starting Forgot Password Reset Button Visibility Test');
-
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await page.locator('.orangehrm-login-forgot-header').click();
-
-    const resetButton = page.getByRole('button', {
-        name: 'Reset Password'
     });
 
-    await expect(resetButton).toBeVisible();
+    test('Forgot Password Page Visibility Test @smoke', async ({ page }) => {
 
-});
+        Logger.info('Starting Forgot Password Page Visibility Test');
 
-test('Forgot Password Cancel Button Visibility Test @regression', async ({ page }) => {
+        await expect(
+            page.locator('.orangehrm-forgot-password-title')
+        ).toContainText('Reset Password');
 
-    Logger.info('Starting Forgot Password Cancel Button Visibility Test');
-
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
-
-    await page.locator('.orangehrm-login-forgot-header').click();
-
-    const cancelButton = page.getByRole('button', {
-        name: 'Cancel'
     });
 
-    await expect(cancelButton).toBeVisible();
+    test('Forgot Password URL Validation Test @regression', async ({ page }) => {
 
-});
+        Logger.info('Starting Forgot Password URL Validation Test');
 
-test('Forgot Password Empty Username Validation Test @negative', async ({ page }) => {
+        await expect(page).toHaveURL(/requestPasswordResetCode/);
 
-    Logger.info('Starting Forgot Password Empty Username Validation Test');
+    });
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
+    test('Forgot Password Username Field Visibility Test @sanity', async ({ page }) => {
 
-    await page.locator('.orangehrm-login-forgot-header').click();
+        Logger.info('Starting Forgot Password Username Field Visibility Test');
 
-    await page.getByRole('button', {
-        name: 'Reset Password'
-    }).click();
+        await expect(
+            page.locator('input[name="username"]')
+        ).toBeVisible();
 
-    const requiredMessage = page.locator('//span[text()="Required"]');
+    });
 
-    await expect(requiredMessage).toBeVisible();
+    test('Forgot Password Reset Button Visibility Test @smoke', async ({ page }) => {
 
-});
+        Logger.info('Starting Forgot Password Reset Button Visibility Test');
 
-test('Forgot Password Invalid Username Test @negative', async ({ page }) => {
+        await expect(
+            page.getByRole('button', { name: 'Reset Password' })
+        ).toBeVisible();
 
-    Logger.info('Starting Forgot Password Invalid Username Test');
+    });
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
+    test('Forgot Password Cancel Button Visibility Test @regression', async ({ page }) => {
 
-    await page.locator('.orangehrm-login-forgot-header').click();
+        Logger.info('Starting Forgot Password Cancel Button Visibility Test');
 
-    await page.locator('input[name="username"]').fill('WrongUser');
+        await expect(
+            page.getByRole('button', { name: 'Cancel' })
+        ).toBeVisible();
 
-    await page.getByRole('button', {
-        name: 'Reset Password'
-    }).click();
+    });
 
-    const message = page.locator('.oxd-text--p');
+    test('Forgot Password Empty Username Validation Test @negative', async ({ page }) => {
 
-    await expect(message.first()).toBeVisible();
+        Logger.info('Starting Forgot Password Empty Username Validation Test');
 
-});
+        await page.getByRole('button', {
+            name: 'Reset Password'
+        }).click();
 
-test('Forgot Password Refresh Test @sanity', async ({ page }) => {
+        await expect(
+            page.locator('//span[text()="Required"]')
+        ).toBeVisible();
 
-    Logger.info('Starting Forgot Password Refresh Test');
+    });
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
+    test('Forgot Password Invalid Username Test @negative', async ({ page }) => {
 
-    await page.locator('.orangehrm-login-forgot-header').click();
+        Logger.info('Starting Forgot Password Invalid Username Test');
 
-    await page.reload();
+        await page.locator('input[name="username"]').fill('WrongUser');
 
-    await expect(
-        page.locator('input[name="username"]')
-    ).toBeVisible();
+        await page.getByRole('button', {
+            name: 'Reset Password'
+        }).click();
 
-});
+        await expect(
+            page.locator('.oxd-text--p').first()
+        ).toBeVisible();
 
-test('Forgot Password Header Visibility Test @smoke', async ({ page }) => {
+    });
 
-    Logger.info('Starting Forgot Password Header Visibility Test');
+    test('Forgot Password Refresh Test @sanity', async ({ page }) => {
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
+        Logger.info('Starting Forgot Password Refresh Test');
 
-    await page.locator('.orangehrm-login-forgot-header').click();
+        await page.reload();
 
-    const header = page.locator('.orangehrm-forgot-password-title');
+        await expect(
+            page.locator('input[name="username"]')
+        ).toBeVisible();
 
-    await expect(header).toBeVisible();
+    });
 
-});
+    test('Forgot Password Header Visibility Test @smoke', async ({ page }) => {
 
-test('Forgot Password Back To Login Test @regression', async ({ page }) => {
+        Logger.info('Starting Forgot Password Header Visibility Test');
 
-    Logger.info('Starting Forgot Password Back To Login Test');
+        await expect(
+            page.locator('.orangehrm-forgot-password-title')
+        ).toBeVisible();
 
-    await page.goto(
-        'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-        {
-            waitUntil: 'load',
-            timeout: 60000
-        }
-    );
+    });
 
-    await page.locator('.orangehrm-login-forgot-header').click();
+    test('Forgot Password Back To Login Test @regression', async ({ page }) => {
 
-    await page.getByRole('button', {
-        name: 'Cancel'
-    }).click();
+        Logger.info('Starting Forgot Password Back To Login Test');
 
-    await expect(page).toHaveURL(/login/);
+        await page.getByRole('button', {
+            name: 'Cancel'
+        }).click();
+
+        await expect(page).toHaveURL(/login/);
+
+    });
 
 });

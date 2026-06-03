@@ -1,7 +1,7 @@
 // @ts-check
 
-import { defineConfig, devices } from '@playwright/test';
-import dotenv from 'dotenv';
+const { defineConfig, devices } = require('@playwright/test');
+const dotenv = require('dotenv');
 
 dotenv.config();
 
@@ -15,7 +15,7 @@ process.env.APP_USERNAME =
 process.env.APP_PASSWORD =
   process.env.APP_PASSWORD || 'admin123';
 
-export default defineConfig({
+module.exports = defineConfig({
   testDir: './tests',
 
   fullyParallel: true,

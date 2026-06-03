@@ -13,3 +13,6 @@ allure-report/
 
 # Screenshots
 screenshots/
+
+# Local Logs
+logs/

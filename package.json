@@ -1,14 +1,30 @@
 {
   "name": "enterprise-auto-workshop-management-automation",
   "version": "1.0.0",
-  "description": "",
+  "description": "End-to-end test automation framework built using Playwright with JavaScript",
   "main": "index.js",
   "scripts": {
+    "test": "playwright test",
     "test:ci": "playwright test",
-    "allure:generate": "allure generate allure-results --clean -o allure-report"
+    "test:smoke": "playwright test --grep @smoke",
+    "test:regression": "playwright test --grep @regression",
+    "test:sanity": "playwright test --grep @sanity",
+    "test:api": "playwright test api-tests/",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "start": "node server.js",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "playwright",
+    "automation",
+    "testing",
+    "e2e",
+    "pom"
+  ],
+  "author": "KunDan",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {

@@ -22,29 +22,31 @@ class LoginPage {
 
     }
 
-    async login(username, password) {
+    async login(username, password, waitForDashboard = true) {
 
         await this.usernameInput.waitFor({
             state: 'visible',
             timeout: 30000
         });
 
-        await this.usernameInput.fill(username);
+        await this.usernameInput.fill(username || '');
 
-        await this.passwordInput.fill(password);
+        await this.passwordInput.fill(password || '');
 
         await this.loginBtn.click();
 
-        await this.page.waitForURL(
-            '**/dashboard/**',
-            {
-                timeout: 60000
-            }
-        );
+        if (waitForDashboard) {
+            await this.page.waitForURL(
+                '**/dashboard/**',
+                {
+                    timeout: 60000
+                }
+            );
 
-        await this.page.waitForLoadState(
-            'domcontentloaded'
-        );
+            await this.page.waitForLoadState(
+                'domcontentloaded'
+            );
+        }
 
     }
 
