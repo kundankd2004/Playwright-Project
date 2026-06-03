@@ -10,7 +10,7 @@
 
 Here is the Allure execution report showing a **98.21% pass rate** (551/561 passed tests) across Chromium, Firefox, and Webkit:
 
-![Allure Test Execution Report](./reports/allure_report_screenshot.png)
+![Allure Test Execution Report](./reports/allure_report_screenshot.jpg)
 
 ## Project Overview
 
