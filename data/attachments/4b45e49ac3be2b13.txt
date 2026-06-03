@@ -1,0 +1,1 @@
+[2026-06-03T04:07:00.441Z] [INFO] Starting Forgot Password Header Visibility Test

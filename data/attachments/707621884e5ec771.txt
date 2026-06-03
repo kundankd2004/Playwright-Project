@@ -1,0 +1,1 @@
+[2026-06-03T04:30:16.652Z] [INFO] Starting Sidebar Menu Visibility Test

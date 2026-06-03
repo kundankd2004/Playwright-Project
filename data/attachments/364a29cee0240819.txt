@@ -1,0 +1,1 @@
+[2026-06-03T04:08:08.164Z] [INFO] Starting Leave Sidebar Visibility Test

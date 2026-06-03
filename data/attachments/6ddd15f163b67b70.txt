@@ -1,0 +1,1 @@
+[2026-06-03T04:26:39.772Z] [INFO] Starting Password Field Visibility Test

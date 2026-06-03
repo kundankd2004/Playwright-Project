@@ -1,0 +1,1 @@
+[2026-06-03T04:10:44.711Z] [INFO] Starting Add Candidate Button Visibility Test
