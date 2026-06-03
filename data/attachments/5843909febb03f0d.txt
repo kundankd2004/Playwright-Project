@@ -1,3 +1,0 @@
-Starting Test Execution
-[2026-06-03T04:16:49.686Z] [INFO] Starting Logout Option Visibility Test
-Test Execution Completed

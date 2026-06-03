@@ -1,1 +1,0 @@
-[2026-06-03T04:27:06.424Z] [INFO] Starting Header Refresh Test

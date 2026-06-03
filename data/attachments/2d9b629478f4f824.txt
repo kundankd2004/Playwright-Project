@@ -1,1 +1,0 @@
-[2026-06-03T04:32:37.891Z] [INFO] Starting Recruitment Menu Visibility Test

@@ -1,1 +1,0 @@
-[2026-06-03T04:11:53.493Z] [INFO] Starting Attendance Button Visibility Test

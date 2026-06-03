@@ -1,3 +1,0 @@
-Starting Test Execution
-[2026-06-03T04:28:40.055Z] [INFO] Starting Support Option Visibility Test
-Test Execution Completed

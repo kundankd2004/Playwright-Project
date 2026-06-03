@@ -1,1 +1,0 @@
-[2026-06-03T04:17:05.773Z] [INFO] Starting Sidebar Visibility After Login Test

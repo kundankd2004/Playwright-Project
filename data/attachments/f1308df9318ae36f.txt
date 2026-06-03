@@ -1,1 +1,0 @@
-[2026-06-03T04:10:47.352Z] [INFO] Starting Candidates Button Visibility Test

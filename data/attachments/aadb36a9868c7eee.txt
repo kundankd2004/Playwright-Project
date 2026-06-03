@@ -1,1 +1,0 @@
-[2026-06-03T04:20:26.810Z] [INFO] Starting Search Button Visibility Test

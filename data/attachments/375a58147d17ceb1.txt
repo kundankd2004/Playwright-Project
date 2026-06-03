@@ -1,1 +1,0 @@
-[2026-06-03T04:32:35.674Z] [INFO] Starting Leave Menu Visibility Test

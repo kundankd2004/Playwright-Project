@@ -1,1 +1,0 @@
-[2026-06-03T04:19:45.376Z] [INFO] Starting Recruitment Reset Button Visibility Test

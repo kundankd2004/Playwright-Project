@@ -1,1 +1,0 @@
-[2026-06-03T04:08:45.476Z] [INFO] Starting Support Option Visibility Test

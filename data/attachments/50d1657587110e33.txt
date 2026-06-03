@@ -1,3 +1,0 @@
-Starting Test Execution
-[2026-06-03T04:29:25.597Z] [INFO] Starting My Info Refresh Test
-Test Execution Completed

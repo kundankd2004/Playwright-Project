@@ -1,3 +1,0 @@
-Starting Test Execution
-[2026-06-03T04:09:35.866Z] [INFO] Starting My Info Header Visibility Test
-Test Execution Completed

@@ -1,3 +1,0 @@
-Starting Test Execution
-[2026-06-03T04:24:39.058Z] [INFO] Starting Admin Table Visibility Test
-Test Execution Completed

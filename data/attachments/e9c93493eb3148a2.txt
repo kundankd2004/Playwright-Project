@@ -1,1 +1,0 @@
-[2026-06-03T04:19:01.900Z] [INFO] Starting Recruitment Page Visibility Test

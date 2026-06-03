@@ -1,0 +1,1 @@
+[2026-06-03T05:02:10.286Z] [INFO] Starting Help Icon Visibility Test

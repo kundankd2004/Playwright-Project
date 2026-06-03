@@ -1,1 +1,0 @@
-[2026-06-03T04:19:26.551Z] [INFO] Starting Vacancies Button Visibility Test
