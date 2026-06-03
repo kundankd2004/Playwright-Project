@@ -1,1 +1,0 @@
-[INFO] Starting Password Field Visibility Test

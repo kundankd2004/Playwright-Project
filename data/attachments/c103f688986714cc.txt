@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Dashboard My Actions Widget Test
-Test Execution Completed

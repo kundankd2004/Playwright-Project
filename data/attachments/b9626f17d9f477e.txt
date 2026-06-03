@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Empty Password Test
-Test Execution Completed

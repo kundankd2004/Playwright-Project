@@ -1,4 +1,0 @@
-Starting Test Execution
-[INFO] Starting Recruitment Module Load Performance Test
-Recruitment Load Time: 7425 ms
-Test Execution Completed

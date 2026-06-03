@@ -1,1 +1,0 @@
-[INFO] Starting Support Option Visibility Test

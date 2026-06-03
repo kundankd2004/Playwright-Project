@@ -1,1 +1,0 @@
-[INFO] Starting Search Box Visibility Test

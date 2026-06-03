@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Recruitment Navigation Test
-Test Execution Completed

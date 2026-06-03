@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Add Admin User Test
-Test Execution Completed

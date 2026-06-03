@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Employee Search Field Visibility Test
-Test Execution Completed

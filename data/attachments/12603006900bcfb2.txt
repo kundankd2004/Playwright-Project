@@ -1,4 +1,0 @@
-Starting Test Execution
-[INFO] Starting Dashboard Load Performance Test
-Dashboard Reload Time: 2338 ms
-Test Execution Completed

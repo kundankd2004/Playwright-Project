@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Leave Header Visibility Test
-Test Execution Completed

@@ -1,4 +1,0 @@
-Starting Test Execution
-[INFO] Starting Login Performance Test
-Login Time: 12291 ms
-Test Execution Completed

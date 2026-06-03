@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Search Employee Test
-Test Execution Completed

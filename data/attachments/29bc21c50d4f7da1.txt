@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Buzz Navigation Test
-Test Execution Completed

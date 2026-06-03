@@ -1,3 +1,0 @@
-Starting Test Execution
-[INFO] Starting Edit Employee First Name Test
-Test Execution Completed
