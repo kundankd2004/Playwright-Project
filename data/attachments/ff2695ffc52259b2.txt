@@ -1,2 +1,0 @@
-[2026-06-03T05:27:22.363Z] [INFO] Starting Leave Module Load Performance Test
-Leave Load Time: 4890 ms

@@ -1,1 +1,0 @@
-[2026-06-03T05:17:54.683Z] [INFO] Starting Personal Details Header Visibility Test

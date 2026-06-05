@@ -1,3 +1,0 @@
-Starting Test Execution
-[2026-06-03T05:14:15.706Z] [INFO] Starting Admin Sidebar Visibility Test
-Test Execution Completed

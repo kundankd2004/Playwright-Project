@@ -1,3 +1,0 @@
-Starting Test Execution
-[2026-06-03T05:18:15.299Z] [INFO] Starting Dashboard Navigation Test
-Test Execution Completed

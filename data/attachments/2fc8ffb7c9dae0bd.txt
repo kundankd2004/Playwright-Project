@@ -1,1 +1,0 @@
-[2026-06-03T05:18:33.252Z] [INFO] Starting Special Character Username Test

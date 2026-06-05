@@ -1,1 +1,0 @@
-[2026-06-03T05:12:53.649Z] [INFO] Starting Sidebar Visibility Test

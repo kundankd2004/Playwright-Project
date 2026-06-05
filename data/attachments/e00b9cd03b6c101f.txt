@@ -1,0 +1,2 @@
+[2026-06-05T05:16:49.851Z] [INFO] Starting Recruitment Module Load Performance Test
+Recruitment Load Time: 6910 ms

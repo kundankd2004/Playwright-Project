@@ -1,0 +1,1 @@
+[2026-06-05T05:08:53.814Z] [INFO] Starting Admin Header Visibility Test

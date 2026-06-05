@@ -1,1 +1,0 @@
-[2026-06-03T05:15:56.530Z] [INFO] Starting Notification Bell Visibility Test

@@ -1,2 +1,0 @@
-[2026-06-03T05:18:36.224Z] [INFO] Starting Login Performance Test
-Login Time: 6222 ms

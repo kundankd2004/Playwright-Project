@@ -1,3 +1,0 @@
-Starting Test Execution
-[2026-06-03T05:21:58.548Z] [INFO] Starting Add Employee Refresh Test
-Test Execution Completed

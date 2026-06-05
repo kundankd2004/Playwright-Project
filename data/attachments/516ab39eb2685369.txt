@@ -1,1 +1,0 @@
-[2026-06-03T05:26:47.381Z] [INFO] Starting My Info Navigation Test

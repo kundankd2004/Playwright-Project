@@ -1,3 +1,0 @@
-Starting Test Execution
-[2026-06-03T05:11:09.092Z] [INFO] Starting Personal Details Header Visibility Test
-Test Execution Completed

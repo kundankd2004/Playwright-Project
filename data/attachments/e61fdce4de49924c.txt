@@ -1,3 +1,0 @@
-Starting Test Execution
-[2026-06-03T05:17:50.612Z] [INFO] Starting Profile Image Visibility Test
-Test Execution Completed

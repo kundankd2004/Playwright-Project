@@ -1,1 +1,0 @@
-[2026-06-03T05:10:35.306Z] [INFO] Starting User Dropdown Visibility Test

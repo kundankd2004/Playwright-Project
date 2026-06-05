@@ -1,2 +1,0 @@
-[2026-06-03T05:27:18.566Z] [INFO] Starting PIM Module Load Performance Test
-PIM Load Time: 3714 ms

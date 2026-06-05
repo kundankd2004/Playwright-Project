@@ -1,3 +1,0 @@
-Starting Test Execution
-[2026-06-03T05:11:42.946Z] [INFO] Starting Direct Dashboard Access Without Login Test
-Test Execution Completed

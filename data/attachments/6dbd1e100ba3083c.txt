@@ -1,3 +1,0 @@
-Starting Test Execution
-[2026-06-03T05:10:55.466Z] [INFO] Starting First Name Field Visibility Test
-Test Execution Completed

@@ -1,3 +1,0 @@
-Starting Test Execution
-[2026-06-03T05:07:52.730Z] [INFO] Starting Admin Header Visibility Test
-Test Execution Completed

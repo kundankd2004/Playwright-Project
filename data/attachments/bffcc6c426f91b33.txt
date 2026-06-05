@@ -1,3 +1,0 @@
-Starting Test Execution
-[2026-06-03T05:25:57.381Z] [INFO] Starting Logout Refresh Test
-Test Execution Completed
